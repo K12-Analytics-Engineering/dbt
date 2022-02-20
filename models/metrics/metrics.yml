@@ -1,0 +1,11 @@
+
+version: 2
+
+models:
+  - name: current_gpa
+    description: >
+      Unweighted GPA taking into account grades from the
+      current grading period and active section enrollments
+    config:
+      materialization: view
+      schema: grades

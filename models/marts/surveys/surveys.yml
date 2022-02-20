@@ -1,0 +1,62 @@
+version: 2
+
+
+models:
+  - name: dim_survey
+    description: One row per survey
+    columns:
+      - name: survey_key
+        description: Primary key for dimension table
+        tests:
+          - unique
+          - not_null
+
+      - name: school_year
+        description: School year for which the assessment ocurred within
+
+      - name: namespace
+        description: Namespace for the survey
+        tests:
+          - not_null
+
+      - name: survey_identifier
+        description: Unique identifier for the respective survey
+        tests:
+          - not_null
+
+      - name: title
+        description: Title of the survey
+        tests:
+          - not_null
+
+
+  - name: dim_survey_question
+    description: One row per survey per question
+    columns:
+      - name: survey_question_key
+        description: Primary key for dimension table
+        tests:
+          - unique
+          - not_null
+
+      - name: survey_key
+        description: Foreign key to `dim_survey`
+        tests:
+          - relationships:
+              to: ref('dim_survey')
+              field: survey_key
+
+      - name: survey_question_identifier
+        description: Unique identifier for the respective survey question
+        tests:
+          - not_null
+
+      - name: text
+        description: The text of the question
+        tests:
+          - not_null
+
+      - name: type
+        description: The type of question
+        tests:
+          - not_null

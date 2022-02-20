@@ -1,0 +1,41 @@
+
+version: 2
+
+models:
+  - name: fct_student_section_grade
+    description: '{{ doc("fct_student_section_grades") }}'
+    tests:
+      - dbt_utils.expression_is_true:
+          expression: "numeric_grade_earned >= 0"
+    columns:
+      - name: student_key
+        description: Unique student identifier
+        tests:
+          - not_null
+
+      - name: school_key
+        description: Unique school identifier
+
+      - name: grading_period_key
+        description: Concatenation of grading period descriptor code value, school id, and grading period begin date
+
+      - name: student_section_key
+        description: Concatenation of student key and section information to allow for an easy join on student section dimension
+        tests:
+          - relationships:
+              to: ref('dim_student_section')
+              field: student_section_key
+
+      - name: section_key
+        description: Concatenation of section information to uniquely identifier a section
+
+      - name: numeric_grade_earned
+        description: Numeric grade reflecting student performance in a class as submitted by the instructor
+
+      - name: letter_grade_earned
+        description: Letter grade reflecting student performance in a class as submitted by the instructor
+        tests:
+          - not_null
+
+      - name: grade_type
+        description: The type of grade reported (e.g., Exam, Final, Grading Period)

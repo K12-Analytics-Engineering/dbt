@@ -1,0 +1,135 @@
+
+version: 2
+
+
+models:
+  - name: dim_assessment
+    description: '{{ doc("dim_assessment") }}'
+    columns:
+      - name: assessment_key
+        description: Primary key for dimension table
+        tests:
+          - unique
+          - not_null
+
+      - name: education_organization_key
+        description: Primary key for dimension table
+        tests:
+          - not_null
+
+      - name: school_year
+        description: School year
+        tests:
+          - not_null
+
+      - name: assessment_identifier
+        description: The unique identifier that describes the assessment
+        tests:
+          - not_null
+
+      - name: assessment_family
+        description: Assessment family
+
+      - name: namespace
+        description: Typically defines the vendor who sent the assessment data
+
+      - name: title
+        description: "The title description of the assessment."
+
+      - name: version
+        description: "Describes what version the assessment or objective assessment focuses on."
+
+      - name: category
+        description: "Describes what category the assessment or objective assessment focuses on."
+
+      - name: form
+        description: "This is the minimum score that can be achieved for this assessment or objective assessment."
+
+      - name: adaptive_assessment
+        description: "This is the maximum score that can be achieved for this assessment or objective assessment."
+
+
+  - name: dim_objective_assessment
+    description: ""
+    columns:
+      - name: objective_assessment_key
+        description: Primary key for dimension table
+        tests:
+          - unique
+          - not_null
+
+      - name: assessment_key
+        description: Foreign key to `dim_assessment`
+        tests:
+          - relationships:
+              to: ref('dim_assessment')
+              field: assessment_key
+
+      - name: school_year
+        description: School year
+        tests:
+          - not_null
+
+      - name: identification_code
+        description: Unique identifier for objective assessment
+        tests:
+          - not_null
+
+      - name: academic_subject
+        description: Academic subject for objective assessment
+
+      - name: description
+        description: Description for objective assessment
+
+
+  - name: fct_student_assessment
+    description: '{{ doc("fct_student_assessment") }}'
+    columns:
+      - name: assessment_key
+        description: Foreign key to `dim_assessment`
+        tests:
+          - relationships:
+              to: ref('dim_assessment')
+              field: assessment_key
+
+      - name: objective_assessment_key
+        description: Foreign key to `dim_objective_assessment`
+
+      - name: student_key
+        description: Foreign key to `dim_student`
+        tests:
+          - relationships:
+              to: ref('dim_student')
+              field: student_key
+
+      - name: school_key
+        description: Foreign key to `dim_school`
+        tests:
+          - relationships:
+              to: ref('dim_school')
+              field: school_key
+
+      - name: school_year
+        description: School year
+        tests:
+          - not_null
+
+      - name: student_assessment_identifier
+        description: Unique identifier for student assessment
+        tests:
+          - not_null
+
+      - name: administration_date
+        description: Date the assessment was administered
+
+      - name: assessed_grade_level
+        description: Grade level of student when assessment was administered
+
+      - name: reporting_method
+        description: "Describes how the results of the assessment are reported.  This will create multiple records if there are multiple reporting methods associated with the assessment."
+
+      - name: student_result_data_type
+        description: "Describes what format the results for the assessment are reported."
+
+      - name: student_result
+        description: "The documented score for the student for the corresponding assessment or objective assessment."

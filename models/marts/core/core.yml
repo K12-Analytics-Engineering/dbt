@@ -1,0 +1,369 @@
+
+version: 2
+
+models:
+  - name: dim_date
+    description: '{{ doc("dim_date") }}'
+    columns:
+      - name: date
+        description: Calendar date
+        tests:
+          - unique
+          - not_null
+
+      - name: day
+        description: Day number
+
+      - name: month
+        description: Month number
+
+      - name: month_name
+        description: Month name
+
+      - name: calendar_quarter
+        description: "Based on 1: Jan-Mar, 2: Apr-Jun, 3: Jul-Sep, 4: Oct-Dec"
+
+      - name: calendar_quarter_name
+        description: 	Calendar quarter name
+
+      - name: calendar_year
+        description: Full four digit year
+
+      - name: month_sort_order
+        description: Looks at school year as July - June
+
+
+  - name: dim_demographic
+    description: '{{ doc("dim_demographic") }}'
+    columns:
+      - name: demographic_key
+        description: Primary key for dimension table
+        tests:
+          - unique
+          - not_null
+
+      - name: demographic_parent
+        description: Descriptor parent. For example, 'RaceDescriptors' will show 'Race'.
+        tests:
+          - not_null
+
+      - name: demographic_label
+        description: Short description of the descriptor
+        tests:
+          - not_null
+
+
+  - name: dim_grading_period
+    description: '{{ doc("dim_grading_period") }}'
+    columns:
+      - name: grading_period_key
+        description: Primary key for dimension table
+        tests:
+          - unique
+          - not_null
+
+      - name: school_key
+        description: Foreign key to `dim_school`
+        tests:
+          - relationships:
+              to: ref('dim_school')
+              field: school_key
+
+      - name: grading_period_description
+        description: Grading period descriptor code value
+
+      - name: period_sequence
+        description: The sequential order of this period relative to other periods
+
+      - name: grading_period_begin_date_key
+        description: Month, day, and year of the first day of the grading period
+
+      - name: grading_period_end_date_key
+        description: Month, day, and year of the last day of the grading period
+
+      - name: number_of_days
+        description: Total days available for educational instruction during the grading period
+
+
+  - name: dim_local_education_agency
+    description: '{{ doc("dim_local_education_agency") }}'
+    columns:
+      - name: local_education_agency_key
+        description: Primary key for dimension table
+        tests:
+          - unique
+          - not_null
+
+      - name: local_education_agency_id
+        description: Unique identifier for local education agency
+        tests:
+          - unique
+          - not_null
+
+      - name: local_education_agency_name
+        description: "The name assigned to a local education agency."
+
+
+  - name: dim_school
+    description: '{{ doc("dim_school") }}'
+    columns:
+      - name: school_key
+        description: Primary key for dimension table
+        tests:
+          - unique
+          - not_null
+
+      - name: local_education_agency_key
+        description: Foreign key to `dim_local_education_agency`
+        tests:
+          - relationships:
+              to: ref('dim_local_education_agency')
+              field: local_education_agency_key
+
+      - name: school_id
+        description: School unique identifier
+        tests:
+          - unique
+          - not_null
+
+      - name: school_name
+        description: The name assigned to a school.
+
+      - name: school_type
+        description: The type of education institution as classified by its primary focus.
+
+      - name: local_education_agency_name
+        description: The name assigned to a local education agency.
+
+
+  - name: dim_section
+    description: '{{ doc("dim_section") }}'
+    columns:
+      - name: section_key
+        description: Primary key for dimension table
+        tests:
+          - unique
+          - not_null
+
+      - name: local_education_agency_key
+        description: Foreign key to `dim_local_education_agency`
+        tests:
+          - relationships:
+              to: ref('dim_local_education_agency')
+              field: local_education_agency_key
+
+      - name: school_key
+        description: Foreign key to `dim_school`
+        tests:
+          - relationships:
+              to: ref('dim_school')
+              field: school_key
+
+      - name: session_key
+        description: Foreign key to `dim_session`
+        tests:
+          - relationships:
+              to: ref('dim_session')
+              field: session_key
+
+      - name: section_identifier
+        description: Section unique identifier
+        tests:
+          - not_null
+
+      - name: section_name
+        description: ""
+
+      - name: session_name
+        description: ""
+
+      - name: local_course_code
+        description: ""
+
+      - name: course_title
+        description: ""
+
+      - name: school_year
+        description: ""
+
+
+  - name: dim_session
+    description: '{{ doc("dim_session") }}'
+    columns:
+      - name: session_key
+        description: Primary key for dimension table
+        tests:
+          - unique
+          - not_null
+
+      - name: school_key
+        description: Foreign key to `dim_school`
+        tests:
+          - relationships:
+              to: ref('dim_school')
+              field: school_key
+
+      - name: school_year
+        description: Four-digit school year
+
+      - name: school_year_name
+        description: School year name (ie. 2021-2022)
+
+      - name: session_name
+        description: Session name
+
+      - name: term_name
+        description: Ed-Fi term descriptor
+
+      - name: total_instructional_days
+        description: Number of instructional days for the sesssion
+
+      - name: session_begin_date
+        description: Session begin date
+
+      - name: session_end_date
+        description: Session end date
+
+
+  - name: dim_staff
+    description: '{{ doc("dim_staff") }}'
+    columns:
+      - name: student_key
+        description: Primary key for dimension table. This surrogate key is based on the student's unique id
+        tests:
+          - unique
+          - not_null
+
+
+  - name: dim_student
+    description: '{{ doc("dim_student") }}'
+    columns:
+      - name: student_key
+        description: Primary key for dimension table. This surrogate key is based on the student's unique id
+        tests:
+          - unique
+          - not_null
+
+      - name: school_key
+        description: Foreign key to `dim_school`
+        tests:
+          - relationships:
+              to: ref('dim_school')
+              field: school_key
+
+      - name: school_year
+        description: School year
+        tests:
+          - not_null
+
+      - name: student_unique_id
+        description: Student unique identifier
+        tests:
+          - not_null
+
+      - name: student_last_surname
+        description: The name borne in common by members of a family.
+        tests:
+          - not_null
+
+      - name: student_first_name
+        description: A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.
+        tests:
+          - not_null
+
+      - name: student_display_name
+        description: Concatenation of student's last name, first name, and first letter of middle name
+
+      - name: email
+        description: Student email
+
+      - name: school_enrollment_date
+        description: The date the student began their school enrollment
+
+      - name: school_exit_date
+        description: Typically the day after the student concluded their final day of enrollment
+
+      - name: is_enrolled_at_school
+        description: 0 or 1 depending on if the student holds an active enrollment at the school
+
+      - name: grade_level
+        description: Grade level label
+
+      - name: grade_level_id
+        description: Grade level id useful for sorting dropdowns in bi tools
+
+      - name: gender
+        description: The student's gender as last reported to the education organization
+
+      - name: limited_english_proficiency
+        description: "An indication that the student has been identified as limited English proficient by the Language Proficiency Assessment Committee (LPAC), or English proficient."
+
+      - name: is_english_language_learner
+        description: ""
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Yes', 'No']
+
+      - name: in_special_education_program
+        description: ""
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Yes', 'No']
+
+      - name: is_hispanic
+        description: "An indication that the individual traces his or her origin or descent to Mexico, Puerto Rico, Cuba, Central, and South America, and other Spanish cultures, regardless of race, as last reported to the education organization."
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Yes', 'No']
+
+      - name: race
+        description: ""
+
+      - name: race_and_ethnicity_roll_up
+        description: ""
+
+
+  - name: student_local_education_agency_demographics_bridge
+    description: "This view provides student demographic information by linking the dim_student_local_education_agency to the dim_demographic."
+    columns:
+      - name: student_school_demographic_bridge_key
+        description: "Concatenation of the demographic_key found in the dim_demographic with the student_local_education_agency_key found in the dim_student_local_education_agency."
+        tests:
+          - unique
+          - not_null
+
+      - name: student_local_education_agency_key
+        description: "Concatenation of the student unique id and the LEA id."
+
+      - name: demographic_key
+        description: "Concatenation of parent key and label columns to allow for easier joins."
+
+  - name: dim_student_program
+    description: ""
+
+  - name: fct_student_school
+    description: ""
+    columns:
+      - name: student_key
+        description: Foreign key to `dim_student`
+        tests:
+          - relationships:
+              to: ref('dim_student')
+              field: student_key
+
+      - name: local_education_agency_key
+        description: Foreign key to `dim_local_education_agency`
+        tests:
+          - relationships:
+              to: ref('dim_local_education_agency')
+              field: local_education_agency_key
+
+      - name: school_key
+        description: Foreign key to `dim_school`
+        tests:
+          - relationships:
+              to: ref('dim_school')
+              field: school_key

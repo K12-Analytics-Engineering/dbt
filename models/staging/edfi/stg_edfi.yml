@@ -1,0 +1,35 @@
+
+version: 2
+
+
+models:
+  - name: stg_edfi_calendar_dates
+    description: "The type of scheduled or unscheduled event for the day."
+  
+  - name: stg_edfi_course_offerings
+    description: "This entity represents an entry in the course catalog of available courses offered by the school during a session."
+
+  - name: stg_edfi_courses
+    description: "This educational entity represents the organization of subject matter and related learning experiences provided for the instruction of students on a regular or systematic basis."
+
+  - name: stg_edfi_local_education_agencies
+    description: ""
+    tests:
+      - unique:
+          column_name: "CONCAT(school_year, '-', local_education_agency_id)"
+
+  - name: stg_edfi_schools
+    description: ""
+    columns:
+      - name: school_id
+        description: Unique school identifier
+        tests:
+          - relationships:
+              to: ref('stg_edfi_sessions')
+              field: school_reference.school_id
+
+  - name: stg_edfi_students
+    description: "This entity represents an individual for whom instruction, services, and/or care are provided in an early childhood, elementary, or secondary educational program under the jurisdiction of a school, education agency or other institution or program. A student is a person who has been enrolled in a school or other educational institution."
+    tests:
+      - unique:
+          column_name: "school_year || '-' || student_unique_id"

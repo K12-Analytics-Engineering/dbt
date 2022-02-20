@@ -1,0 +1,6 @@
+version: 2
+
+
+models:
+  - name: rls_user_school_authorization
+    description: One row per school a user is association with

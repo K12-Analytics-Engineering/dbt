@@ -1,0 +1,27 @@
+version: 2
+
+macros:
+  - name: convert_grade_level_to_id
+    description: >
+      This macro converts grade level descriptors to a numeric value for use in sorting in a bi tool
+    arguments:
+      - name: grade_level
+        type: string
+        description: Ed-Fi grade level descriptor
+
+  - name: convert_grade_level_to_short_label
+    description: >
+      This macro converts grade level descriptors to shorter, often numeric grade levels (ie. Fifth grade -> 5 )
+    arguments:
+      - name: grade_level
+        type: string
+        description: Ed-Fi grade level descriptor
+
+  - name: get_unweighted_gpa_point
+    description: >
+      This macro converts a letter grade to the equivalent unweighted gpa point value
+    arguments:
+      - name: letter_grade
+        type: string
+        description: Letter grade earned
+
