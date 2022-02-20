@@ -8,86 +8,1346 @@ sources:
         {%- endif -%}
       tables:
         - name: base_edfi_assessments
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_assessments/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_assessments/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_assessments/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_assessments/*.json'
+
         - name: base_edfi_assessments_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_assessments_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_assessments_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_assessments_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_assessments_deletes/*.json'
+
         - name: base_edfi_calendars
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_calendars/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_calendars/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_calendars/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_calendars/*.json'
+
         - name: base_edfi_calendars_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_calendars_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_calendars_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_calendars_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_calendars_deletes/*.json'
+
         - name: base_edfi_calendar_dates
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_calendar_dates/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_calendar_dates/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_calendar_dates/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_calendar_dates/*.json'
+
         - name: base_edfi_calendar_dates_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_calendar_dates_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_calendar_dates_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_calendar_dates_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_calendar_dates_deletes/*.json'
+
         - name: base_edfi_courses
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_courses/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_courses/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_courses/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_courses/*.json'
+
         - name: base_edfi_courses_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_courses_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_courses_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_courses_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_courses_deletes/*.json'
+
         - name: base_edfi_course_offerings
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_course_offerings/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_course_offerings/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_course_offerings/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_course_offerings/*.json'
+
         - name: base_edfi_course_offerings_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_course_offerings_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_course_offerings_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_course_offerings_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_course_offerings_deletes/*.json'
+
         - name: base_edfi_discipline_actions
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_discipline_actions/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_discipline_actions/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_discipline_actions/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_discipline_actions/*.json'
+
         - name: base_edfi_discipline_actions_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_discipline_actions_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_discipline_actions_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_discipline_actions_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_discipline_actions_deletes/*.json'
+
         - name: base_edfi_discipline_incidents
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_discipline_incidents/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_discipline_incidents/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_discipline_incidents/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_discipline_incidents/*.json'
+
         - name: base_edfi_discipline_incident_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_discipline_incident_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_discipline_incident_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_discipline_incident_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_discipline_incident_deletes/*.json'
+
         - name: base_edfi_grading_periods
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_grading_periods/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_grading_periods/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_grading_periods/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_grading_periods/*.json'
+
         - name: base_edfi_grading_periods_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_grading_periods_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_grading_periods_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_grading_periods_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_grading_periods_deletes/*.json'
+
         - name: base_edfi_grading_period_descriptors
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_grading_period_descriptors/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_grading_period_descriptors/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_grading_period_descriptors/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_grading_period_descriptors/*.json'
+
         - name: base_edfi_grades
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_grades/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_grades/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_grades/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_grades/*.json'
+
         - name: base_edfi_grades_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_grades_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_grades_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_grades_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_grades_deletes/*.json'
+
         - name: base_edfi_local_education_agencies
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_local_education_agencies/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_local_education_agencies/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_local_education_agencies/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_local_education_agencies/*.json'
+
         - name: base_edfi_local_education_agencies_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_local_education_agencies_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_local_education_agencies_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_local_education_agencies_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_local_education_agencies_deletes/*.json'
+
         - name: base_edfi_objective_assessments
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_objective_assessments/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_objective_assessments/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_objective_assessments/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_objective_assessments/*.json'
+
         - name: base_edfi_objective_assessments_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_objective_assessments_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_objective_assessments_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_objective_assessments_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_objective_assessments_deletes/*.json'
+
         - name: base_edfi_parents
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_parents/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_parents/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_parents/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_parents/*.json'
+
         - name: base_edfi_parents_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_parents_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_parents_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_parents_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_parents_deletes/*.json'
+
         - name: base_edfi_programs
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_programs/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_programs/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_programs/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_programs/*.json'
+
         - name: base_edfi_programs_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_programs_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_programs_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_programs_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_programs_deletes/*.json'
+
         - name: base_edfi_schools
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_schools/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_schools/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_schools/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_schools/*.json'
+
         - name: base_edfi_schools_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_schools_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_schools_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_schools_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_schools_deletes/*.json'
+
         - name: base_edfi_school_year_types
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_school_year_types/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_school_year_types/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_school_year_types/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_school_year_types/*.json'
+
         - name: base_edfi_sections
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_sections/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_sections/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_sections/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_sections/*.json'
+
         - name: base_edfi_sections_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_sections_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_sections_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_sections_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_sections_deletes/*.json'
+
         - name: base_edfi_sessions
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_sessions/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_sessions/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_sessions/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_sessions/*.json'
+
         - name: base_edfi_sessions_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_sessions_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_sessions_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_sessions_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_sessions_deletes/*.json'
+
         - name: base_edfi_staffs
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_staffs/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_staffs/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_staffs/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_staffs/*.json'
+
         - name: base_edfi_staffs_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_staffs_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_staffs_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_staffs_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_staffs_deletes/*.json'
+
         - name: base_edfi_staff_discipline_incident_associations
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_staff_discipline_incident_associations/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_staff_discipline_incident_associations/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_staff_discipline_incident_associations/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_staff_discipline_incident_associations/*.json'
+
         - name: base_edfi_staff_discipline_incident_associations_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_staff_discipline_incident_associations_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_staff_discipline_incident_associations_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_staff_discipline_incident_associations_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_staff_discipline_incident_associations_deletes/*.json'
+
         - name: base_edfi_staff_education_organization_assignment_associations
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_staff_education_organization_assignment_associations/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_staff_education_organization_assignment_associations/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_staff_education_organization_assignment_associations/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_staff_education_organization_assignment_associations/*.json'
+
         - name: base_edfi_staff_education_organization_assignment_associations_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_staff_education_organization_assignment_associations_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_staff_education_organization_assignment_associations_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_staff_education_organization_assignment_associations_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_staff_education_organization_assignment_associations_deletes/*.json'
+
         - name: base_edfi_staff_school_associations
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_staff_school_associations/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_staff_school_associations/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_staff_school_associations/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_staff_school_associations/*.json'
+
         - name: base_edfi_staff_school_associations_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_staff_school_associations_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_staff_school_associations_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_staff_school_associations_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_staff_school_associations_deletes/*.json'
+
         - name: base_edfi_staff_section_associations
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_staff_section_associations/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_staff_section_associations/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_staff_section_associations/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_staff_section_associations/*.json'
+
         - name: base_edfi_staff_section_associations_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_staff_section_associations_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_staff_section_associations_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_staff_section_associations_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_staff_section_associations_deletes/*.json'
+
         - name: base_edfi_students
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_students/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_students/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_students/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_students/*.json'
+
         - name: base_edfi_students_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_students_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_students_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_students_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_students_deletes/*.json'
+
         - name: base_edfi_student_assessments
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_student_assessments/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_student_assessments/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_student_assessments/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_student_assessments/*.json'
+
         - name: base_edfi_student_assessments_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_student_assessments_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_student_assessments_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_student_assessments_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_student_assessments_deletes/*.json'
+
         - name: base_edfi_student_discipline_incident_associations
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_student_discipline_incident_associations/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_student_discipline_incident_associations/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_student_discipline_incident_associations/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_student_discipline_incident_associations/*.json'
+
         - name: base_edfi_student_discipline_incident_associations_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_student_discipline_incident_associations_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_student_discipline_incident_associations_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_student_discipline_incident_associations_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_student_discipline_incident_associations_deletes/*.json'
+
         - name: base_edfi_student_education_organization_associations
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_student_education_organization_associations/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_student_education_organization_associations/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_student_education_organization_associations/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_student_education_organization_associations/*.json'
+
         - name: base_edfi_student_education_organization_associations_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_student_education_organization_associations_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_student_education_organization_associations_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_student_education_organization_associations_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_student_education_organization_associations_deletes/*.json'
+
         - name: base_edfi_student_parent_associations
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_student_parent_associations/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_student_parent_associations/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_student_parent_associations/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_student_parent_associations/*.json'
+
         - name: base_edfi_student_parent_associations_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_student_parent_associations_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_student_parent_associations_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_student_parent_associations_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_student_parent_associations_deletes/*.json'
+
         - name: base_edfi_student_program_associations
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_student_program_associations/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_student_program_associations/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_student_program_associations/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_student_program_associations/*.json'
+
         - name: base_edfi_student_program_associations_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_student_program_associations_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_student_program_associations_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_student_program_associations_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_student_program_associations_deletes/*.json'
+
         - name: base_edfi_student_school_associations
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_student_school_associations/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_student_school_associations/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_student_school_associations/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_student_school_associations/*.json'
+
         - name: base_edfi_student_school_associations_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_student_school_associations_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_student_school_associations_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_student_school_associations_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_student_school_associations_deletes/*.json'
+
         - name: base_edfi_student_school_attendance_events
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_student_school_attendance_events/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_student_school_attendance_events/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_student_school_attendance_events/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_student_school_attendance_events/*.json'
+
         - name: base_edfi_student_school_attendance_events_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_student_school_attendance_events_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_student_school_attendance_events_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_student_school_attendance_events_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_student_school_attendance_events_deletes/*.json'
+
         - name: base_edfi_student_section_associations
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_student_section_associations/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_student_section_associations/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_student_section_associations/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_student_section_associations/*.json'
+
         - name: base_edfi_student_section_associations_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_student_section_associations_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_student_section_associations_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_student_section_associations_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_student_section_associations_deletes/*.json'
+
         - name: base_edfi_student_section_attendance_events
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_student_section_attendance_events/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_student_section_attendance_events/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_student_section_attendance_events/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_student_section_attendance_events/*.json'
+
         - name: base_edfi_student_section_attendance_events_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_student_section_attendance_events_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_student_section_attendance_events_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_student_section_attendance_events_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_student_section_attendance_events_deletes/*.json'
+
         - name: base_edfi_student_special_education_program_associations
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_student_special_education_program_associations/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_student_special_education_program_associations/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_student_special_education_program_associations/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_student_special_education_program_associations/*.json'
+
         - name: base_edfi_student_special_education_program_associations_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_student_special_education_program_associations_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_student_special_education_program_associations_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_student_special_education_program_associations_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_student_special_education_program_associations_deletes/*.json'
+
         - name: base_edfi_surveys
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_surveys/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_surveys/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_surveys/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_surveys/*.json'
+
         - name: base_edfi_surveys_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_surveys_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_surveys_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_surveys_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_surveys_deletes/*.json'
+
         - name: base_edfi_survey_questions
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_survey_questions/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_survey_questions/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_survey_questions/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_survey_questions/*.json'
+
         - name: base_edfi_survey_questions_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_survey_questions_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_survey_questions_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_survey_questions_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_survey_questions_deletes/*.json'
+
         - name: base_edfi_survey_responses
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_survey_responses/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_survey_responses/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_survey_responses/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_survey_responses/*.json'
+
         - name: base_edfi_survey_responses_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_survey_responses_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_survey_responses_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_survey_responses_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_survey_responses_deletes/*.json'
+
         - name: base_edfi_survey_question_responses
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_survey_question_responses/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_survey_question_responses/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_survey_question_responses/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_survey_question_responses/*.json'
+
         - name: base_edfi_survey_question_responses_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_survey_question_responses_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_survey_question_responses_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_survey_question_responses_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_survey_question_responses_deletes/*.json'
+
         - name: base_edfi_cohort_type_descriptors
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_cohort_type_descriptors/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_cohort_type_descriptors/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_cohort_type_descriptors/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_cohort_type_descriptors/*.json'
+
         - name: base_edfi_cohort_type_descriptors_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_cohort_type_descriptors_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_cohort_type_descriptors_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_cohort_type_descriptors_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_cohort_type_descriptors_deletes/*.json'
+
         - name: base_edfi_disability_descriptors
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_disability_descriptors/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_disability_descriptors/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_disability_descriptors/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_disability_descriptors/*.json'
+
         - name: base_edfi_disability_descriptors_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_disability_descriptors_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_disability_descriptors_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_disability_descriptors_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_disability_descriptors_deletes/*.json'
+
         - name: base_edfi_language_descriptors
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_language_descriptors/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_language_descriptors/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_language_descriptors/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_language_descriptors/*.json'
+
         - name: base_edfi_language_descriptors_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_language_descriptors_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_language_descriptors_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_language_descriptors_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_language_descriptors_deletes/*.json'
+
         - name: base_edfi_language_use_descriptors
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_language_use_descriptors/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_language_use_descriptors/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_language_use_descriptors/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_language_use_descriptors/*.json'
+
         - name: base_edfi_language_use_descriptors_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_language_use_descriptors_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_language_use_descriptors_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_language_use_descriptors_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_language_use_descriptors_deletes/*.json'
+
         - name: base_edfi_race_descriptors
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_race_descriptors/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_race_descriptors/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_race_descriptors/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_race_descriptors/*.json'
+
         - name: base_edfi_race_descriptors_deletes
+          columns:
+            - name: id
+              data_type: string
+            - name: data
+              data_type: string
+          external:
+            location:  this will be ignored
+            options:
+              format: NEWLINE_DELIMITED_JSON
+              uris:
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2021/base_edfi_race_descriptors_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2022/base_edfi_race_descriptors_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2023/base_edfi_race_descriptors_deletes/*.json'
+                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/2024/base_edfi_race_descriptors_deletes/*.json'
+
