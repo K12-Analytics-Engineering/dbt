@@ -3,8 +3,8 @@
         ".sql": "jinja-sql"
     },
     "terminal.integrated.env.windows": {
-        "DBT_PROFILES_DIR": "/workspaces/dagster-edfi-api-to-bq-amt",
-        "GOOGLE_APPLICATION_CREDENTIALS": "/workspaces/dagster-edfi-api-to-bq-amt/service.json"
+        "DBT_PROFILES_DIR": "",
+        "GOOGLE_APPLICATION_CREDENTIALS": "",
+        "GCS_BUCKET_DEV": "",
     },
-    "python.linting.enabled": false
 }
