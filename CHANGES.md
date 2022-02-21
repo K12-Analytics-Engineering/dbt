@@ -1,5 +1,14 @@
 # Changelog
 
+# 0.1.0
+
+### New
+
+- Adds `session_name` to `grading_period_key`
+
+
+# Previous changelog from combined repo
+
 # v0.5.3
 
 ### New

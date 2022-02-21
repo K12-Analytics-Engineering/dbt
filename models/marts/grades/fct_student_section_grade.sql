@@ -17,6 +17,7 @@ SELECT
     {{ dbt_utils.surrogate_key([
         'grades.grading_period_reference.school_id',
         'grades.grading_period_reference.school_year',
+        'student_section_association_reference.session_name',
         'grades.grading_period_reference.grading_period_descriptor',
         'grades.grading_period_reference.period_sequence'
     ]) }}                                                                   AS grading_period_key,
