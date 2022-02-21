@@ -7,6 +7,7 @@ After you clone this repo, poetry can be used to create a python virtual environ
 
 poetry env use 3.9;
 poetry install;
+# TODO copy and complete .env file
 env $(cat .env) poetry shell;
 dbt deps;
 dbt run-operation stage_external_sources;
