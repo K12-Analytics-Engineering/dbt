@@ -37,9 +37,10 @@ models:
       surveys:
         +schema: surveys
     staging:
+      +materialized: table
+      +schema: staging
       edfi:
-        +materialized: table
-        +schema: staging
         +tags: edfi
         +labels:
             edfi_version: "5_3"
+
