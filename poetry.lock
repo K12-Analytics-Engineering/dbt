@@ -119,7 +119,7 @@ protobuf = ">=3.13.0,<4"
 
 [[package]]
 name = "dbt-core"
-version = "1.0.2"
+version = "1.0.3"
 description = "With dbt, data analysts and engineers can build analytics the way engineers build applications."
 category = "main"
 optional = false
@@ -807,8 +807,8 @@ dbt-bigquery = [
     {file = "dbt_bigquery-1.0.0-py3-none-any.whl", hash = "sha256:48778c89a37dd866ffd3718bf6b78e1139b7fb4cc0377f2feaa95e10dc3ce9c2"},
 ]
 dbt-core = [
-    {file = "dbt-core-1.0.2.tar.gz", hash = "sha256:b40dfeed71401fb6f14d7cfc24d8809865568adb037bc972399b865d7a9ed65f"},
-    {file = "dbt_core-1.0.2-py3-none-any.whl", hash = "sha256:44f327ddff387aa3944b066e5181446fa8f60a4326608780d9899ab11b293d9c"},
+    {file = "dbt-core-1.0.3.tar.gz", hash = "sha256:cff4c5e83b5abb5aafbe098d52eeacff3c2288003b5f467c4170227cf887e545"},
+    {file = "dbt_core-1.0.3-py3-none-any.whl", hash = "sha256:b398e70249f81f29719ac178f2777d71591b417482bfed58aa270796b4966e06"},
 ]
 dbt-extractor = [
     {file = "dbt_extractor-0.4.0-cp310-cp310-macosx_10_7_x86_64.whl", hash = "sha256:916454ed38cb5ef1a3e239d639a66d74723504d271433d54a167de868290c327"},
