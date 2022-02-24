@@ -12,7 +12,7 @@ WITH grades AS (
         ON fct_student_section_grade.section_key = dim_section.section_key
     WHERE
         dim_grading_period.is_current_grading_period IS TRUE
-        AND CURRENT_DATE BETWEEN dim_section.start_date AND dim_section.end_date
+        AND fct_student_section_grade.is_actively_enrolled_in_section = 1
         AND course_gpa_applicability = 'Applicable'
 
 ),
