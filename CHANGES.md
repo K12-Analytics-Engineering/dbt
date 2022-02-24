@@ -5,6 +5,7 @@
 ### New
 
 - Adds `session_name` to `grading_period_key`
+- Adds `is_actively_enrolled_in_section` to `fct_student_section_grade`
 
 ### Breaking Changes
 

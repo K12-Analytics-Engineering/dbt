@@ -20,7 +20,7 @@ WITH parsed_data AS (
             EXTRACT(DATE FROM PARSE_TIMESTAMP('%Y-%m-%dT%TZ', JSON_VALUE(data, '$.studentSectionAssociationReference.beginDate'))) AS begin_date,
             JSON_VALUE(data, '$.studentSectionAssociationReference.localCourseCode') AS local_course_code,
             JSON_VALUE(data, '$.studentSectionAssociationReference.schoolId') AS school_id,
-            JSON_VALUE(data, '$.studentSectionAssociationReference.schoolYear') AS school_year,
+            CAST(JSON_VALUE(data, '$.studentSectionAssociationReference.schoolYear') AS int64) AS school_year,
             JSON_VALUE(data, '$.studentSectionAssociationReference.sectionIdentifier') AS section_identifier,
             JSON_VALUE(data, '$.studentSectionAssociationReference.sessionName') AS session_name,
             JSON_VALUE(data, '$.studentSectionAssociationReference.studentUniqueId') AS student_unique_id

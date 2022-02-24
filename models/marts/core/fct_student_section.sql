@@ -30,7 +30,7 @@ SELECT
             CURRENT_DATE >= ssa.begin_date
             AND CURRENT_DATE < ssa.end_date
         ),
-        1, 0)                                           AS is_actively_enrolled
+        1, 0)                                           AS is_actively_enrolled_in_section
 FROM {{ ref('stg_edfi_student_section_associations') }} ssa
 LEFT JOIN {{ ref('stg_edfi_course_offerings') }} course_offerings
     ON ssa.school_year = course_offerings.school_year

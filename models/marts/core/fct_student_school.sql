@@ -27,7 +27,7 @@ SELECT
             CURRENT_DATE >= ssa.entry_date
             AND CURRENT_DATE < ssa.exit_withdraw_date
         ),
-        1, 0)                                                       AS is_actively_enrolled
+        1, 0)                                                       AS is_actively_enrolled_in_school
 FROM {{ ref('stg_edfi_student_school_associations') }} ssa
 LEFT JOIN {{ ref('stg_edfi_schools') }} schools
     ON ssa.school_reference.school_id = schools.school_id

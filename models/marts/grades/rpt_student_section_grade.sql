@@ -7,6 +7,7 @@ WITH section_grade AS (
         fct_student_section_grade.school_key,
         fct_student_section_grade.section_key,
         fct_student_section_grade.student_key,
+        fct_student_section_grade.is_actively_enrolled_in_section,
         ARRAY_AGG(
             STRUCT(
                 dim_grading_period.grading_period_name,
@@ -19,7 +20,7 @@ WITH section_grade AS (
     FROM {{ ref('fct_student_section_grade') }} fct_student_section_grade
     LEFT JOIN {{ ref('dim_grading_period') }} dim_grading_period
         ON fct_student_section_grade.grading_period_key = dim_grading_period.grading_period_key
-    GROUP BY 1,2,3,4
+    GROUP BY 1,2,3,4,5
 
 )
 
@@ -32,7 +33,7 @@ SELECT
     dim_student.student_last_surname                            AS student_last_surname,
     dim_student.student_first_name                              AS student_first_name,
     dim_student.student_display_name                            AS student_display_name,
-    dim_student.is_actively_enrolled                            AS is_actively_enrolled,
+    dim_student.is_actively_enrolled_in_school                  AS is_actively_enrolled_in_school,
     dim_student.grade_level                                     AS grade_level,
     dim_student.grade_level_id                                  AS grade_level_id,
     dim_student.gender                                          AS gender,
@@ -47,20 +48,12 @@ SELECT
     dim_section.course_academic_subject                         AS academic_subject,
     dim_section.course_gpa_applicability                        AS course_gpa_applicability,
     dim_section.available_credits                               AS available_credits,
-    IF(
-        CURRENT_DATE BETWEEN fct_student_section.start_date AND fct_student_section.end_date,
-        "Yes",
-        "No"
-    )                                                           AS is_actively_enrolled_in_section,
+    section_grade.is_actively_enrolled_in_section               AS is_actively_enrolled_in_section,
     dim_session.session_name                                    AS session_name,
     dim_session.term_name                                       AS term_name,
     dim_staff.staff_display_name                                AS staff_display_name,
     section_grade.grades                                        AS grades
 FROM section_grade
-LEFT JOIN {{ ref('fct_student_section') }} fct_student_section
-    ON section_grade.school_key = fct_student_section.school_key
-    AND section_grade.student_key = fct_student_section.student_key
-    AND section_grade.section_key = fct_student_section.section_key
 LEFT JOIN {{ ref('dim_section') }} dim_section
     ON section_grade.section_key = dim_section.section_key
 LEFT JOIN {{ ref('dim_staff') }} dim_staff

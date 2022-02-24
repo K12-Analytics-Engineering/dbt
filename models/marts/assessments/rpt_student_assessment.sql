@@ -46,7 +46,7 @@ SELECT
     dim_student.student_last_surname                            AS student_last_surname,
     dim_student.student_first_name                              AS student_first_name,
     dim_student.student_display_name                            AS student_display_name,
-    dim_student.is_actively_enrolled                            AS is_actively_enrolled,
+    dim_student.is_actively_enrolled_in_school                  AS is_actively_enrolled_in_school,
     dim_student.grade_level                                     AS grade_level,
     dim_student.grade_level_id                                  AS grade_level_id,
     dim_student.gender                                          AS gender,

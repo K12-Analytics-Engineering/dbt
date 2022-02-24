@@ -16,7 +16,7 @@ active_enrollments AS (
     SELECT DISTINCT
         student_school_associations.student_reference.student_unique_id            AS student_unique_id,
         student_school_associations.school_year_type_reference.school_year         AS school_year,
-        'Yes'                                                                      AS is_actively_enrolled
+        'Yes'                                                                      AS is_actively_enrolled_in_school
     FROM {{ ref('stg_edfi_student_school_associations') }} student_school_associations
     LEFT JOIN school_year_end_dates
         ON student_school_associations.school_year_type_reference.school_year = school_year_end_dates.school_year
@@ -80,7 +80,7 @@ students AS (
             COALESCE(LEFT(students.middle_name, 1), '')
         )                                                               AS student_display_name,
         seoa.electronic_mail[SAFE_OFFSET(0)].address                    AS email,
-        IFNULL(active_enrollments.is_actively_enrolled, 'No')           AS is_actively_enrolled,
+        IFNULL(active_enrollments.is_actively_enrolled_in_school, 'No')           AS is_actively_enrolled_in_school,
         student_grade_level.grade_level                                 AS grade_level,
         student_grade_level.grade_level_id                              AS grade_level_id,
         COALESCE(
@@ -138,7 +138,7 @@ SELECT
     student_last_surname,
     student_display_name,
     email,
-    is_actively_enrolled,
+    is_actively_enrolled_in_school,
     grade_level,
     grade_level_id,
     IFNULL(race_and_ethnicity_roll_up, 'Unknown') AS race_and_ethnicity_roll_up,

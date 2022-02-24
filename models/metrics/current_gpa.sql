@@ -48,5 +48,5 @@ LEFT JOIN {{ ref('dim_student') }} dim_student
     ON gpa_points.student_key = dim_student.student_key
 LEFT JOIN {{ ref('dim_school') }} dim_school
     ON fct_student_school.school_key = dim_school.school_key
-WHERE fct_student_school.is_actively_enrolled = 1
+WHERE fct_student_school.is_actively_enrolled_in_school = 1
 GROUP BY 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
