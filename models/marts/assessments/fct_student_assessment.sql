@@ -5,7 +5,6 @@ SELECT DISTINCT
         'student_assessments.assessment_reference.assessment_identifier',
         'student_assessments.assessment_reference.namespace'
     ]) }}                                                                           AS assessment_key,
-    ""                                                                              AS objective_assessment_key,
     {{ dbt_utils.surrogate_key([
         'student_assessments.student_reference.student_unique_id',
         'student_assessments.school_year'
@@ -43,7 +42,6 @@ SELECT DISTINCT
         'student_assessments.assessment_reference.assessment_identifier',
         'student_assessments.assessment_reference.namespace'
     ]) }}                                                                           AS assessment_key,
-    ""                                                                              AS objective_assessment_key,
     {{ dbt_utils.surrogate_key([
         'student_assessments.student_reference.student_unique_id',
         'student_assessments.school_year'
@@ -78,13 +76,9 @@ UNION ALL
 SELECT DISTINCT
     {{ dbt_utils.surrogate_key([
         'student_assessments.assessment_reference.assessment_identifier',
-        'student_assessments.assessment_reference.namespace'
-    ]) }}                                                                                AS assessment_key,
-    {{ dbt_utils.surrogate_key([
-        'student_assessments.assessment_reference.assessment_identifier',
         'student_assessments.assessment_reference.namespace',
         'student_objective_assessments.objective_assessment_reference.identification_code'
-    ]) }}                                                                                AS objective_assessment_key,
+    ]) }}                                                                                AS assessment_key,
     {{ dbt_utils.surrogate_key([
         'student_assessments.student_reference.student_unique_id',
         'student_assessments.school_year'
@@ -120,13 +114,9 @@ UNION ALL
 SELECT DISTINCT
     {{ dbt_utils.surrogate_key([
         'student_assessments.assessment_reference.assessment_identifier',
-        'student_assessments.assessment_reference.namespace'
-    ]) }}                                                                                     AS assessment_key,
-    {{ dbt_utils.surrogate_key([
-        'student_assessments.assessment_reference.assessment_identifier',
         'student_assessments.assessment_reference.namespace',
         'student_objective_assessments.objective_assessment_reference.identification_code'
-    ]) }}                                                                                     AS objective_assessment_key,
+    ]) }}                                                                                     AS assessment_key,
     {{ dbt_utils.surrogate_key([
         'student_assessments.student_reference.student_unique_id',
         'student_assessments.school_year'

@@ -5,7 +5,7 @@
 ### New
 
 - Adds `session_name` to `grading_period_key`
-
+- Removes `dim_objective_assessment` and moves info to `dim_assessment`
 
 # Previous changelog from combined repo
 
