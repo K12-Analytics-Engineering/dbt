@@ -12,6 +12,8 @@
 - Removes `dim_demographic`
 - Removes `dim_student_program`
 - Removes `session_name` from `dim_section`
+- Removes `student_section_key` from `fct_student_section_grade`
+- Removes `student_local_education_agency_demographics_bridge`
 
 
 # Previous changelog from combined repo

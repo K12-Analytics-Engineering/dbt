@@ -1,9 +1,3 @@
-{{
-  config(
-    labels = {'analytics_middle_tier': 'yes'}
-  )
-}}
-
 
 WITH unique_records AS (
     SELECT DISTINCT

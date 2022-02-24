@@ -1,8 +1,3 @@
-{{
-  config(
-    labels = {'analytics_middle_tier': 'yes'}
-  )
-}}
 
 
 WITH dates AS (

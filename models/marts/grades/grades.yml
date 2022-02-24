@@ -19,13 +19,6 @@ models:
       - name: grading_period_key
         description: Concatenation of grading period descriptor code value, school id, and grading period begin date
 
-      - name: student_section_key
-        description: Concatenation of student key and section information to allow for an easy join on student section dimension
-        tests:
-          - relationships:
-              to: ref('dim_student_section')
-              field: student_section_key
-
       - name: section_key
         description: Concatenation of section information to uniquely identifier a section
 

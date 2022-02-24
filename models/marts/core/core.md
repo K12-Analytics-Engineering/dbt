@@ -96,16 +96,11 @@ Ed-Fi's Analytics Middle Tier provides two student dims related to the student's
 {% enddocs %}
 
 
-{% docs dim_student_section %}
+{% docs fct_student_section %}
 
-# Student section dim
+# Student section fact
 
-Grain: `dim_student_section` has one record per student section per section enrollment. The `teacher_name` field is a concatenation of all teachers currently assigned to the class section.
-
----------------------------
-Differences from Ed-Fi AMT
-* Renames `subject` to `academic_subject`
-* Adds `session_key` to enable join between student section dim and session dim
+Grain: a row per student section per section enrollment. The `teachers` column is a concatenation of all teachers currently assigned to the class section.
 
 
 {% enddocs %}

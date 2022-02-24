@@ -8,13 +8,11 @@ WITH grades AS (
     FROM {{ ref('fct_student_section_grade') }} fct_student_section_grade
     LEFT JOIN {{ ref('dim_grading_period') }} dim_grading_period
         ON fct_student_section_grade.grading_period_key = dim_grading_period.grading_period_key
-    LEFT JOIN {{ ref('dim_student_section') }} dim_student_section
-        ON fct_student_section_grade.student_section_key = dim_student_section.student_section_key
     LEFT JOIN {{ ref('dim_section') }} dim_section
         ON fct_student_section_grade.section_key = dim_section.section_key
     WHERE
         dim_grading_period.is_current_grading_period IS TRUE
-        AND CURRENT_DATE BETWEEN dim_student_section.student_section_start_date AND dim_student_section.student_section_end_date
+        AND CURRENT_DATE BETWEEN dim_section.start_date AND dim_section.end_date
         AND course_gpa_applicability = 'Applicable'
 
 ),

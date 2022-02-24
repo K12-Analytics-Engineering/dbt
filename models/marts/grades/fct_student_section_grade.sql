@@ -1,9 +1,3 @@
-{{
-  config(
-    labels = {'analytics_middle_tier': 'yes'}
-  )
-}}
-
 
 SELECT
     {{ dbt_utils.surrogate_key([
@@ -21,15 +15,6 @@ SELECT
         'grades.grading_period_reference.grading_period_descriptor',
         'grades.grading_period_reference.period_sequence'
     ]) }}                                                                   AS grading_period_key,
-    {{ dbt_utils.surrogate_key([
-        'student_section_association_reference.school_id',
-        'grading_period_reference.school_year',
-        'student_section_association_reference.session_name',
-        'student_section_association_reference.local_course_code',
-        'student_section_association_reference.section_identifier',
-        'student_section_association_reference.student_unique_id',
-        'student_section_association_reference.begin_date'
-    ]) }}                                                                   AS student_section_key,
     {{ dbt_utils.surrogate_key([
         'student_section_association_reference.school_id',
         'student_section_association_reference.school_year',

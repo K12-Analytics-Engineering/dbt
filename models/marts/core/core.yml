@@ -306,22 +306,6 @@ models:
         description: ""
 
 
-  - name: student_local_education_agency_demographics_bridge
-    description: "This view provides student demographic information by linking the dim_student_local_education_agency to the dim_demographic."
-    columns:
-      - name: student_school_demographic_bridge_key
-        description: "Concatenation of the demographic_key found in the dim_demographic with the student_local_education_agency_key found in the dim_student_local_education_agency."
-        tests:
-          - unique
-          - not_null
-
-      - name: student_local_education_agency_key
-        description: "Concatenation of the student unique id and the LEA id."
-
-      - name: demographic_key
-        description: "Concatenation of parent key and label columns to allow for easier joins."
-
-
   - name: fct_student_school
     description: ""
     columns:

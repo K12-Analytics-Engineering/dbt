@@ -1,9 +1,3 @@
-{{
-  config(
-    labels = {'analytics_middle_tier': 'yes'}
-  )
-}}
-
 
 SELECT
     {{ dbt_utils.surrogate_key([
