@@ -5,7 +5,14 @@
 ### New
 
 - Adds `session_name` to `grading_period_key`
+
+### Breaking Changes
+
 - Removes `dim_objective_assessment` and moves info to `dim_assessment`
+- Removes `dim_demographic`
+- Removes `dim_student_program`
+- Removes `session_name` from `dim_section`
+
 
 # Previous changelog from combined repo
 

@@ -2,6 +2,7 @@
 
 # Assessments dim
 
+Grain size: a row per assessment and objective assessment
 
 {% enddocs %}
 

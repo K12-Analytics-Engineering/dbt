@@ -15,22 +15,6 @@ Differences from Ed-Fi AMT
 {% enddocs %}
 
 
-{% docs dim_demographic %}
-
-# Demographic dim
-
-Grain: one row per descriptor parent key and descriptor
-
-This table is usually joined to the student demographic bridge tables.
-
----------------------------
-Differences from Ed-Fi AMT
-* The descriptor's short description is used in place of code value for the demographic label
-* Renames `demographic_parent_key` to `demographic_parent`
-
-{% enddocs %}
-
-
 {% docs dim_grading_period %}
 
 # Grading period dim

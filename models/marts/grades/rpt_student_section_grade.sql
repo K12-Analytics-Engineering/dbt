@@ -31,6 +31,7 @@ section_grade AS (
         ARRAY_AGG(
             STRUCT(
                 dim_grading_period.grading_period_name,
+                dim_grading_period.is_current_grading_period,
                 fct_student_section_grade.grade_type,
                 fct_student_section_grade.numeric_grade_earned,
                 fct_student_section_grade.letter_grade_earned
@@ -45,7 +46,7 @@ section_grade AS (
 
 
 SELECT
-    section_grade.school_year                       AS school_year,
+    section_grade.school_year                                   AS school_year,
     dim_local_education_agency.local_education_agency_name      AS local_education_agency_name,
     dim_school.school_name                                      AS school_name,
     dim_student.student_unique_id                               AS student_unique_id,

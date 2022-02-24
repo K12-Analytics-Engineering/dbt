@@ -33,26 +33,6 @@ models:
         description: Looks at school year as July - June
 
 
-  - name: dim_demographic
-    description: '{{ doc("dim_demographic") }}'
-    columns:
-      - name: demographic_key
-        description: Primary key for dimension table
-        tests:
-          - unique
-          - not_null
-
-      - name: demographic_parent
-        description: Descriptor parent. For example, 'RaceDescriptors' will show 'Race'.
-        tests:
-          - not_null
-
-      - name: demographic_label
-        description: Short description of the descriptor
-        tests:
-          - not_null
-
-
   - name: dim_grading_period
     description: '{{ doc("dim_grading_period") }}'
     columns:
@@ -341,8 +321,6 @@ models:
       - name: demographic_key
         description: "Concatenation of parent key and label columns to allow for easier joins."
 
-  - name: dim_student_program
-    description: ""
 
   - name: fct_student_school
     description: ""

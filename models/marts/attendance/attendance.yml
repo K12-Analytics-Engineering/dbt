@@ -66,9 +66,7 @@ models:
 
 
   - name: rpt_student_attendance
-    description: >
-      Staging version of the attendance fact table that joins on the date dim and student dim
-      to add contextual information.
+    description: '{{ doc("rpt_student_attendance") }}'
     columns:
       - name: is_latest_date_avaliable
         description: TRUE/FALSE if the date record is the lastest date available for the respective school year
