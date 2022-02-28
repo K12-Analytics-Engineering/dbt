@@ -7,6 +7,7 @@ WITH section_grade AS (
         fct_student_section_grade.school_key,
         fct_student_section_grade.section_key,
         fct_student_section_grade.student_key,
+        fct_student_section_grade.staff_group_key,
         fct_student_section_grade.is_actively_enrolled_in_section,
         ARRAY_AGG(
             STRUCT(
@@ -16,11 +17,36 @@ WITH section_grade AS (
                 fct_student_section_grade.numeric_grade_earned,
                 fct_student_section_grade.letter_grade_earned
             )
-        ) AS grades
+        ) AS grade
     FROM {{ ref('fct_student_section_grade') }} fct_student_section_grade
     LEFT JOIN {{ ref('dim_grading_period') }} dim_grading_period
         ON fct_student_section_grade.grading_period_key = dim_grading_period.grading_period_key
-    GROUP BY 1,2,3,4,5
+    GROUP BY 1,2,3,4,5,6
+
+),
+
+staff AS (
+
+    SELECT
+        section_grade.school_year,
+        section_grade.school_key,
+        section_grade.section_key,
+        section_grade.student_key,
+        ARRAY_AGG(
+            STRUCT(
+                dim_staff.staff_last_surname,
+                dim_staff.staff_first_name,
+                dim_staff.staff_display_name,
+                dim_staff.email,
+                bridge_staff_group.classroom_position
+            )
+        ) AS staff
+    FROM section_grade
+    LEFT JOIN {{ ref('bridge_staff_group') }} bridge_staff_group
+        ON section_grade.staff_group_key = bridge_staff_group.staff_group_key
+    LEFT JOIN {{ ref('dim_staff') }} dim_staff
+        ON bridge_staff_group.staff_key = dim_staff.staff_key
+    GROUP BY 1,2,3,4
 
 )
 
@@ -51,13 +77,16 @@ SELECT
     section_grade.is_actively_enrolled_in_section               AS is_actively_enrolled_in_section,
     dim_session.session_name                                    AS session_name,
     dim_session.term_name                                       AS term_name,
-    dim_staff.staff_display_name                                AS staff_display_name,
-    section_grade.grades                                        AS grades
+    staff.staff                                                 AS staff,
+    section_grade.grade                                         AS grade
 FROM section_grade
+LEFT JOIN staff
+    ON section_grade.school_year = staff.school_year
+    AND section_grade.school_key = staff.school_key
+    AND section_grade.section_key = staff.section_key
+    AND section_grade.student_key = staff.student_key
 LEFT JOIN {{ ref('dim_section') }} dim_section
     ON section_grade.section_key = dim_section.section_key
-LEFT JOIN {{ ref('dim_staff') }} dim_staff
-    ON dim_section.primary_staff_key = dim_staff.staff_key
 LEFT JOIN {{ ref('dim_session') }} dim_session
     ON dim_section.session_key = dim_session.session_key
 LEFT JOIN {{ ref('dim_student') }} dim_student

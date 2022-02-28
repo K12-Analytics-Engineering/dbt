@@ -17,6 +17,13 @@ SELECT
         'ssa.section_reference.section_identifier'
     ]) }}                                               AS section_key,
     {{ dbt_utils.surrogate_key([
+        'ssa.section_reference.school_id',
+        'ssa.section_reference.school_year',
+        'ssa.section_reference.session_name',
+        'ssa.section_reference.local_course_code',
+        'ssa.section_reference.section_identifier'
+    ]) }}                                               AS staff_group_key,
+    {{ dbt_utils.surrogate_key([
         'ssa.student_reference.student_unique_id',
         'ssa.section_reference.school_year'
      ]) }}                                              AS student_key,

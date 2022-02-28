@@ -2,6 +2,12 @@
 version: 2
 
 models:
+  - name: bridge_staff_group
+    description: "Bridge table connecting teachers to student section fact tables"
+    tests:
+      - unique:
+          column_name: "staff_group_key || '-' || staff_key"
+
   - name: dim_date
     description: '{{ doc("dim_date") }}'
     columns:

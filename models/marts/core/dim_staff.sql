@@ -17,5 +17,8 @@ SELECT
     IF(
         hispanic_latino_ethnicity IS TRUE,
         'Yes',
-        'No')                           AS is_hispanic
+        'No')                           AS is_hispanic,
+    email.electronic_mail_address       AS email
 FROM {{ ref('stg_edfi_staffs') }}
+LEFT JOIN UNNEST(electronic_mails) email
+    ON email.electronic_mail_type_descriptor = 'Work' 

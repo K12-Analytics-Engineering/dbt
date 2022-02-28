@@ -22,6 +22,13 @@ SELECT
         'student_section_association_reference.local_course_code',
         'student_section_association_reference.section_identifier'
     ]) }}                                                                   AS section_key,
+    {{ dbt_utils.surrogate_key([
+        'student_section_association_reference.school_id',
+        'student_section_association_reference.school_year',
+        'student_section_association_reference.session_name',
+        'student_section_association_reference.local_course_code',
+        'student_section_association_reference.section_identifier'
+    ]) }}                                                                   AS staff_group_key,
     grading_period_reference.school_year                                    AS school_year,
     numeric_grade_earned                                                    AS numeric_grade_earned,
     letter_grade_earned                                                     AS letter_grade_earned,

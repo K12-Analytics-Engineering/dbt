@@ -6,6 +6,7 @@
 
 - Adds `session_name` to `grading_period_key`
 - Adds `is_actively_enrolled_in_section` to `fct_student_section_grade`
+- Adds `email` to `dim_staff`
 
 ### Breaking Changes
 
@@ -15,6 +16,7 @@
 - Removes `session_name` from `dim_section`
 - Removes `student_section_key` from `fct_student_section_grade`
 - Removes `student_local_education_agency_demographics_bridge`
+- Moves staff keys out of `dim_section` and into `fct_student_section` and `fct_student_section_grade`
 
 
 # Previous changelog from combined repo

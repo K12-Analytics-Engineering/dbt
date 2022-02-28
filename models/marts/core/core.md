@@ -51,11 +51,6 @@ Grain: one row per school per school year
 
 Grain: one row per section per school
 
----------------------------
-Differences from Ed-Fi AMT
-* Removes `description`
-* Adds `section_identifier` to allow for a natural key for section id
-
 
 {% enddocs %}
 
