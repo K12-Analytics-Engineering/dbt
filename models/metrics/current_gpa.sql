@@ -29,7 +29,7 @@ gpa_points AS (
 
 SELECT
     dim_school.school_name                                           AS school_name,
-    dim_student. student_unique_id                                   AS student_unique_id,
+    dim_student.student_unique_id                                    AS student_unique_id,
     dim_student.student_display_name                                 AS student_display_name,
     fct_student_school.school_year                                   AS school_year,
     dim_student.grade_level                                          AS grade_level,
