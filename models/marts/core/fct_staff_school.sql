@@ -8,6 +8,7 @@ SELECT
         'seoa.education_organization_reference.education_organization_id',
         'seoa.school_year'
     ]) }}                                               AS school_key,
+    seoa.school_year                                    AS school_year,
     seoa.staff_classification_descriptor                AS staff_classification,
     ssa.academic_subjects                               AS academic_subjects,
     ssa.grade_levels                                    AS grade_levels,
