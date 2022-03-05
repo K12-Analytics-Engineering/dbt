@@ -7,6 +7,7 @@
 - Adds `session_name` to `grading_period_key`
 - Adds `is_actively_enrolled_in_section` to `fct_student_section_grade`
 - Adds `email` to `dim_staff`
+- Adds `fct_staff_school`
 
 ### Breaking Changes
 
