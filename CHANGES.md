@@ -17,6 +17,10 @@
 - Removes `student_section_key` from `fct_student_section_grade`
 - Removes `student_local_education_agency_demographics_bridge`
 - Moves staff keys out of `dim_section` and into `fct_student_section` and `fct_student_section_grade`
+- Removes `rls_user_authorization`
+- Removes `rls_student_data_authorization`
+- Removed `rls_dim_user`
+- Removes `rls_user_school_authorization`
 
 
 # Previous changelog from combined repo

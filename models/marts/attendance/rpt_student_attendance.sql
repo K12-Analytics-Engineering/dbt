@@ -1,6 +1,6 @@
 {{
   config(
-    cluster_by = ["student_display_name", "date"]
+    cluster_by = ["school_name", "grade_level", "student_display_name"]
   )
 }}
 
