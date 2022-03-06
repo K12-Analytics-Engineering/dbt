@@ -1,9 +1,3 @@
-{{
-  config(
-    cluster_by = ["school_name", "grade_level", "student_display_name"]
-  )
-}}
-
 
 WITH max_school_year_dates AS (
 
@@ -46,7 +40,8 @@ SELECT
     fct_student_attendance.is_chronically_absent                           AS is_chronically_absent,
     IF(
         dim_date.date = max_school_year_dates.latest_date, TRUE, FALSE
-    )                                                                      AS is_latest_date_avaliable
+    )                                                                      AS is_latest_date_avaliable,
+    rls_user_student_data_authorization.authorized_emails
 FROM {{ ref('fct_student_attendance') }} fct_student_attendance
 LEFT JOIN {{ ref('dim_student') }} dim_student
     ON fct_student_attendance.student_key = dim_student.student_key
@@ -56,4 +51,6 @@ LEFT JOIN {{ ref('dim_school') }} dim_school
     ON fct_student_attendance.school_key = dim_school.school_key
 LEFT JOIN {{ ref('dim_local_education_agency') }} dim_local_education_agency
     ON dim_school.local_education_agency_key = dim_local_education_agency.local_education_agency_key
+LEFT JOIN {{ ref('rls_user_student_data_authorization') }} rls_user_student_data_authorization
+    ON fct_student_attendance.student_key = rls_user_student_data_authorization.student_key
 LEFT JOIN max_school_year_dates ON fct_student_attendance.school_year = max_school_year_dates.school_year

@@ -48,11 +48,25 @@ WITH associations AS (
         student_unique_id   AS student_unique_id
     FROM {{ ref('dim_student') }} dim_student
 
+),
+
+distinct_values AS (
+
+    SELECT DISTINCT
+        school_year,
+        student_unique_id,
+        user_email,
+    FROM associations
+    WHERE user_email IS NOT NULL
+
 )
 
-SELECT DISTINCT
-    school_year,
-    user_email,
-    student_unique_id
-FROM associations
-WHERE user_email IS NOT NULL
+
+SELECT
+    {{ dbt_utils.surrogate_key([
+            'student_unique_id',
+            'school_year'
+    ]) }}                                   AS student_key,
+    ARRAY_AGG(user_email)                   AS authorized_emails
+FROM distinct_values
+GROUP BY 1

@@ -67,6 +67,11 @@ models:
 
   - name: rpt_student_attendance
     description: '{{ doc("rpt_student_attendance") }}'
+    config:
+      cluster_by:
+        - school_name
+        - grade_level
+        - student_display_name
     columns:
       - name: is_latest_date_avaliable
         description: TRUE/FALSE if the date record is the lastest date available for the respective school year

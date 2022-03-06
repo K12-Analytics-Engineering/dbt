@@ -13,7 +13,7 @@ WITH parsed_data AS (
         ) AS student_reference,
         ARRAY(
             SELECT AS STRUCT 
-                JSON_VALUE(email, "$.electronicMailAddress") AS address,
+                LOWER(JSON_VALUE(email, "$.electronicMailAddress")) AS address,
                 SPLIT(JSON_VALUE(email, "$.electronicMailTypeDescriptor"), '#')[OFFSET(1)] AS type_descriptor,
             FROM UNNEST(JSON_QUERY_ARRAY(data, "$.electronicMails")) email 
         ) AS electronic_mail,
