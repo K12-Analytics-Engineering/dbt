@@ -7,8 +7,5 @@ This fact table can be found in Ed-Fi's Early Warning System collection. Here it
 
 This table contains a row per student per section per grading period per grade type.
 
----------------------------
-Differences from Ed-Fi AMT
-* 
 
 {% enddocs %}

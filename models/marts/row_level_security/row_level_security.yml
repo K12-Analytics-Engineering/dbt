@@ -3,4 +3,14 @@ version: 2
 
 models:
   - name: rls_user_student_data_authorization
-    description: ""
+    description: '{{ doc("rls_user_student_data_authorization") }}'
+    columns:
+      - name: student_key
+        description: Foreign key to `dim_student`
+        tests:
+          - relationships:
+              to: ref('dim_student')
+              field: student_key
+
+      - name: authorized_emails
+        description: Repeated field containing all user emails who should have access to the respective student's data
