@@ -56,7 +56,7 @@ Add tables below if using survey endpoints:
         JSON_VALUE(data, '$.Id') AS id,
         CAST(JSON_VALUE(data, '$.schoolYear') AS int64) school_year,
         JSON_VALUE(data, '$.ChangeVersion') AS change_version,
-        JSON_VALUE(data, '$.extractedTimestamp') AS extracted_timestamp,
+        CAST(JSON_VALUE(data, '$.extractedTimestamp') AS TIMESTAMP) AS extracted_timestamp,
     FROM {{ source('staging', table) }}
     {% if not loop.last %} UNION ALL {% endif %}
 

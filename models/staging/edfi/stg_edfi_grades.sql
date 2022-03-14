@@ -2,7 +2,7 @@
 WITH parsed_data AS (
 
     SELECT
-        JSON_VALUE(data, '$.extractedTimestamp') AS extracted_timestamp,
+        CAST(JSON_VALUE(data, '$.extractedTimestamp') AS TIMESTAMP) AS extracted_timestamp,
         JSON_VALUE(data, '$.id') AS id,
         CAST(JSON_VALUE(data, '$.schoolYear') AS int64) school_year,
         CAST(JSON_VALUE(data, '$.numericGradeEarned') AS float64) AS numeric_grade_earned,
