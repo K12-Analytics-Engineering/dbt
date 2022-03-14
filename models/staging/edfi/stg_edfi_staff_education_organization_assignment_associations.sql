@@ -16,13 +16,8 @@ WITH parsed_data AS (
         PARSE_DATE('%Y-%m-%d', JSON_VALUE(data, '$.endDate')) AS end_date
     FROM {{ source('staging', 'base_edfi_staff_education_organization_assignment_associations') }}
     QUALIFY ROW_NUMBER() OVER (
-            PARTITION BY
-                school_year,
-                education_organization_reference.education_organization_id,
-                staff_reference.staff_unique_id,
-                staff_classification_descriptor,
-                begin_date
-            ORDER BY school_year DESC, extracted_timestamp DESC) = 1
+            PARTITION BY id
+            ORDER BY extracted_timestamp DESC) = 1
 
 )
 

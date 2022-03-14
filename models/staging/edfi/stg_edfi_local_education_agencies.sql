@@ -9,10 +9,8 @@ WITH parsed_data AS (
         JSON_VALUE(data, '$.nameOfInstitution') AS name_of_institution
     FROM {{ source('staging', 'base_edfi_local_education_agencies') }}
     QUALIFY ROW_NUMBER() OVER (
-            PARTITION BY
-                school_year,
-                local_education_agency_id
-            ORDER BY school_year DESC, extracted_timestamp DESC) = 1
+            PARTITION BY id
+            ORDER BY extracted_timestamp DESC) = 1
 
 )
 

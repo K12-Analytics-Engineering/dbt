@@ -28,12 +28,8 @@ WITH parsed_data AS (
         ) AS grading_periods
     FROM {{ source('staging', 'base_edfi_sessions') }}
     QUALIFY ROW_NUMBER() OVER (
-            PARTITION BY
-                school_year,
-                school_year_type_reference.school_year,
-                school_reference.school_id,
-                session_name
-            ORDER BY school_year DESC, extracted_timestamp DESC) = 1
+            PARTITION BY id
+            ORDER BY extracted_timestamp DESC) = 1
 
 )
 

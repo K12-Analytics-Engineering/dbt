@@ -81,11 +81,8 @@ WITH parsed_data AS (
         ) AS sections
     FROM {{ source('staging', 'base_edfi_assessments') }}
     QUALIFY ROW_NUMBER() OVER (
-            PARTITION BY
-                school_year,
-                assessment_identifier,
-                namespace
-            ORDER BY school_year DESC, extracted_timestamp DESC) = 1
+            PARTITION BY id
+            ORDER BY extracted_timestamp DESC) = 1
 
 )
 

@@ -34,14 +34,8 @@ WITH parsed_data AS (
         ) AS class_periods,
     FROM {{ source('staging', 'base_edfi_sections') }}
     QUALIFY ROW_NUMBER() OVER (
-            PARTITION BY
-                school_year,
-                course_offering_reference.school_year,
-                course_offering_reference.school_id,
-                course_offering_reference.session_name,
-                course_offering_reference.local_course_code,
-                section_identifier
-            ORDER BY school_year DESC, extracted_timestamp DESC) = 1
+            PARTITION BY id
+            ORDER BY extracted_timestamp DESC) = 1
 
 )
 

@@ -26,12 +26,8 @@ WITH parsed_data AS (
         CAST(JSON_VALUE(data, '$.termCompletionIndicator') AS BOOL) AS term_completion_indicator
     FROM {{ source('staging', 'base_edfi_student_school_associations') }}
     QUALIFY ROW_NUMBER() OVER (
-            PARTITION BY
-                school_year,
-                school_reference.school_id,
-                entry_date,
-                student_reference.student_unique_id
-            ORDER BY school_year DESC, extracted_timestamp DESC) = 1
+            PARTITION BY id
+            ORDER BY extracted_timestamp DESC) = 1
 
 )
 

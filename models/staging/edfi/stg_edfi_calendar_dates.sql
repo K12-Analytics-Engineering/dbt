@@ -18,13 +18,8 @@ WITH parsed_data AS (
         ) AS calendar_reference
     FROM {{ source('staging', 'base_edfi_calendar_dates') }}
     QUALIFY ROW_NUMBER() OVER (
-            PARTITION BY
-                school_year,
-                calendar_reference.school_year,
-                calendar_reference.school_id,
-                calendar_reference.calendar_code,
-                date 
-            ORDER BY school_year DESC, extracted_timestamp DESC) = 1
+            PARTITION BY id
+            ORDER BY extracted_timestamp DESC) = 1
 
 )
 

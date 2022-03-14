@@ -20,8 +20,8 @@ WITH parsed_data AS (
         ) AS person_reference,
     FROM {{ source('staging', 'base_edfi_students') }}
     QUALIFY ROW_NUMBER() OVER (
-            PARTITION BY school_year, student_unique_id
-            ORDER BY school_year DESC, extracted_timestamp DESC) = 1
+            PARTITION BY id
+            ORDER BY extracted_timestamp DESC) = 1
 
 )
 

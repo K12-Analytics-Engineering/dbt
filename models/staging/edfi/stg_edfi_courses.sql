@@ -38,11 +38,8 @@ WITH parsed_data AS (
         ) AS identification_codes
     FROM {{ source('staging', 'base_edfi_courses') }}
     QUALIFY ROW_NUMBER() OVER (
-            PARTITION BY
-                school_year,
-                education_organization_reference.education_organization_id,
-                course_code
-            ORDER BY school_year DESC, extracted_timestamp DESC) = 1
+            PARTITION BY id
+            ORDER BY extracted_timestamp DESC) = 1
 
 )
 

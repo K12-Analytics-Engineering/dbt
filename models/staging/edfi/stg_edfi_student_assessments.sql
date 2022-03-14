@@ -81,13 +81,8 @@ WITH parsed_data AS (
         ) AS student_objective_assessments,
     FROM {{ source('staging', 'base_edfi_student_assessments') }}
     QUALIFY ROW_NUMBER() OVER (
-            PARTITION BY
-                school_year,
-                assessment_reference.assessment_identifier,
-                assessment_reference.namespace,
-                student_assessment_identifier,
-                student_reference.student_unique_id
-            ORDER BY school_year DESC, extracted_timestamp DESC) = 1
+            PARTITION BY id
+            ORDER BY extracted_timestamp DESC) = 1
 
 )
 

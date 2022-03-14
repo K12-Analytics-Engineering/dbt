@@ -23,16 +23,8 @@ WITH parsed_data AS (
         CAST(JSON_VALUE(data, '$.teacherStudentDataLinkExclusion') AS BOOL) AS teacher_student_data_link_exclusion
     FROM {{ source('staging', 'base_edfi_student_section_associations') }}
     QUALIFY ROW_NUMBER() OVER (
-            PARTITION BY
-                school_year,
-                section_reference.school_year,
-                section_reference.school_id,
-                section_reference.session_name,
-                section_reference.local_course_code,
-                section_reference.section_identifier,
-                student_reference.student_unique_id,
-                begin_date
-            ORDER BY school_year DESC, extracted_timestamp DESC) = 1
+            PARTITION BY id
+            ORDER BY extracted_timestamp DESC) = 1
 
 )
 

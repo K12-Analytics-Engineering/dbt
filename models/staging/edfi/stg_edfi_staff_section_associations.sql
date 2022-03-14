@@ -22,15 +22,8 @@ WITH parsed_data AS (
         JSON_VALUE(data, '$.percentageContribution') AS percentage_contribution
     FROM {{ source('staging', 'base_edfi_staff_section_associations') }}
     QUALIFY ROW_NUMBER() OVER (
-            PARTITION BY
-                school_year,
-                section_reference.school_year,
-                section_reference.school_id,
-                section_reference.session_name,
-                section_reference.local_course_code,
-                section_reference.section_identifier,
-                staff_reference.staff_unique_id
-            ORDER BY school_year DESC, extracted_timestamp DESC) = 1
+            PARTITION BY id
+            ORDER BY extracted_timestamp DESC) = 1
 
 )
 

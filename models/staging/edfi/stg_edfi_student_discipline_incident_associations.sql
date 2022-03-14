@@ -21,12 +21,8 @@ WITH parsed_data AS (
         ) AS behaviors
     FROM {{ source('staging', 'base_edfi_student_discipline_incident_associations') }}
     QUALIFY ROW_NUMBER() OVER (
-            PARTITION BY
-                school_year,
-                discipline_incident_reference.school_id,
-                discipline_incident_reference.incident_identifier,
-                student_reference.student_unique_id
-            ORDER BY school_year DESC, extracted_timestamp DESC) = 1
+            PARTITION BY id
+            ORDER BY extracted_timestamp DESC) = 1
 
 )
 

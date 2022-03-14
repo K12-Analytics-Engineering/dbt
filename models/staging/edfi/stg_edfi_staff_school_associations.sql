@@ -32,12 +32,8 @@ WITH parsed_data AS (
         ) AS grade_levels,
     FROM {{ source('staging', 'base_edfi_staff_school_associations') }}
     QUALIFY ROW_NUMBER() OVER (
-            PARTITION BY
-                school_year,
-                school_reference.school_id,
-                staff_reference.staff_unique_id,
-                program_assignment_descriptor
-            ORDER BY school_year DESC, extracted_timestamp DESC) = 1
+            PARTITION BY id
+            ORDER BY extracted_timestamp DESC) = 1
 
 )
 

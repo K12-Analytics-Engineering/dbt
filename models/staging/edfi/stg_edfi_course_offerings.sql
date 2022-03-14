@@ -21,13 +21,8 @@ WITH parsed_data AS (
         ) AS session_reference,
     FROM {{ source('staging', 'base_edfi_course_offerings') }}
     QUALIFY ROW_NUMBER() OVER (
-            PARTITION BY
-                school_year,
-                session_reference.school_year,
-                session_reference.school_id,
-                session_reference.session_name,
-                local_course_code
-            ORDER BY school_year DESC, extracted_timestamp DESC) = 1
+            PARTITION BY id
+            ORDER BY extracted_timestamp DESC) = 1
 
 )
 

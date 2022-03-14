@@ -11,8 +11,8 @@ WITH parsed_data AS (
         SPLIT(JSON_VALUE(data, '$.schoolTypeDescriptor'), '#')[OFFSET(1)] AS school_type_descriptor,
     FROM {{ source('staging', 'base_edfi_schools') }}
     QUALIFY ROW_NUMBER() OVER (
-            PARTITION BY school_year, school_id
-            ORDER BY school_year DESC, extracted_timestamp DESC) = 1
+            PARTITION BY id
+            ORDER BY extracted_timestamp DESC) = 1
 
 )
 

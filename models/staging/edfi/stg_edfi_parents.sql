@@ -50,10 +50,8 @@ WITH parsed_data AS (
         ) AS telephones,
     FROM {{ source('staging', 'base_edfi_parents') }}
     QUALIFY ROW_NUMBER() OVER (
-            PARTITION BY
-                school_year,
-                parent_unique_id
-            ORDER BY school_year DESC, extracted_timestamp DESC) = 1
+            PARTITION BY id
+            ORDER BY extracted_timestamp DESC) = 1
 
 )
 

@@ -36,13 +36,8 @@ WITH parsed_data AS (
         ) AS values
     FROM {{ source('staging', 'base_edfi_survey_question_responses') }}
     QUALIFY ROW_NUMBER() OVER (
-            PARTITION BY
-                school_year,
-                survey_question_reference.survey_identifier,
-                survey_question_reference.namespace,
-                survey_question_reference.question_code,
-                survey_response_reference.survey_response_identifier
-            ORDER BY school_year DESC, extracted_timestamp DESC) = 1
+            PARTITION BY id
+            ORDER BY extracted_timestamp DESC) = 1
 
 )
 

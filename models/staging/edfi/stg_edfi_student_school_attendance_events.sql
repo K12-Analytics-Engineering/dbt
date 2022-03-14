@@ -26,15 +26,8 @@ WITH parsed_data AS (
         SPLIT(JSON_VALUE(data, '$.educationalEnvironmentDescriptor'), '#')[OFFSET(1)] AS educational_environment_descriptor,
     FROM {{ source('staging', 'base_edfi_student_school_attendance_events') }}
     QUALIFY ROW_NUMBER() OVER (
-            PARTITION BY
-                school_year,
-                session_reference.school_year,
-                session_reference.school_id,
-                session_reference.session_name,
-                student_reference.student_unique_id,
-                event_date,
-                attendance_event_category_descriptor
-            ORDER BY school_year DESC, extracted_timestamp DESC) = 1
+            PARTITION BY id
+            ORDER BY extracted_timestamp DESC) = 1
 
 )
 

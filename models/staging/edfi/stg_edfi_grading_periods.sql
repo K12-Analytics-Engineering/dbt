@@ -18,13 +18,8 @@ WITH parsed_data AS (
         CAST(JSON_VALUE(data, "$.totalInstructionalDays") AS int64) AS total_instructional_days
     FROM {{ source('staging', 'base_edfi_grading_periods') }}
     QUALIFY ROW_NUMBER() OVER (
-            PARTITION BY
-                school_year,
-                school_year_type_reference.school_year,
-                school_reference.school_id,
-                grading_period_descriptor,
-                period_sequence
-            ORDER BY school_year DESC, extracted_timestamp DESC) = 1
+            PARTITION BY id
+            ORDER BY extracted_timestamp DESC) = 1
 
 )
 

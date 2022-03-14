@@ -23,11 +23,8 @@ WITH parsed_data AS (
         SPLIT(JSON_VALUE(data, '$.surveyCategoryDescriptor'), '#')[OFFSET(1)] AS survey_category_descriptor
     FROM {{ source('staging', 'base_edfi_surveys') }}
     QUALIFY ROW_NUMBER() OVER (
-            PARTITION BY
-                school_year,
-                survey_identifier,
-                namespace
-            ORDER BY school_year DESC, extracted_timestamp DESC) = 1
+            PARTITION BY id
+            ORDER BY extracted_timestamp DESC) = 1
 
 )
 

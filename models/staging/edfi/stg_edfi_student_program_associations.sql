@@ -45,15 +45,8 @@ WITH parsed_data AS (
         ) AS services
     FROM {{ source('staging', 'base_edfi_student_program_associations') }}
     QUALIFY ROW_NUMBER() OVER (
-            PARTITION BY
-                school_year,
-                education_organization_reference.education_organization_id,
-                program_reference.education_organization_id,
-                program_reference.program_name,
-                program_reference.program_type_descriptor,
-                student_reference.student_unique_id,
-                begin_date
-            ORDER BY school_year DESC, extracted_timestamp DESC) = 1
+            PARTITION BY id
+            ORDER BY extracted_timestamp DESC) = 1
 
 )
 

@@ -27,20 +27,8 @@ WITH parsed_data AS (
         ) AS student_section_association_reference
     FROM {{ source('staging', 'base_edfi_grades') }}
     QUALIFY ROW_NUMBER() OVER (
-            PARTITION BY
-                school_year,
-                grading_period_reference.school_year,
-                grading_period_reference.grading_period_descriptor,
-                grading_period_reference.period_sequence,
-                student_section_association_reference.school_year,
-                student_section_association_reference.school_id,
-                student_section_association_reference.session_name,
-                student_section_association_reference.local_course_code,
-                student_section_association_reference.section_identifier,
-                student_section_association_reference.student_unique_id,
-                student_section_association_reference.begin_date,
-                grade_type_descriptor
-            ORDER BY school_year DESC, extracted_timestamp DESC) = 1
+            PARTITION BY id
+            ORDER BY extracted_timestamp DESC) = 1
 
 )
 
