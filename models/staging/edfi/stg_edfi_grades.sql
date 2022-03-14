@@ -26,13 +26,7 @@ WITH parsed_data AS (
             JSON_VALUE(data, '$.studentSectionAssociationReference.studentUniqueId') AS student_unique_id
         ) AS student_section_association_reference
     FROM {{ source('staging', 'base_edfi_grades') }}
-
-),
-
-ranked AS (
-
-    SELECT
-        ROW_NUMBER() OVER (
+    QUALIFY ROW_NUMBER() OVER (
             PARTITION BY
                 school_year,
                 grading_period_reference.school_year,
@@ -46,19 +40,16 @@ ranked AS (
                 student_section_association_reference.student_unique_id,
                 student_section_association_reference.begin_date,
                 grade_type_descriptor
-            ORDER BY school_year DESC, extracted_timestamp DESC
-        ) AS rank,
-        *
-    FROM parsed_data
+            ORDER BY school_year DESC, extracted_timestamp DESC) = 1
 
 )
 
-SELECT * EXCEPT (extracted_timestamp, rank, school_year),
+
+SELECT * EXCEPT (school_year),
     COALESCE(grading_period_reference.school_year, school_year) AS school_year
-FROM ranked
+FROM parsed_data
 WHERE
-    rank = 1
-    AND id NOT IN (
+    id NOT IN (
         SELECT id FROM {{ ref('stg_edfi_deletes') }} edfi_deletes
-        WHERE ranked.school_year = edfi_deletes.school_year
+        WHERE parsed_data.school_year = edfi_deletes.school_year
     )

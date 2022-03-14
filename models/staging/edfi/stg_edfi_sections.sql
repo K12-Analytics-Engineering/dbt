@@ -33,13 +33,7 @@ WITH parsed_data AS (
             FROM UNNEST(JSON_QUERY_ARRAY(data, "$.classPeriods")) class_periods 
         ) AS class_periods,
     FROM {{ source('staging', 'base_edfi_sections') }}
-
-),
-
-ranked AS (
-
-    SELECT
-        ROW_NUMBER() OVER (
+    QUALIFY ROW_NUMBER() OVER (
             PARTITION BY
                 school_year,
                 course_offering_reference.school_year,
@@ -47,19 +41,15 @@ ranked AS (
                 course_offering_reference.session_name,
                 course_offering_reference.local_course_code,
                 section_identifier
-            ORDER BY school_year DESC, extracted_timestamp DESC
-        ) AS rank,
-        *
-    FROM parsed_data
+            ORDER BY school_year DESC, extracted_timestamp DESC) = 1
 
 )
 
-SELECT * EXCEPT (extracted_timestamp, rank, school_year),
+
+SELECT * EXCEPT (school_year),
     COALESCE(course_offering_reference.school_year, school_year) AS school_year
-FROM ranked
+FROM parsed_data
 WHERE
-    rank = 1
-    AND id NOT IN (
+    id NOT IN (
         SELECT id FROM {{ ref('stg_edfi_deletes') }} edfi_deletes
-        WHERE ranked.school_year = edfi_deletes.school_year
-    )
+        WHERE parsed_data.school_year = edfi_deletes.school_year)

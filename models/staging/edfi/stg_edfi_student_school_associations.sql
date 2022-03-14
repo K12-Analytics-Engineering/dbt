@@ -25,30 +25,20 @@ WITH parsed_data AS (
         CAST(JSON_VALUE(data, '$.schoolChoiceTransfer') AS BOOL) AS school_choice_transfer,
         CAST(JSON_VALUE(data, '$.termCompletionIndicator') AS BOOL) AS term_completion_indicator
     FROM {{ source('staging', 'base_edfi_student_school_associations') }}
-
-),
-
-ranked AS (
-
-    SELECT
-        ROW_NUMBER() OVER (
+    QUALIFY ROW_NUMBER() OVER (
             PARTITION BY
                 school_year,
                 school_reference.school_id,
                 entry_date,
                 student_reference.student_unique_id
-            ORDER BY school_year DESC, extracted_timestamp DESC
-        ) AS rank,
-        *
-    FROM parsed_data
+            ORDER BY school_year DESC, extracted_timestamp DESC) = 1
 
 )
 
-SELECT * EXCEPT (extracted_timestamp, rank)
-FROM ranked
+
+SELECT *
+FROM parsed_data
 WHERE
-    rank = 1
-    AND id NOT IN (
+    id NOT IN (
         SELECT id FROM {{ ref('stg_edfi_deletes') }} edfi_deletes
-        WHERE ranked.school_year = edfi_deletes.school_year
-    )
+        WHERE parsed_data.school_year = edfi_deletes.school_year)

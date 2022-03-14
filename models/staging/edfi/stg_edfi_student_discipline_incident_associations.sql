@@ -20,30 +20,20 @@ WITH parsed_data AS (
             FROM UNNEST(JSON_QUERY_ARRAY(data, "$.behaviors")) behaviors 
         ) AS behaviors
     FROM {{ source('staging', 'base_edfi_student_discipline_incident_associations') }}
-
-),
-
-ranked AS (
-
-    SELECT
-        ROW_NUMBER() OVER (
+    QUALIFY ROW_NUMBER() OVER (
             PARTITION BY
                 school_year,
                 discipline_incident_reference.school_id,
                 discipline_incident_reference.incident_identifier,
                 student_reference.student_unique_id
-            ORDER BY school_year DESC, extracted_timestamp DESC
-        ) AS rank,
-        *
-    FROM parsed_data
+            ORDER BY school_year DESC, extracted_timestamp DESC) = 1
 
 )
 
-SELECT * EXCEPT (extracted_timestamp, rank)
-FROM ranked
+
+SELECT *
+FROM parsed_data
 WHERE
-    rank = 1
-    AND id NOT IN (
+    id NOT IN (
         SELECT id FROM {{ ref('stg_edfi_deletes') }} edfi_deletes
-        WHERE ranked.school_year = edfi_deletes.school_year
-    )
+        WHERE parsed_data.school_year = edfi_deletes.school_year)

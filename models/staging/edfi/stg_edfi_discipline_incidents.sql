@@ -34,29 +34,19 @@ WITH parsed_data AS (
             FROM UNNEST(JSON_QUERY_ARRAY(data, "$.externalParticipants")) external_participants 
         ) AS external_participants,
     FROM {{ source('staging', 'base_edfi_discipline_incidents') }}
-
-),
-
-ranked AS (
-
-    SELECT
-        ROW_NUMBER() OVER (
+    QUALIFY ROW_NUMBER() OVER (
             PARTITION BY
                 school_year,
                 school_reference.school_id,
                 incident_identifier
-            ORDER BY school_year DESC, extracted_timestamp DESC
-        ) AS rank,
-        *
-    FROM parsed_data
+            ORDER BY school_year DESC, extracted_timestamp DESC) = 1
 
 )
 
-SELECT * EXCEPT (extracted_timestamp, rank)
-FROM ranked
+
+SELECT *
+FROM parsed_data
 WHERE
-    rank = 1
-    AND id NOT IN (
+    id NOT IN (
         SELECT id FROM {{ ref('stg_edfi_deletes') }} edfi_deletes
-        WHERE ranked.school_year = edfi_deletes.school_year
-    )
+        WHERE ranked.school_year = edfi_deletes.school_year)

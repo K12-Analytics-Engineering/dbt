@@ -17,32 +17,22 @@ WITH parsed_data AS (
             CAST(JSON_VALUE(data, '$.calendarReference.schoolYear') AS int64) AS school_year
         ) AS calendar_reference
     FROM {{ source('staging', 'base_edfi_calendar_dates') }}
-
-),
-
-ranked AS (
-
-    SELECT
-        ROW_NUMBER() OVER (
+    QUALIFY ROW_NUMBER() OVER (
             PARTITION BY
                 school_year,
                 calendar_reference.school_year,
                 calendar_reference.school_id,
                 calendar_reference.calendar_code,
                 date 
-            ORDER BY school_year DESC, extracted_timestamp DESC
-        ) AS rank,
-        *
-    FROM parsed_data
+            ORDER BY school_year DESC, extracted_timestamp DESC) = 1
 
 )
 
-SELECT * EXCEPT (extracted_timestamp, rank, school_year),
+
+SELECT * EXCEPT (school_year),
     COALESCE(calendar_reference.school_year, school_year) AS school_year
-FROM ranked
+FROM parsed_data
 WHERE
-    rank = 1
-    AND id NOT IN (
+    id NOT IN (
         SELECT id FROM {{ ref('stg_edfi_deletes') }} edfi_deletes
-        WHERE ranked.school_year = edfi_deletes.school_year
-    )
+        WHERE ranked.school_year = edfi_deletes.school_year)

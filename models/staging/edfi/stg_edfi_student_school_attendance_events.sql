@@ -25,13 +25,7 @@ WITH parsed_data AS (
         SPLIT(JSON_VALUE(data, '$.attendanceEventCategoryDescriptor'), '#')[OFFSET(1)] AS attendance_event_category_descriptor,
         SPLIT(JSON_VALUE(data, '$.educationalEnvironmentDescriptor'), '#')[OFFSET(1)] AS educational_environment_descriptor,
     FROM {{ source('staging', 'base_edfi_student_school_attendance_events') }}
-
-),
-
-ranked AS (
-
-    SELECT
-        ROW_NUMBER() OVER (
+    QUALIFY ROW_NUMBER() OVER (
             PARTITION BY
                 school_year,
                 session_reference.school_year,
@@ -40,19 +34,15 @@ ranked AS (
                 student_reference.student_unique_id,
                 event_date,
                 attendance_event_category_descriptor
-            ORDER BY school_year DESC, extracted_timestamp DESC
-        ) AS rank,
-        *
-    FROM parsed_data
+            ORDER BY school_year DESC, extracted_timestamp DESC) = 1
 
 )
 
-SELECT * EXCEPT (extracted_timestamp, rank, school_year),
+
+SELECT * EXCEPT (school_year),
     COALESCE(session_reference.school_year, school_year) AS school_year
-FROM ranked
+FROM parsed_data
 WHERE
-    rank = 1
-    AND id NOT IN (
+    id NOT IN (
         SELECT id FROM {{ ref('stg_edfi_deletes') }} edfi_deletes
-        WHERE ranked.school_year = edfi_deletes.school_year
-    )
+        WHERE parsed_data.school_year = edfi_deletes.school_year)
