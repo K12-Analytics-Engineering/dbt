@@ -74,7 +74,7 @@ Grain: one row per staff member per school year
 
 # Student dim
 
-Grain: one record per student
+Grain: one record per student per school year
 
 Ed-Fi's Analytics Middle Tier provides two student dims related to the student's LEA association and the student's school association. This dim combines those two dims to provide one student dim that can be used downstream. If a student has multiple school enrollments, only their most recent will show in this dim.
 
