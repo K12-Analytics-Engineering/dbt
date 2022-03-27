@@ -13,15 +13,22 @@ WITH parsed_data AS (
 
     {% for table in tables %}
         SELECT
-            CAST(JSON_VALUE(data, '$.extractedTimestamp') AS TIMESTAMP) AS extracted_timestamp,
+            date_extracted                          AS date_extracted,
+            school_year                             AS school_year,
             JSON_VALUE(data, '$.id') AS id,
-            CAST(JSON_VALUE(data, '$.schoolYear') AS int64) school_year,
             JSON_VALUE(data, '$.codeValue') AS code_value,
             JSON_VALUE(data, '{{ "$." ~ table["descriptorId"] }}') AS descriptor_id,
             JSON_VALUE(data, '$.description') AS description,
             JSON_VALUE(data, '$.namespace') AS namespace,
             JSON_VALUE(data, '$.shortDescription') AS short_description
         FROM {{ source('staging', table['table']) }}
+        WHERE date_extracted >= (
+            SELECT MAX(date_extracted) AS date_extracted
+            FROM {{ source('staging', table['table']) }}
+            WHERE is_complete_extract IS TRUE)
+        QUALIFY ROW_NUMBER() OVER (
+            PARTITION BY id
+            ORDER BY date_extracted DESC) = 1
         {% if not loop.last %} UNION ALL {% endif %}
     {% endfor %}
 

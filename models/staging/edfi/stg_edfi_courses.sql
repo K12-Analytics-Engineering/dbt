@@ -2,9 +2,9 @@
 WITH parsed_data AS (
 
     SELECT
-        CAST(JSON_VALUE(data, '$.extractedTimestamp') AS TIMESTAMP) AS extracted_timestamp,
+        date_extracted                          AS date_extracted,
+        school_year                             AS school_year,
         JSON_VALUE(data, '$.id') AS id,
-        CAST(JSON_VALUE(data, '$.schoolYear') AS int64) school_year,
         JSON_VALUE(data, '$.courseCode') AS course_code,
         JSON_VALUE(data, '$.courseTitle') AS course_title,
         JSON_VALUE(data, '$.courseDescription') AS course_description,
@@ -37,9 +37,13 @@ WITH parsed_data AS (
             FROM UNNEST(JSON_QUERY_ARRAY(data, "$.identificationCodes")) codes 
         ) AS identification_codes
     FROM {{ source('staging', 'base_edfi_courses') }}
+    WHERE date_extracted >= (
+        SELECT MAX(date_extracted) AS date_extracted
+        FROM {{ source('staging', 'base_edfi_courses') }}
+        WHERE is_complete_extract IS TRUE)
     QUALIFY ROW_NUMBER() OVER (
             PARTITION BY id
-            ORDER BY extracted_timestamp DESC) = 1
+            ORDER BY date_extracted DESC) = 1
 
 )
 

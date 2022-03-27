@@ -2,9 +2,9 @@
 WITH parsed_data AS (
 
     SELECT
-        CAST(JSON_VALUE(data, '$.extractedTimestamp') AS TIMESTAMP) AS extracted_timestamp,
+        date_extracted                          AS date_extracted,
+        school_year                             AS school_year,
         JSON_VALUE(data, '$.id') AS id,
-        CAST(JSON_VALUE(data, '$.schoolYear') AS int64) school_year,
         JSON_VALUE(data, '$.namespace') AS namespace,
         JSON_VALUE(data, '$.surveyIdentifier') AS survey_identifier,
         JSON_VALUE(data, '$.surveyTitle') AS survey_title,
@@ -22,9 +22,13 @@ WITH parsed_data AS (
         CAST(JSON_VALUE(data, '$.numberAdministered') AS int64) number_administered,
         SPLIT(JSON_VALUE(data, '$.surveyCategoryDescriptor'), '#')[OFFSET(1)] AS survey_category_descriptor
     FROM {{ source('staging', 'base_edfi_surveys') }}
+    WHERE date_extracted >= (
+        SELECT MAX(date_extracted) AS date_extracted
+        FROM {{ source('staging', 'base_edfi_surveys') }}
+        WHERE is_complete_extract IS TRUE)
     QUALIFY ROW_NUMBER() OVER (
             PARTITION BY id
-            ORDER BY extracted_timestamp DESC) = 1
+            ORDER BY date_extracted DESC) = 1
 
 )
 

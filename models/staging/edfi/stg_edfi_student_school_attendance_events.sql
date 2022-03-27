@@ -2,9 +2,9 @@
 WITH parsed_data AS (
 
     SELECT
-        CAST(JSON_VALUE(data, '$.extractedTimestamp') AS TIMESTAMP) AS extracted_timestamp,
+        date_extracted                          AS date_extracted,
+        school_year                             AS school_year,
         JSON_VALUE(data, '$.id') AS id,
-        CAST(JSON_VALUE(data, '$.schoolYear') AS int64) school_year,
         STRUCT(
             JSON_VALUE(data, '$.studentReference.studentUniqueId') AS student_unique_id
         ) AS student_reference,
@@ -25,9 +25,13 @@ WITH parsed_data AS (
         SPLIT(JSON_VALUE(data, '$.attendanceEventCategoryDescriptor'), '#')[OFFSET(1)] AS attendance_event_category_descriptor,
         SPLIT(JSON_VALUE(data, '$.educationalEnvironmentDescriptor'), '#')[OFFSET(1)] AS educational_environment_descriptor,
     FROM {{ source('staging', 'base_edfi_student_school_attendance_events') }}
+    WHERE date_extracted >= (
+        SELECT MAX(date_extracted) AS date_extracted
+        FROM {{ source('staging', 'base_edfi_student_school_attendance_events') }}
+        WHERE is_complete_extract IS TRUE)
     QUALIFY ROW_NUMBER() OVER (
             PARTITION BY id
-            ORDER BY extracted_timestamp DESC) = 1
+            ORDER BY date_extracted DESC) = 1
 
 )
 

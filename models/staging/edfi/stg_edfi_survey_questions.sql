@@ -2,9 +2,9 @@
 WITH parsed_data AS (
 
     SELECT
-        CAST(JSON_VALUE(data, '$.extractedTimestamp') AS TIMESTAMP) AS extracted_timestamp,
+        date_extracted                          AS date_extracted,
+        school_year                             AS school_year,
         JSON_VALUE(data, '$.id') AS id,
-        CAST(JSON_VALUE(data, '$.schoolYear') AS int64) school_year,
         JSON_VALUE(data, '$.questionCode') AS question_code,
         JSON_VALUE(data, '$.questionText') AS question_text,
         SPLIT(JSON_VALUE(data, '$.questionFormDescriptor'), '#')[OFFSET(1)] AS question_form_descriptor,
@@ -32,9 +32,13 @@ WITH parsed_data AS (
             FROM UNNEST(JSON_QUERY_ARRAY(data, "$.matrices")) matrices 
         ) AS matrices
     FROM {{ source('staging', 'base_edfi_survey_questions') }}
+    WHERE date_extracted >= (
+        SELECT MAX(date_extracted) AS date_extracted
+        FROM {{ source('staging', 'base_edfi_survey_questions') }}
+        WHERE is_complete_extract IS TRUE)
     QUALIFY ROW_NUMBER() OVER (
             PARTITION BY id
-            ORDER BY extracted_timestamp DESC) = 1
+            ORDER BY date_extracted DESC) = 1
 
 )
 
