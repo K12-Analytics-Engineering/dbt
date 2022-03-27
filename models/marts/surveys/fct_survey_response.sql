@@ -1,4 +1,4 @@
-
+{# 
 SELECT
     {{ dbt_utils.surrogate_key([
         'survey_question_responses.survey_question_reference.namespace',
@@ -23,4 +23,4 @@ CROSS JOIN UNNEST(survey_question_responses.values) AS value
 LEFT JOIN {{ ref('stg_edfi_survey_responses') }} survey_responses
     ON survey_question_responses.survey_response_reference.namespace = survey_responses.survey_reference.namespace
     AND survey_question_responses.survey_response_reference.survey_identifier = survey_responses.survey_reference.survey_identifier
-    AND survey_question_responses.survey_response_reference.survey_response_identifier = survey_responses.survey_response_identifier
+    AND survey_question_responses.survey_response_reference.survey_response_identifier = survey_responses.survey_response_identifier #}

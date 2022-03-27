@@ -11,6 +11,6 @@ poetry install;
 env $(cat .env) poetry shell;
 code .
 dbt deps;
-dbt run-operation stage_external_sources;
+dbt run-operation stage_external_sources --vars "ext_full_refresh: true";
 
 ```

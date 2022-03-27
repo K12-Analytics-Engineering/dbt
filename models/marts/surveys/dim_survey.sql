@@ -1,4 +1,4 @@
-
+{# 
 SELECT
     {{ dbt_utils.surrogate_key([
         'namespace',
@@ -8,4 +8,4 @@ SELECT
     namespace                                   AS namespace,
     survey_identifier                           AS survey_identifier,
     survey_title                                AS title
-FROM {{ ref('stg_edfi_surveys') }}
+FROM {{ ref('stg_edfi_surveys') }} #}

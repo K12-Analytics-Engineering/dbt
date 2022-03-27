@@ -1,4 +1,4 @@
-
+{# 
 WITH parsed_data AS (
 
     SELECT
@@ -46,4 +46,4 @@ FROM parsed_data
 WHERE
     id NOT IN (
         SELECT id FROM {{ ref('stg_edfi_deletes') }} edfi_deletes
-        WHERE parsed_data.school_year = edfi_deletes.school_year)
+        WHERE parsed_data.school_year = edfi_deletes.school_year) #}
