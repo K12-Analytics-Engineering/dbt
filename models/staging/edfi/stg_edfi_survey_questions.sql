@@ -1,3 +1,4 @@
+SELECT NULL AS column1
 {# 
 WITH parsed_data AS (
 

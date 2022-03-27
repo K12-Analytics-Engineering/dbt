@@ -5,7 +5,6 @@ WITH parsed_data AS (
         date_extracted                          AS date_extracted,
         school_year                             AS school_year,
         JSON_VALUE(data, '$.id') AS id,
-        CAST(JSON_VALUE(data, '$.schoolYear') AS int64) school_year,
         PARSE_DATE('%Y-%m-%d', JSON_VALUE(data, '$.date')) AS date,
         ARRAY(
             SELECT AS STRUCT 

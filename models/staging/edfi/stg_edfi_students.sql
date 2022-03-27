@@ -1,4 +1,4 @@
-w
+
 WITH parsed_data AS (
 
     SELECT

@@ -32,28 +32,12 @@ WITH parsed_data AS (
         {% if not loop.last %} UNION ALL {% endif %}
     {% endfor %}
 
-),
-
-ranked AS (
-
-    SELECT
-        ROW_NUMBER() OVER (
-            PARTITION BY
-                school_year,
-                namespace,
-                code_value
-            ORDER BY school_year DESC, extracted_timestamp DESC
-        ) AS rank,
-        *
-    FROM parsed_data
-
 )
 
-SELECT DISTINCT * EXCEPT (extracted_timestamp, rank)
-FROM ranked
+SELECT DISTINCT *
+FROM parsed_data
 WHERE
-    rank = 1
-    AND id NOT IN (
+    id NOT IN (
         SELECT id FROM {{ ref('stg_edfi_deletes') }} edfi_deletes
-        WHERE ranked.school_year = edfi_deletes.school_year
+        WHERE parsed_data.school_year = edfi_deletes.school_year
     )

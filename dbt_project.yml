@@ -40,7 +40,7 @@ models:
         +tags: edfi
       surveys:
         +schema: surveys
-        +tags: edfi
+        # +tags: edfi
     staging:
       +materialized: table
       +schema: staging

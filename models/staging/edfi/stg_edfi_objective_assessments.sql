@@ -2,7 +2,7 @@
 WITH parsed_data AS (
 
     SELECT
-        Cdate_extracted                          AS date_extracted,
+        date_extracted                          AS date_extracted,
         school_year                             AS school_year,
         JSON_VALUE(data, '$.id') AS id,
         JSON_VALUE(data, '$.identificationCode') AS identification_code,
