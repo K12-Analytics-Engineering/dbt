@@ -32,6 +32,8 @@ sources:
           columns:
             - name: is_complete_extract
               data_type: boolean
+            - name: id
+              data_type: string
             - name: data
               data_type: string
           external:
@@ -44,11 +46,15 @@ sources:
                 data_type: integer
               - name: date_extracted
                 data_type: timestamp
+              - name: extract_type
+                data_type: string
 
         - name: base_edfi_calendars
           columns:
             - name: is_complete_extract
               data_type: boolean
+            - name: id
+              data_type: string
             - name: data
               data_type: string
           external:
@@ -61,11 +67,15 @@ sources:
                 data_type: integer
               - name: date_extracted
                 data_type: timestamp
+              - name: extract_type
+                data_type: string
 
         - name: base_edfi_calendar_dates
           columns:
             - name: is_complete_extract
               data_type: boolean
+            - name: id
+              data_type: string
             - name: data
               data_type: string
           external:
@@ -78,11 +88,15 @@ sources:
                 data_type: integer
               - name: date_extracted
                 data_type: timestamp
+              - name: extract_type
+                data_type: string
 
         - name: base_edfi_courses
           columns:
             - name: is_complete_extract
               data_type: boolean
+            - name: id
+              data_type: string
             - name: data
               data_type: string
           external:
@@ -95,11 +109,15 @@ sources:
                 data_type: integer
               - name: date_extracted
                 data_type: timestamp
+              - name: extract_type
+                data_type: string
 
         - name: base_edfi_course_offerings
           columns:
             - name: is_complete_extract
               data_type: boolean
+            - name: id
+              data_type: string
             - name: data
               data_type: string
           external:
@@ -112,11 +130,15 @@ sources:
                 data_type: integer
               - name: date_extracted
                 data_type: timestamp
+              - name: extract_type
+                data_type: string
 
         - name: base_edfi_discipline_actions
           columns:
             - name: is_complete_extract
               data_type: boolean
+            - name: id
+              data_type: string
             - name: data
               data_type: string
           external:
@@ -129,11 +151,15 @@ sources:
                 data_type: integer
               - name: date_extracted
                 data_type: timestamp
+              - name: extract_type
+                data_type: string
 
         - name: base_edfi_discipline_incidents
           columns:
             - name: is_complete_extract
               data_type: boolean
+            - name: id
+              data_type: string
             - name: data
               data_type: string
           external:
@@ -146,11 +172,15 @@ sources:
                 data_type: integer
               - name: date_extracted
                 data_type: timestamp
+              - name: extract_type
+                data_type: string
 
         - name: base_edfi_grading_periods
           columns:
             - name: is_complete_extract
               data_type: boolean
+            - name: id
+              data_type: string
             - name: data
               data_type: string
           external:
@@ -163,11 +193,15 @@ sources:
                 data_type: integer
               - name: date_extracted
                 data_type: timestamp
+              - name: extract_type
+                data_type: string
 
         - name: base_edfi_grading_period_descriptors
           columns:
             - name: is_complete_extract
               data_type: boolean
+            - name: id
+              data_type: string
             - name: data
               data_type: string
           external:
@@ -180,11 +214,15 @@ sources:
                 data_type: integer
               - name: date_extracted
                 data_type: timestamp
+              - name: extract_type
+                data_type: string
 
         - name: base_edfi_grades
           columns:
             - name: is_complete_extract
               data_type: boolean
+            - name: id
+              data_type: string
             - name: data
               data_type: string
           external:
@@ -197,11 +235,15 @@ sources:
                 data_type: integer
               - name: date_extracted
                 data_type: timestamp
+              - name: extract_type
+                data_type: string
 
         - name: base_edfi_local_education_agencies
           columns:
             - name: is_complete_extract
               data_type: boolean
+            - name: id
+              data_type: string
             - name: data
               data_type: string
           external:
@@ -214,11 +256,15 @@ sources:
                 data_type: integer
               - name: date_extracted
                 data_type: timestamp
+              - name: extract_type
+                data_type: string
 
         - name: base_edfi_objective_assessments
           columns:
             - name: is_complete_extract
               data_type: boolean
+            - name: id
+              data_type: string
             - name: data
               data_type: string
           external:
@@ -231,11 +277,15 @@ sources:
                 data_type: integer
               - name: date_extracted
                 data_type: timestamp
+              - name: extract_type
+                data_type: string
 
         - name: base_edfi_parents
           columns:
             - name: is_complete_extract
               data_type: boolean
+            - name: id
+              data_type: string
             - name: data
               data_type: string
           external:
@@ -248,11 +298,15 @@ sources:
                 data_type: integer
               - name: date_extracted
                 data_type: timestamp
+              - name: extract_type
+                data_type: string
 
         - name: base_edfi_programs
           columns:
             - name: is_complete_extract
               data_type: boolean
+            - name: id
+              data_type: string
             - name: data
               data_type: string
           external:
@@ -265,11 +319,15 @@ sources:
                 data_type: integer
               - name: date_extracted
                 data_type: timestamp
+              - name: extract_type
+                data_type: string
 
         - name: base_edfi_schools
           columns:
             - name: is_complete_extract
               data_type: boolean
+            - name: id
+              data_type: string
             - name: data
               data_type: string
           external:
@@ -282,11 +340,15 @@ sources:
                 data_type: integer
               - name: date_extracted
                 data_type: timestamp
+              - name: extract_type
+                data_type: string
 
         - name: base_edfi_school_year_types
           columns:
             - name: is_complete_extract
               data_type: boolean
+            - name: id
+              data_type: string
             - name: data
               data_type: string
           external:
@@ -299,11 +361,15 @@ sources:
                 data_type: integer
               - name: date_extracted
                 data_type: timestamp
+              - name: extract_type
+                data_type: string
 
         - name: base_edfi_sections
           columns:
             - name: is_complete_extract
               data_type: boolean
+            - name: id
+              data_type: string
             - name: data
               data_type: string
           external:
@@ -316,11 +382,15 @@ sources:
                 data_type: integer
               - name: date_extracted
                 data_type: timestamp
+              - name: extract_type
+                data_type: string
 
         - name: base_edfi_sessions
           columns:
             - name: is_complete_extract
               data_type: boolean
+            - name: id
+              data_type: string
             - name: data
               data_type: string
           external:
@@ -333,11 +403,15 @@ sources:
                 data_type: integer
               - name: date_extracted
                 data_type: timestamp
+              - name: extract_type
+                data_type: string
 
         - name: base_edfi_staffs
           columns:
             - name: is_complete_extract
               data_type: boolean
+            - name: id
+              data_type: string
             - name: data
               data_type: string
           external:
@@ -350,11 +424,15 @@ sources:
                 data_type: integer
               - name: date_extracted
                 data_type: timestamp
+              - name: extract_type
+                data_type: string
 
         - name: base_edfi_staff_discipline_incident_associations
           columns:
             - name: is_complete_extract
               data_type: boolean
+            - name: id
+              data_type: string
             - name: data
               data_type: string
           external:
@@ -367,11 +445,15 @@ sources:
                 data_type: integer
               - name: date_extracted
                 data_type: timestamp
+              - name: extract_type
+                data_type: string
 
         - name: base_edfi_staff_education_organization_assignment_associations
           columns:
             - name: is_complete_extract
               data_type: boolean
+            - name: id
+              data_type: string
             - name: data
               data_type: string
           external:
@@ -384,11 +466,15 @@ sources:
                 data_type: integer
               - name: date_extracted
                 data_type: timestamp
+              - name: extract_type
+                data_type: string
 
         - name: base_edfi_staff_school_associations
           columns:
             - name: is_complete_extract
               data_type: boolean
+            - name: id
+              data_type: string
             - name: data
               data_type: string
           external:
@@ -401,11 +487,15 @@ sources:
                 data_type: integer
               - name: date_extracted
                 data_type: timestamp
+              - name: extract_type
+                data_type: string
 
         - name: base_edfi_staff_section_associations
           columns:
             - name: is_complete_extract
               data_type: boolean
+            - name: id
+              data_type: string
             - name: data
               data_type: string
           external:
@@ -418,11 +508,15 @@ sources:
                 data_type: integer
               - name: date_extracted
                 data_type: timestamp
+              - name: extract_type
+                data_type: string
 
         - name: base_edfi_students
           columns:
             - name: is_complete_extract
               data_type: boolean
+            - name: id
+              data_type: string
             - name: data
               data_type: string
           external:
@@ -435,11 +529,15 @@ sources:
                 data_type: integer
               - name: date_extracted
                 data_type: timestamp
+              - name: extract_type
+                data_type: string
 
         - name: base_edfi_student_assessments
           columns:
             - name: is_complete_extract
               data_type: boolean
+            - name: id
+              data_type: string
             - name: data
               data_type: string
           external:
@@ -452,11 +550,15 @@ sources:
                 data_type: integer
               - name: date_extracted
                 data_type: timestamp
+              - name: extract_type
+                data_type: string
 
         - name: base_edfi_student_discipline_incident_associations
           columns:
             - name: is_complete_extract
               data_type: boolean
+            - name: id
+              data_type: string
             - name: data
               data_type: string
           external:
@@ -469,11 +571,15 @@ sources:
                 data_type: integer
               - name: date_extracted
                 data_type: timestamp
+              - name: extract_type
+                data_type: string
 
         - name: base_edfi_student_education_organization_associations
           columns:
             - name: is_complete_extract
               data_type: boolean
+            - name: id
+              data_type: string
             - name: data
               data_type: string
           external:
@@ -486,11 +592,15 @@ sources:
                 data_type: integer
               - name: date_extracted
                 data_type: timestamp
+              - name: extract_type
+                data_type: string
 
         - name: base_edfi_student_parent_associations
           columns:
             - name: is_complete_extract
               data_type: boolean
+            - name: id
+              data_type: string
             - name: data
               data_type: string
           external:
@@ -503,11 +613,15 @@ sources:
                 data_type: integer
               - name: date_extracted
                 data_type: timestamp
+              - name: extract_type
+                data_type: string
 
         - name: base_edfi_student_program_associations
           columns:
             - name: is_complete_extract
               data_type: boolean
+            - name: id
+              data_type: string
             - name: data
               data_type: string
           external:
@@ -520,11 +634,15 @@ sources:
                 data_type: integer
               - name: date_extracted
                 data_type: timestamp
+              - name: extract_type
+                data_type: string
 
         - name: base_edfi_student_school_associations
           columns:
             - name: is_complete_extract
               data_type: boolean
+            - name: id
+              data_type: string
             - name: data
               data_type: string
           external:
@@ -537,11 +655,15 @@ sources:
                 data_type: integer
               - name: date_extracted
                 data_type: timestamp
+              - name: extract_type
+                data_type: string
 
         - name: base_edfi_student_school_attendance_events
           columns:
             - name: is_complete_extract
               data_type: boolean
+            - name: id
+              data_type: string
             - name: data
               data_type: string
           external:
@@ -554,11 +676,15 @@ sources:
                 data_type: integer
               - name: date_extracted
                 data_type: timestamp
+              - name: extract_type
+                data_type: string
 
         - name: base_edfi_student_section_associations
           columns:
             - name: is_complete_extract
               data_type: boolean
+            - name: id
+              data_type: string
             - name: data
               data_type: string
           external:
@@ -571,11 +697,15 @@ sources:
                 data_type: integer
               - name: date_extracted
                 data_type: timestamp
+              - name: extract_type
+                data_type: string
 
         - name: base_edfi_student_section_attendance_events
           columns:
             - name: is_complete_extract
               data_type: boolean
+            - name: id
+              data_type: string
             - name: data
               data_type: string
           external:
@@ -588,11 +718,15 @@ sources:
                 data_type: integer
               - name: date_extracted
                 data_type: timestamp
+              - name: extract_type
+                data_type: string
 
         - name: base_edfi_student_special_education_program_associations
           columns:
             - name: is_complete_extract
               data_type: boolean
+            - name: id
+              data_type: string
             - name: data
               data_type: string
           external:
@@ -605,6 +739,8 @@ sources:
                 data_type: integer
               - name: date_extracted
                 data_type: timestamp
+              - name: extract_type
+                data_type: string
 
         # - name: base_edfi_surveys
         #   columns:
@@ -742,728 +878,23 @@ sources:
         #       - name: date_extracted
         #         data_type: timestamp
 
-        - name: base_edfi_cohort_type_descriptors
+        - name: base_edfi_descriptors
           columns:
             - name: is_complete_extract
               data_type: boolean
+            - name: id
+              data_type: string
             - name: data
               data_type: string
           external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_cohort_type_descriptors/*'
+            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_descriptors/*'
             options:
               format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_cohort_type_descriptors'
+              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_descriptors'
             partitions:               
               - name: school_year
                 data_type: integer
               - name: date_extracted
                 data_type: timestamp
-
-        - name: base_edfi_disability_descriptors
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_disability_descriptors/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_disability_descriptors'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_language_descriptors
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_language_descriptors/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_language_descriptors'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_language_use_descriptors
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_language_use_descriptors/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_language_use_descriptors'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_race_descriptors
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_race_descriptors/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_race_descriptors'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_race_descriptors_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_race_descriptors_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_race_descriptors_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_assessments_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_assessments_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_assessments_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_calendars_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_calendars_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_calendars_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_calendar_dates_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_calendar_dates_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_calendar_dates_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_courses_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_courses_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_courses_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_course_offerings_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_course_offerings_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_course_offerings_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_discipline_actions_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_discipline_actions_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_discipline_actions_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_discipline_incident_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_discipline_incident_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_discipline_incident_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_grading_periods_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_grading_periods_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_grading_periods_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_grades_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_grades_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_grades_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_local_education_agencies_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_local_education_agencies_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_local_education_agencies_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_objective_assessments_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_objective_assessments_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_objective_assessments_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_parents_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_parents_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_parents_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_programs_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_programs_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_programs_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_schools_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_schools_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_schools_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_sections_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_sections_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_sections_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_sessions_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_sessions_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_sessions_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_staffs_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_staffs_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_staffs_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_staff_discipline_incident_associations_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_staff_discipline_incident_associations_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_staff_discipline_incident_associations_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_staff_education_organization_assignment_associations_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_staff_education_organization_assignment_associations_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_staff_education_organization_assignment_associations_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_staff_school_associations_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_staff_school_associations_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_staff_school_associations_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_staff_section_associations_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_staff_section_associations_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_staff_section_associations_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_students_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_students_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_students_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_student_assessments_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_assessments_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_assessments_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_student_discipline_incident_associations_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_discipline_incident_associations_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_discipline_incident_associations_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_student_education_organization_associations_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_education_organization_associations_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_education_organization_associations_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_student_parent_associations_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_parent_associations_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_parent_associations_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_student_program_associations_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_program_associations_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_program_associations_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_student_school_associations_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_school_associations_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_school_associations_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_student_school_attendance_events_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_school_attendance_events_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_school_attendance_events_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_student_section_associations_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_section_associations_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_section_associations_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_student_section_attendance_events_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_section_attendance_events_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_section_attendance_events_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_student_special_education_program_associations_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_special_education_program_associations_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_special_education_program_associations_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_cohort_type_descriptors_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_cohort_type_descriptors_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_cohort_type_descriptors_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_disability_descriptors_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_disability_descriptors_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_disability_descriptors_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_language_descriptors_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_language_descriptors_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_language_descriptors_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-        - name: base_edfi_language_use_descriptors_deletes
-          columns:
-            - name: is_complete_extract
-              data_type: boolean
-            - name: data
-              data_type: string
-          external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_language_use_descriptors_deletes/*'
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_language_use_descriptors_deletes'
-            partitions:               
-              - name: school_year
-                data_type: integer
-              - name: date_extracted
-                data_type: timestamp
-
-
-
-
-
-
-
-
-
-
-
-
+              - name: extract_type
+                data_type: string
