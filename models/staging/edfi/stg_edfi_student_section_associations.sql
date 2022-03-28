@@ -22,9 +22,5 @@ SELECT
     SPLIT(JSON_VALUE(data, "$.repeatIdentifierDescriptor"), '#')[OFFSET(1)] AS repeat_identifier_descriptor,
     CAST(JSON_VALUE(data, '$.teacherStudentDataLinkExclusion') AS BOOL) AS teacher_student_data_link_exclusion
 FROM records
-WHERE
-    extract_type = 'records'
-    AND id NOT IN (SELECT id FROM records WHERE extract_type = 'deletes') 
-QUALIFY ROW_NUMBER() OVER (
-        PARTITION BY id
-        ORDER BY date_extracted DESC) = 1
+
+{{ remove_edfi_deletes_and_duplicates() }}

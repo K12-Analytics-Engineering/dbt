@@ -45,9 +45,5 @@ SELECT
     JSON_VALUE(data, '$.nameOfInstitution') AS name_of_institution,
     SPLIT(JSON_VALUE(data, '$.schoolTypeDescriptor'), '#')[OFFSET(1)] AS school_type_descriptor,
 FROM records
-WHERE
-    extract_type = 'records'
-    AND id NOT IN (SELECT id FROM records WHERE extract_type = 'deletes') 
-QUALIFY ROW_NUMBER() OVER (
-        PARTITION BY id
-        ORDER BY date_extracted DESC) = 1
+
+{{ remove_edfi_deletes_and_duplicates() }}

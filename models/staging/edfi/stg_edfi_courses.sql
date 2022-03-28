@@ -37,9 +37,5 @@ SELECT
         FROM UNNEST(JSON_QUERY_ARRAY(data, "$.identificationCodes")) codes 
     ) AS identification_codes
 FROM records
-WHERE
-    extract_type = 'records'
-    AND id NOT IN (SELECT id FROM records WHERE extract_type = 'deletes') 
-QUALIFY ROW_NUMBER() OVER (
-        PARTITION BY id
-        ORDER BY date_extracted DESC) = 1
+
+{{ remove_edfi_deletes_and_duplicates() }}

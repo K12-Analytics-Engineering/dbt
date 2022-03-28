@@ -25,9 +25,5 @@ SELECT
     CAST(JSON_VALUE(data, '$.schoolChoiceTransfer') AS BOOL) AS school_choice_transfer,
     CAST(JSON_VALUE(data, '$.termCompletionIndicator') AS BOOL) AS term_completion_indicator
 FROM records
-WHERE
-    extract_type = 'records'
-    AND id NOT IN (SELECT id FROM records WHERE extract_type = 'deletes') 
-QUALIFY ROW_NUMBER() OVER (
-        PARTITION BY id
-        ORDER BY date_extracted DESC) = 1
+
+{{ remove_edfi_deletes_and_duplicates() }}

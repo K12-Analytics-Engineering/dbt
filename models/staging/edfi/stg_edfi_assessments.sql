@@ -1,5 +1,5 @@
 
- {{ retrieve_edfi_records_from_data_lake('base_edfi_assessments') }}
+{{ retrieve_edfi_records_from_data_lake('base_edfi_assessments') }}
 
 SELECT
     date_extracted                          AS date_extracted,
@@ -80,9 +80,5 @@ SELECT
         FROM UNNEST(JSON_QUERY_ARRAY(data, "$.sections")) sections 
     ) AS sections
 FROM records
-WHERE
-    extract_type = 'records'
-    AND id NOT IN (SELECT id FROM records WHERE extract_type = 'deletes') 
-QUALIFY ROW_NUMBER() OVER (
-        PARTITION BY id
-        ORDER BY date_extracted DESC) = 1
+
+{{ remove_edfi_deletes_and_duplicates() }}
