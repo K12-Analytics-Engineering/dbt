@@ -1,27 +1,5 @@
 
-
-WITH latest_extract AS (
-
-    SELECT
-        school_year,
-        MAX(date_extracted) AS date_extracted
-    FROM {{ source('staging', 'base_edfi_school_year_types') }}
-    WHERE is_complete_extract IS TRUE
-    GROUP BY 1
-
-),
-
-records AS (
-
-    SELECT base_edfi_school_year_types.*
-    FROM {{ source('staging', 'base_edfi_school_year_types') }} base_edfi_school_year_types
-    LEFT JOIN latest_extract ON base_edfi_school_year_types.school_year = latest_extract.school_year
-    WHERE
-        base_edfi_school_year_types.date_extracted >= latest_extract.date_extracted
-        AND id IS NOT NULL
-
-)
-
+{{ retrieve_edfi_records_from_data_lake('base_edfi_school_year_types') }}
 
 SELECT DISTINCT
     date_extracted                                  AS date_extracted,
