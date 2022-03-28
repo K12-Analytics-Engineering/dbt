@@ -1,12 +1,23 @@
 
-WITH records AS (
+WITH latest_extract AS (
 
-    SELECT *
+    SELECT
+        school_year,
+        MAX(date_extracted) AS date_extracted
     FROM {{ source('staging', 'base_edfi_programs') }}
-    WHERE date_extracted >= (
-        SELECT MAX(date_extracted) AS date_extracted
-        FROM {{ source('staging', 'base_edfi_programs') }}
-        WHERE is_complete_extract IS TRUE)
+    WHERE is_complete_extract IS TRUE
+    GROUP BY 1
+
+),
+
+records AS (
+
+    SELECT base_edfi_programs.*
+    FROM {{ source('staging', 'base_edfi_programs') }} base_edfi_programs
+    LEFT JOIN latest_extract ON base_edfi_programs.school_year = latest_extract.school_year
+    WHERE
+        base_edfi_programs.date_extracted >= latest_extract.date_extracted
+        AND id IS NOT NULL
 
 )
 
