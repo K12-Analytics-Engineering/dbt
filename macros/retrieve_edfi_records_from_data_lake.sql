@@ -18,8 +18,10 @@ records AS (
     FROM {{ source('staging', table_name) }} base_table
     LEFT JOIN latest_extract ON base_table.school_year = latest_extract.school_year
     WHERE
-        base_table.date_extracted >= latest_extract.date_extracted
-        AND id IS NOT NULL
+        id IS NOT NULL
+        AND (
+            latest_extract.date_extracted IS NULL
+            OR base_table.date_extracted >= latest_extract.date_extracted)
 
 )
 
