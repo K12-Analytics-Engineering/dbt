@@ -9,7 +9,7 @@ select
         google_forms_responses.form_id as surveyIdentifier
     ) as surveyReference,
     dim_student.email as electronicMailAddress,
-    CONCAT(
+    concat(
         dim_student.student_first_name, ' ',
         dim_student.student_last_surname
      ) as fullName,

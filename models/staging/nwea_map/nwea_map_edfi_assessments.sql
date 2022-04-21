@@ -59,7 +59,7 @@ score_results_array as (
 
 
 select
-    CONCAT(
+    concat(
         test_type, "-",
         term_name, "-",
         course
@@ -77,7 +77,7 @@ select
     )                                                                   as Period,
     array(
         select as struct 
-            CONCAT(
+            concat(
                 "uri://ed-fi.org/AcademicSubjectDescriptor#",
                 course
             ) as AcademicSubjectDescriptor

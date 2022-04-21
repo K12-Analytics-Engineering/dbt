@@ -33,7 +33,7 @@ select
     numeric_grade_earned                                                    as numeric_grade_earned,
     letter_grade_earned                                                     as letter_grade_earned,
     grade_type_descriptor                                                   as grade_type,
-    if(current_date BETWEEN ssa.begin_date and ssa.end_date, 1, 0)          as is_actively_enrolled_in_section
+    if(current_date between ssa.begin_date and ssa.end_date, 1, 0)          as is_actively_enrolled_in_section
 from {{ ref('stg_edfi_grades') }} grades
 left join {{ ref('stg_edfi_student_section_associations') }} ssa
     on grades.school_year = ssa.school_year

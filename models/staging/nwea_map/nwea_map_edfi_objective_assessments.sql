@@ -22,15 +22,15 @@ with goals as (
 select
     goals.goal_name                                                    as IdentificationCode,
     struct(
-        CONCAT(
+        concat(
             test_type, "-",
             term_name, "-",
             academic_subject
         )                           as AssessmentIdentifier,
         "uri://nwea.org"            as Namespace
     )                                                                   as AssessmentReference,
-    CONCAT("Goal ", goals.goal_number)                                  as Description,
-    CONCAT(
+    concat("Goal ", goals.goal_number)                                  as Description,
+    concat(
         "uri://ed-fi.org/AcademicSubjectDescriptor#",
         goals.academic_subject
     )                                                                   as AcademicSubjectDescriptor,

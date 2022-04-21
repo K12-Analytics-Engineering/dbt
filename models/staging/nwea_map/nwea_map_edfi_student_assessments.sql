@@ -31,7 +31,7 @@ student_objective_assessments as (
         struct(
 
                 struct(
-                    CONCAT(
+                    concat(
                         test_type, "-",
                         term_name, "-",
                         academic_subject
@@ -43,7 +43,7 @@ student_objective_assessments as (
                 array(
                     select as struct
                         "uri://ed-fi.org/AssessmentReportingMethodDescriptor#Proficiency level"   as AssessmentReportingMethodDescriptor,
-                        CONCAT(
+                        concat(
                             "uri://nwea.org/PerformanceLevelDescriptor#",
                             goal_adjective
                         )                                                                         as PerformanceLevelDescriptor
@@ -116,7 +116,7 @@ performance_levels as (
             test_id,
             struct(
                 "{{performance_level[0]}}"                                      as AssessmentReportingMethodDescriptor,
-                CONCAT(
+                concat(
                     "uri://ed-fi.org/PerformanceLevelDescriptor#",
                     if({{performance_level[1]}}, "Pass", "Fail")
                 )                                                               as PerformanceLevelDescriptor
@@ -145,7 +145,7 @@ performance_levels_array as (
 select
     stg_nwea_map_assessment_results.test_id                                as StudentAssessmentIdentifier,
     struct(
-        CONCAT(
+        concat(
             test_type, "-",
             term_name, "-",
             course

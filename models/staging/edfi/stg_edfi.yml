@@ -16,7 +16,7 @@ models:
     description: ""
     tests:
       - unique:
-          column_name: "CONCAT(school_year, '-', local_education_agency_id)"
+          column_name: "concat(school_year, '-', local_education_agency_id)"
 
   - name: stg_edfi_schools
     description: ""

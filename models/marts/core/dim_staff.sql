@@ -9,7 +9,7 @@ select
     last_surname                        as staff_last_surname,
     middle_name                         as staff_middle_name,
     first_name                          as staff_first_name,
-    CONCAT(
+    concat(
         last_surname, ', ',
         first_name, ' ',
         COALESCE(LEFT(middle_name, 1), '')

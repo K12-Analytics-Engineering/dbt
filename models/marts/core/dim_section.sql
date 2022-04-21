@@ -24,7 +24,7 @@ select distinct
     sections.section_identifier                                 as section_identifier,
     COALESCE(
         sections.section_name,
-        CONCAT(
+        concat(
             course_offering_reference.local_course_code, '-',
             sessions.session_name
         )

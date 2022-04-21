@@ -14,7 +14,7 @@ select
     ssa.grade_levels                                    as grade_levels,
     seoa.begin_date                                     as begin_date,
     seoa.end_date                                       as end_date,
-    if(current_date BETWEEN seoa.begin_date and seoa.end_date, 1, 0) as is_actively_assigned_to_school
+    if(current_date between seoa.begin_date and seoa.end_date, 1, 0) as is_actively_assigned_to_school
 from {{ ref('stg_edfi_staff_education_organization_assignment_associations') }} seoa
 left join {{ ref('stg_edfi_staff_school_associations') }} ssa
     on seoa.school_year = ssa.school_year

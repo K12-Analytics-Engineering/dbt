@@ -93,7 +93,7 @@ select distinct
     grading_period_end_date,
     total_instructional_days,
     if(
-        current_date BETWEEN grading_period_begin_date and grading_period_end_date,
+        current_date between grading_period_begin_date and grading_period_end_date,
         true,
         false
     )                                                                 as is_current_grading_period

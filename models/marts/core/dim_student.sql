@@ -74,7 +74,7 @@ students as (
         students.first_name                                             as student_first_name,
         students.middle_name                                            as student_middle_name,
         students.last_surname                                           as student_last_surname,
-        CONCAT(
+        concat(
             students.last_surname, ', ',
             students.first_name, ' ',
             COALESCE(LEFT(students.middle_name, 1), '')
