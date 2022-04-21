@@ -23,7 +23,7 @@ select
     COUNT(calendar_dates.date)                                      as count_days_enrolled,
     if(
         ssa.exit_withdraw_date is null
-        OR (
+        or (
             current_date >= ssa.entry_date
             and current_date < ssa.exit_withdraw_date
         ),
@@ -38,7 +38,7 @@ left join {{ ref('stg_edfi_calendar_dates') }} calendar_dates
     and ssa.entry_date <= calendar_dates.date
     and (
         ssa.exit_withdraw_date is null
-        OR ssa.exit_withdraw_date > calendar_dates.date
+        or ssa.exit_withdraw_date > calendar_dates.date
     )
 cross join unnest(calendar_dates.calendar_events) as calendar_events
 where

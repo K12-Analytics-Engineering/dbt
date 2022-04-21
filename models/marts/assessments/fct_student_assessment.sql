@@ -29,7 +29,7 @@ left join {{ ref('stg_edfi_student_school_associations') }} student_school_assoc
     and student_assessments.administration_date >= student_school_associations.entry_date
     and (
         student_assessments.administration_date <= student_school_associations.exit_withdraw_date
-        OR student_school_associations.exit_withdraw_date is null
+        or student_school_associations.exit_withdraw_date is null
     )
 
 
@@ -65,7 +65,7 @@ left join {{ ref('stg_edfi_student_school_associations') }} student_school_assoc
     and student_assessments.administration_date >= student_school_associations.entry_date
     and (
         student_assessments.administration_date <= student_school_associations.exit_withdraw_date
-        OR student_school_associations.exit_withdraw_date is null
+        or student_school_associations.exit_withdraw_date is null
     )
 
 
@@ -103,7 +103,7 @@ left join {{ ref('stg_edfi_student_school_associations') }} student_school_assoc
     and student_assessments.administration_date >= student_school_associations.entry_date
     and (
         student_assessments.administration_date <= student_school_associations.exit_withdraw_date
-        OR student_school_associations.exit_withdraw_date is null
+        or student_school_associations.exit_withdraw_date is null
     )
 
 
@@ -141,5 +141,5 @@ left join {{ ref('stg_edfi_student_school_associations') }} student_school_assoc
     and student_assessments.administration_date >= student_school_associations.entry_date
     and (
         student_assessments.administration_date <= student_school_associations.exit_withdraw_date
-        OR student_school_associations.exit_withdraw_date is null
+        or student_school_associations.exit_withdraw_date is null
     )

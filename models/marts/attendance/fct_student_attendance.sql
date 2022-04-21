@@ -56,7 +56,7 @@ with student_attendance as (
         and ssa.entry_date <= calendar_dates.date
         and (
             ssa.exit_withdraw_date is null
-            OR ssa.exit_withdraw_date >= calendar_dates.date
+            or ssa.exit_withdraw_date >= calendar_dates.date
         )
     cross join unnest(calendar_dates.calendar_events) as calendar_events
     -- school attendance
@@ -66,7 +66,7 @@ with student_attendance as (
         and school_attendance.school_reference.school_id = ssa.school_reference.school_id
         and (
             ssa.school_year_type_reference.school_year is null
-            OR 
+            or 
             school_attendance.session_reference.school_year = ssa.school_year_type_reference.school_year
         )
         and school_attendance.event_date = calendar_dates.date
@@ -78,7 +78,7 @@ with student_attendance as (
         and section_attendance.event_date = calendar_dates.date
         and (
             ssa.school_year_type_reference.school_year is null
-            OR 
+            or 
             section_attendance.section_reference.school_year = ssa.school_year_type_reference.school_year
         )
     left join {{ ref('stg_edfi_student_section_associations') }} student_section_associations

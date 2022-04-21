@@ -32,4 +32,4 @@ left join {{ ref('stg_edfi_sessions') }} sessions
     and course_offerings.session_reference.session_name = sessions.session_name
 where
     current_date between staff_section_associations.begin_date and staff_section_associations.end_date
-    OR staff_section_associations.end_date = sessions.end_date
+    or staff_section_associations.end_date = sessions.end_date

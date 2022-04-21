@@ -23,7 +23,7 @@ active_enrollments as (
         and student_school_associations.school_reference.school_id = school_year_end_dates.school_id
     where
         student_school_associations.exit_withdraw_date is null
-        OR (
+        or (
             -- active enrollment for current year
             current_date >= student_school_associations.entry_date
             and current_date < student_school_associations.exit_withdraw_date
@@ -31,7 +31,7 @@ active_enrollments as (
         -- if student exited a previous year on the final day of the session
         -- replace school_year_end_dates.school_year_end_date with DATE 'YYYY-MM-DD' if max session end date does
         -- not represent school year end date
-        OR student_school_associations.exit_withdraw_date >= school_year_end_dates.school_year_end_date
+        or student_school_associations.exit_withdraw_date >= school_year_end_dates.school_year_end_date
 
 ),
 

@@ -33,7 +33,7 @@ select
     ssa.end_date                                        as end_date,
     if(
         ssa.begin_date is null
-        OR (
+        or (
             current_date >= ssa.begin_date
             and current_date < ssa.end_date
         ),

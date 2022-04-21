@@ -21,7 +21,7 @@ records as (
         id is not null
         and (
             latest_extract.date_extracted is null
-            OR base_table.date_extracted >= latest_extract.date_extracted)
+            or base_table.date_extracted >= latest_extract.date_extracted)
 
 )
 
