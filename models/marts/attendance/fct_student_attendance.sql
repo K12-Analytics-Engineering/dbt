@@ -25,12 +25,12 @@ with student_attendance as (
         ))                                                                                                  as reported_as_absent_from_school,
         max(if(
             school_attendance.attendance_event_category_descriptor = 'In Attendance' 
-                and student_section_associations.homeroom_indicator IS TRUE,
+                and student_section_associations.homeroom_indicator is true,
             1, 0
         ))                                                                                                  as reported_as_present_at_home_room,
         max(if(
             school_attendance.attendance_event_category_descriptor in ('Excused Absence', 'Unexcused Absence') 
-                and student_section_associations.homeroom_indicator IS TRUE,
+                and student_section_associations.homeroom_indicator is true,
             1, 0
         ))                                                                                                  as reported_as_absent_from_home_room,
         COUNT(1) over(

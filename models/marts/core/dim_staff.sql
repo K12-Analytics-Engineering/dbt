@@ -15,7 +15,7 @@ select
         COALESCE(LEFT(middle_name, 1), '')
     )                                          as staff_display_name,
     if(
-        hispanic_latino_ethnicity IS TRUE,
+        hispanic_latino_ethnicity is true,
         'Yes',
         'No')                                  as is_hispanic,
     LOWER(email.electronic_mail_address)       as email

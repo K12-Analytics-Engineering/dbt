@@ -16,7 +16,7 @@ select
     ifnull(assessments.assessment_version, 0)           as version,
     assessments.assessment_category_descriptor	        as category,
     assessment_form                                     as form,
-    if(adaptive_assessment IS TRUE, 'Yes', 'No')        as adaptive_assessment,
+    if(adaptive_assessment is true, 'Yes', 'No')        as adaptive_assessment,
     NULL                                                as objective_assessment_identification_code,
     NULL                                                as objective_assessment_academic_subject,
     NULL                                                as objective_assessment_description
@@ -44,7 +44,7 @@ select
     ifnull(assessments.assessment_version, 0)           as version,
     assessments.assessment_category_descriptor	        as category,
     assessment_form                                     as form,
-    if(adaptive_assessment IS TRUE, 'Yes', 'No')        as adaptive_assessment,
+    if(adaptive_assessment is true, 'Yes', 'No')        as adaptive_assessment,
     objective_assessments.identification_code           as objective_assessment_identification_code,
     objective_assessments.academic_subject_descriptor   as objective_assessment_academic_subject,
     objective_assessments.description                   as objective_assessment_description

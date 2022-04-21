@@ -23,8 +23,8 @@ select
     SAFE_CAST(fall_to_winter_observed_growth as int64)       as fall_to_winter_observed_growth,
     if(
         CONTAINS_SUBSTR(fall_to_winter_met_projected_growth, "Yes"),
-        TRUE,
-        FALSE
+        true,
+        false
     )                                                        as met_fall_to_winter_projected_growth,
     goal1_name                                               as goal1_name,
     goal1_adjective                                          as goal1_adjective,

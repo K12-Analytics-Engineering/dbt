@@ -11,7 +11,7 @@ with grades as (
     left join {{ ref('dim_section') }} dim_section
         on fct_student_section_grade.section_key = dim_section.section_key
     where
-        dim_grading_period.is_current_grading_period IS TRUE
+        dim_grading_period.is_current_grading_period is true
         and fct_student_section_grade.is_actively_enrolled_in_section = 1
         and course_gpa_applicability = 'Applicable'
 

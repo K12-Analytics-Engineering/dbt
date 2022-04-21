@@ -67,7 +67,7 @@ select
     "NWEA MAP Growth"                                                   as AssessmentFamily,
     test_name                                                           as AssessmentTitle,
     "uri://nwea.org"                                                    as Namespace,
-    TRUE                                                                as AdaptiveAssessment,
+    true                                                                as AdaptiveAssessment,
     struct(
         case term_name
             when "Fall" then "uri://ed-fi.org/AssessmentPeriodDescriptor#BOY"

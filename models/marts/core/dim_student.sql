@@ -97,9 +97,9 @@ students as (
             "Yes",
             "No"
         )                                                               as in_special_education_program,
-        if(seoa.hispanic_latino_ethnicity IS TRUE, 'Yes', 'No')         as is_hispanic,
+        if(seoa.hispanic_latino_ethnicity is true, 'Yes', 'No')         as is_hispanic,
         case
-            when seoa.hispanic_latino_ethnicity IS TRUE then 'Hispanic or Latino'
+            when seoa.hispanic_latino_ethnicity is true then 'Hispanic or Latino'
             when ARRAY_LENGTH(seoa.races) > 1 then 'Two or more races'
             when ARRAY_LENGTH(seoa.races) = 0 then 'Unknown'
             else seoa.races[OFFSET(0)].race_descriptor

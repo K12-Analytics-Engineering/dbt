@@ -26,7 +26,7 @@ with parsed_data as (
     where date_extracted >= (
         select max(date_extracted) as date_extracted
         from {{ source('staging', 'base_edfi_surveys') }}
-        where is_complete_extract IS TRUE)
+        where is_complete_extract is true)
     qualify row_number() over (
             partition by id
             order by date_extracted DESC) = 1

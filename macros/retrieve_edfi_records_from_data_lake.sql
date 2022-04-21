@@ -7,7 +7,7 @@ with latest_extract as (
         school_year,
         max(date_extracted) as date_extracted
     from {{ source('staging', table_name) }}
-    where is_complete_extract IS TRUE
+    where is_complete_extract is true
     group by 1
 
 ),

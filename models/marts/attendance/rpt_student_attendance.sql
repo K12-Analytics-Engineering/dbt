@@ -39,7 +39,7 @@ select
     fct_student_attendance.is_on_the_verge                                 as is_on_the_verge,
     fct_student_attendance.is_chronically_absent                           as is_chronically_absent,
     if(
-        dim_date.date = max_school_year_dates.latest_date, TRUE, FALSE
+        dim_date.date = max_school_year_dates.latest_date, true, false
     )                                                                      as is_latest_date_avaliable,
     rls_user_student_data_authorization.authorized_emails
 from {{ ref('fct_student_attendance') }} fct_student_attendance
