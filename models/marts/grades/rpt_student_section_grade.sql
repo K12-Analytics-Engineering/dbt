@@ -3,24 +3,24 @@
 with section_grade as (
 
     select
-        fct_student_section_grade.school_year,
-        fct_student_section_grade.school_key,
-        fct_student_section_grade.section_key,
-        fct_student_section_grade.student_key,
-        fct_student_section_grade.staff_group_key,
-        fct_student_section_grade.is_actively_enrolled_in_section,
+        fct_student_grade.school_year,
+        fct_student_grade.school_key,
+        fct_student_grade.section_key,
+        fct_student_grade.student_key,
+        fct_student_grade.staff_group_key,
+        fct_student_grade.is_actively_enrolled_in_section,
         ARRAY_AGG(
             struct(
                 dim_grading_period.grading_period_name,
                 dim_grading_period.is_current_grading_period,
-                fct_student_section_grade.grade_type,
-                fct_student_section_grade.numeric_grade_earned,
-                fct_student_section_grade.letter_grade_earned
+                fct_student_grade.grade_type,
+                fct_student_grade.numeric_grade_earned,
+                fct_student_grade.letter_grade_earned
             )
         ) as grade
-    from {{ ref('fct_student_section_grade') }} fct_student_section_grade
+    from {{ ref('fct_student_grade') }} fct_student_grade
     left join {{ ref('dim_grading_period') }} dim_grading_period
-        on fct_student_section_grade.grading_period_key = dim_grading_period.grading_period_key
+        on fct_student_grade.grading_period_key = dim_grading_period.grading_period_key
     group by 1,2,3,4,5,6
 
 ),
