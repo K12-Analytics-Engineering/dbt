@@ -1,69 +1,69 @@
 
 {{ retrieve_edfi_records_from_data_lake('base_edfi_student_education_organization_associations') }}
 
-SELECT
-    date_extracted                          AS date_extracted,
-    school_year                             AS school_year,
-    id                                      AS id,
-    STRUCT(
-        JSON_VALUE(data, '$.educationOrganizationReference.educationOrganizationId') AS education_organization_id
-    ) AS education_organization_reference,
-    STRUCT(
-        JSON_VALUE(data, '$.studentReference.studentUniqueId') AS student_unique_id
-    ) AS student_reference,
-    ARRAY(
-        SELECT AS STRUCT 
-            LOWER(JSON_VALUE(email, "$.electronicMailAddress")) AS address,
-            SPLIT(JSON_VALUE(email, "$.electronicMailTypeDescriptor"), '#')[OFFSET(1)] AS type_descriptor,
-        FROM UNNEST(JSON_QUERY_ARRAY(data, "$.electronicMails")) email 
-    ) AS electronic_mail,
-    SPLIT(JSON_VALUE(data, '$.limitedEnglishProficiencyDescriptor'), '#')[OFFSET(1)] AS limited_english_proficiency_descriptor,
-    CAST(JSON_VALUE(data, '$.hispanicLatinoEthnicity') AS BOOL) AS hispanic_latino_ethnicity,
-    SPLIT(JSON_VALUE(data, '$.sexDescriptor'), '#')[OFFSET(1)] AS sex_descriptor,
-    ARRAY(
-        SELECT AS STRUCT 
-            JSON_VALUE(student_indicators, "$.indicatorName") AS name,
-            JSON_VALUE(student_indicators, "$.designatedBy") AS designated_by,
-            JSON_VALUE(student_indicators, "$.indicator") AS indicator,
-            JSON_VALUE(student_indicators, "$.indicatorGroup") AS indicator_group,
-        FROM UNNEST(JSON_QUERY_ARRAY(data, "$.studentIndicators")) student_indicators 
-    ) AS student_indicators,
-    ARRAY(
-        SELECT AS STRUCT 
-            SPLIT(JSON_VALUE(cohort_years, '$.cohortYearTypeDescriptor'), '#')[OFFSET(1)] AS cohort_type_descriptor,
-            SPLIT(JSON_VALUE(cohort_years, '$.termDescriptor'), '#')[OFFSET(1)] AS term_descriptor,
-            JSON_VALUE(cohort_years, "$.schoolYearTypeReference.schoolYear") AS school_year,
-        FROM UNNEST(JSON_QUERY_ARRAY(data, "$.cohortYears")) cohort_years 
-    ) AS cohort_years,
-    ARRAY(
-        SELECT AS STRUCT 
-            SPLIT(JSON_VALUE(disabilities, '$.disabilityDescriptor'), '#')[OFFSET(1)] AS disability_descriptor,
-            SPLIT(JSON_VALUE(disabilities, '$.disabilityDeterminationSourceTypeDescriptor'), '#')[OFFSET(1)] AS disability_determination_source_type_descriptor,
-            JSON_VALUE(disabilities, "$.disabilityDiagnosis") AS disability_diagnosis,
-        FROM UNNEST(JSON_QUERY_ARRAY(data, "$.disabilities")) disabilities 
-    ) AS disabilities,
-    ARRAY(
-        SELECT AS STRUCT 
-            SPLIT(JSON_VALUE(languages, '$.languageDescriptor'), '#')[OFFSET(1)] AS language_descriptor,
-            ARRAY(
-                SELECT AS STRUCT 
-                    SPLIT(JSON_VALUE(uses, '$.languageUseDescriptor'), '#')[OFFSET(1)] AS language_use_descriptor
-                FROM UNNEST(JSON_QUERY_ARRAY(languages, '$.uses')) AS uses
-            ) AS uses
-        FROM UNNEST(JSON_QUERY_ARRAY(data, "$.languages")) languages 
-    ) AS languages,
-    ARRAY(
-        SELECT AS STRUCT 
-            SPLIT(JSON_VALUE(races, "$.raceDescriptor"), '#')[OFFSET(1)] AS race_descriptor
-        FROM UNNEST(JSON_QUERY_ARRAY(data, "$.races")) races 
-    ) AS races,
-    ARRAY(
-        SELECT AS STRUCT
-            JSON_VALUE(student_identification_codes, "$.assigningOrganizationIdentificationCode") AS assigning_organization_identification_code,
-            JSON_VALUE(student_identification_codes, "$.identificationCode") AS identification_code,
-            SPLIT(JSON_VALUE(student_identification_codes, "$.studentIdentificationSystemDescriptor"), '#')[OFFSET(1)] AS student_identification_system_descriptor
-        FROM UNNEST(JSON_QUERY_ARRAY(data, "$.studentIdentificationCodes")) student_identification_codes 
-    ) AS student_identification_codes
-FROM records
+select
+    date_extracted                          as date_extracted,
+    school_year                             as school_year,
+    id                                      as id,
+    struct(
+        json_value(data, '$.educationOrganizationReference.educationOrganizationId') as education_organization_id
+    ) as education_organization_reference,
+    struct(
+        json_value(data, '$.studentReference.studentUniqueId') as student_unique_id
+    ) as student_reference,
+    array(
+        select as struct 
+            LOWER(json_value(email, "$.electronicMailAddress")) as address,
+            split(json_value(email, "$.electronicMailTypeDescriptor"), '#')[OFFSET(1)] as type_descriptor,
+        from unnest(json_query_array(data, "$.electronicMails")) email 
+    ) as electronic_mail,
+    split(json_value(data, '$.limitedEnglishProficiencyDescriptor'), '#')[OFFSET(1)] as limited_english_proficiency_descriptor,
+    cast(json_value(data, '$.hispanicLatinoEthnicity') as BOOL) as hispanic_latino_ethnicity,
+    split(json_value(data, '$.sexDescriptor'), '#')[OFFSET(1)] as sex_descriptor,
+    array(
+        select as struct 
+            json_value(student_indicators, "$.indicatorName") as name,
+            json_value(student_indicators, "$.designatedBy") as designated_by,
+            json_value(student_indicators, "$.indicator") as indicator,
+            json_value(student_indicators, "$.indicatorGroup") as indicator_group,
+        from unnest(json_query_array(data, "$.studentIndicators")) student_indicators 
+    ) as student_indicators,
+    array(
+        select as struct 
+            split(json_value(cohort_years, '$.cohortYearTypeDescriptor'), '#')[OFFSET(1)] as cohort_type_descriptor,
+            split(json_value(cohort_years, '$.termDescriptor'), '#')[OFFSET(1)] as term_descriptor,
+            json_value(cohort_years, "$.schoolYearTypeReference.schoolYear") as school_year,
+        from unnest(json_query_array(data, "$.cohortYears")) cohort_years 
+    ) as cohort_years,
+    array(
+        select as struct 
+            split(json_value(disabilities, '$.disabilityDescriptor'), '#')[OFFSET(1)] as disability_descriptor,
+            split(json_value(disabilities, '$.disabilityDeterminationSourceTypeDescriptor'), '#')[OFFSET(1)] as disability_determination_source_type_descriptor,
+            json_value(disabilities, "$.disabilityDiagnosis") as disability_diagnosis,
+        from unnest(json_query_array(data, "$.disabilities")) disabilities 
+    ) as disabilities,
+    array(
+        select as struct 
+            split(json_value(languages, '$.languageDescriptor'), '#')[OFFSET(1)] as language_descriptor,
+            array(
+                select as struct 
+                    split(json_value(uses, '$.languageUseDescriptor'), '#')[OFFSET(1)] as language_use_descriptor
+                from unnest(json_query_array(languages, '$.uses')) as uses
+            ) as uses
+        from unnest(json_query_array(data, "$.languages")) languages 
+    ) as languages,
+    array(
+        select as struct 
+            split(json_value(races, "$.raceDescriptor"), '#')[OFFSET(1)] as race_descriptor
+        from unnest(json_query_array(data, "$.races")) races 
+    ) as races,
+    array(
+        select as struct
+            json_value(student_identification_codes, "$.assigningOrganizationIdentificationCode") as assigning_organization_identification_code,
+            json_value(student_identification_codes, "$.identificationCode") as identification_code,
+            split(json_value(student_identification_codes, "$.studentIdentificationSystemDescriptor"), '#')[OFFSET(1)] as student_identification_system_descriptor
+        from unnest(json_query_array(data, "$.studentIdentificationCodes")) student_identification_codes 
+    ) as student_identification_codes
+from records
 
 {{ remove_edfi_deletes_and_duplicates() }}

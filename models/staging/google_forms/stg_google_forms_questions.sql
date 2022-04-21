@@ -1,79 +1,79 @@
 
-WITH forms AS (
+with forms as (
 
-    SELECT
-        JSON_VALUE(data, '$.formId')                AS form_id,
-        STRUCT(
-            JSON_VALUE(data, '$.info.documentTitle') AS document_title
-        )                                           AS info,
-        JSON_VALUE(data, '$.info.documentTitle')    AS form_title,
-        JSON_VALUE(data, '$.revisionId')            AS revision_id,
-        JSON_QUERY_ARRAY(data, '$.items') AS items
-    FROM {{ source('staging', 'base_google_forms_questions') }}
-
-),
-
-forms_questions AS (
-
-    SELECT 
-        form_id,
-        JSON_VALUE(items, '$.title') AS question_title,
-        JSON_QUERY(items, '$.questionItem') AS question_items,
-    FROM forms
-    CROSS JOIN UNNEST(forms.items) as items
-    WHERE JSON_QUERY(items, '$.questionItem') IS NOT NULL
+    select
+        json_value(data, '$.formId')                as form_id,
+        struct(
+            json_value(data, '$.info.documentTitle') as document_title
+        )                                           as info,
+        json_value(data, '$.info.documentTitle')    as form_title,
+        json_value(data, '$.revisionId')            as revision_id,
+        json_query_array(data, '$.items') as items
+    from {{ source('staging', 'base_google_forms_questions') }}
 
 ),
 
-questions_with_values AS (
+forms_questions as (
 
-    SELECT
+    select 
+        form_id,
+        json_value(items, '$.title') as question_title,
+        JSON_QUERY(items, '$.questionItem') as question_items,
+    from forms
+    cross join unnest(forms.items) as items
+    where JSON_QUERY(items, '$.questionItem') is not null
+
+),
+
+questions_with_values as (
+
+    select
         form_id,
         question_title,
-        JSON_VALUE(question_items, '$.question.choiceQuestion.type') AS question_type,
-        JSON_VALUE(question_items, '$.question.questionId')          AS question_id,
-        JSON_VALUE(question_values, '$.value')                       AS question_value
-    FROM forms_questions
-    CROSS JOIN UNNEST(JSON_QUERY_ARRAY(question_items, '$.question.choiceQuestion.options')) question_values
+        json_value(question_items, '$.question.choiceQuestion.type') as question_type,
+        json_value(question_items, '$.question.questionId')          as question_id,
+        json_value(question_values, '$.value')                       as question_value
+    from forms_questions
+    cross join unnest(json_query_array(question_items, '$.question.choiceQuestion.options')) question_values
 
-    UNION ALL
+    union all
 
-    SELECT
+    select
         form_id,
         question_title,
-        'TEXTBOX'                                                   AS question_type,
-        JSON_VALUE(question_items, '$.question.questionId')         AS question_id,
-        ''                                                          AS question_value
-    FROM forms_questions
-    WHERE REGEXP_CONTAINS(question_items, '"textQuestion"')
+        'TEXTBOX'                                                   as question_type,
+        json_value(question_items, '$.question.questionId')         as question_id,
+        ''                                                          as question_value
+    from forms_questions
+    where REGEXP_CONTAINS(question_items, '"textQuestion"')
 
-    UNION ALL 
+    union all 
 
-    SELECT
+    select
         form_id,
         question_title,
-        'LINEARSCALE' AS question_type,
-        JSON_VALUE(question_items, '$.question.questionId') AS question_id,
-        CAST(question_value AS STRING) AS question_value
-    FROM forms_questions
-    CROSS JOIN UNNEST(
+        'LINEARSCALE' as question_type,
+        json_value(question_items, '$.question.questionId') as question_id,
+        cast(question_value as STRING) as question_value
+    from forms_questions
+    cross join unnest(
         GENERATE_ARRAY(
-            CAST(JSON_VALUE(question_items, '$.question.scaleQuestion.low') AS int64),
-            CAST(JSON_VALUE(question_items, '$.question.scaleQuestion.high') AS int64)
+            cast(json_value(question_items, '$.question.scaleQuestion.low') as int64),
+            cast(json_value(question_items, '$.question.scaleQuestion.high') as int64)
         )
-    ) AS question_value
-    WHERE REGEXP_CONTAINS(question_items, '"scaleQuestion"')
+    ) as question_value
+    where REGEXP_CONTAINS(question_items, '"scaleQuestion"')
 
 )
 
-SELECT
+select
     form_id,
     question_id,
     question_title,
     question_type,
-    ARRAY_AGG(question_value) AS question_values
-FROM questions_with_values
-GROUP BY
+    ARRAY_AGG(question_value) as question_values
+from questions_with_values
+group by
     form_id,
     question_id,
     question_title,

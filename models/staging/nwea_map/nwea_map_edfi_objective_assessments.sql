@@ -1,66 +1,66 @@
 
-WITH goals AS (
+with goals as (
 
     {% for goal_number in [1,2,3,4] %}
 
-        SELECT DISTINCT 
-            test_type                                   AS test_type,
-            term_name                                   AS term_name,
-            course                                      AS academic_subject,
-            "{{goal_number}}"                           AS goal_number,
-            goal{{goal_number}}_name                    AS goal_name
-        FROM {{ ref('stg_nwea_map_assessment_results') }}
-        WHERE test_type = 'Survey With Goals' AND goal{{goal_number}}_name != ''
+        select distinct 
+            test_type                                   as test_type,
+            term_name                                   as term_name,
+            course                                      as academic_subject,
+            "{{goal_number}}"                           as goal_number,
+            goal{{goal_number}}_name                    as goal_name
+        from {{ ref('stg_nwea_map_assessment_results') }}
+        where test_type = 'Survey With Goals' and goal{{goal_number}}_name != ''
         
-        {% if not loop.last %} UNION ALL {% endif %}
+        {% if not loop.last %} union all {% endif %}
 
     {% endfor %}
 
 )
 
 
-SELECT
-    goals.goal_name                                                    AS IdentificationCode,
-    STRUCT(
+select
+    goals.goal_name                                                    as IdentificationCode,
+    struct(
         CONCAT(
             test_type, "-",
             term_name, "-",
             academic_subject
-        )                           AS AssessmentIdentifier,
-        "uri://nwea.org"            AS Namespace
-    )                                                                   AS AssessmentReference,
-    CONCAT("Goal ", goals.goal_number)                                  AS Description,
+        )                           as AssessmentIdentifier,
+        "uri://nwea.org"            as Namespace
+    )                                                                   as AssessmentReference,
+    CONCAT("Goal ", goals.goal_number)                                  as Description,
     CONCAT(
         "uri://ed-fi.org/AcademicSubjectDescriptor#",
         goals.academic_subject
-    )                                                                   AS AcademicSubjectDescriptor,
-    ARRAY(
+    )                                                                   as AcademicSubjectDescriptor,
+    array(
 
         {% for descriptor in ["Low", "LoAvg", "Avg", "HiAvg", "High"] %}
 
-            SELECT AS STRUCT
-                "uri://ed-fi.org/AssessmentReportingMethodDescriptor#Proficiency level" AS AssessmentReportingMethodDescriptor,
-                "uri://nwea.org/PerformanceLevelDescriptor#{{descriptor}}"          AS PerformanceLevelDescriptor,
-                "uri://ed-fi.org/ResultDatatypeTypeDescriptor#Level"                AS ResultDatatypeTypeDescriptor
+            select as struct
+                "uri://ed-fi.org/AssessmentReportingMethodDescriptor#Proficiency level" as AssessmentReportingMethodDescriptor,
+                "uri://nwea.org/PerformanceLevelDescriptor#{{descriptor}}"          as PerformanceLevelDescriptor,
+                "uri://ed-fi.org/ResultDatatypeTypeDescriptor#Level"                as ResultDatatypeTypeDescriptor
         
-                {% if not loop.last %} UNION ALL {% endif %}
+                {% if not loop.last %} union all {% endif %}
 
         {% endfor %}
 
-    )                                                                   AS PerformanceLevels,
-    ARRAY(
+    )                                                                   as PerformanceLevels,
+    array(
         {% for score in [
             ["RIT scale score", "Integer"],
             ["Standard error measurement", "Decimal"]
         ] %}
 
-            SELECT AS STRUCT
-                "uri://ed-fi.org/AssessmentReportingMethodDescriptor#{{score[0]}}" AS AssessmentReportingMethodDescriptor,
-                "uri://ed-fi.org/ResultDatatypeTypeDescriptor#{{score[1]}}" AS ResultDatatypeTypeDescriptor
+            select as struct
+                "uri://ed-fi.org/AssessmentReportingMethodDescriptor#{{score[0]}}" as AssessmentReportingMethodDescriptor,
+                "uri://ed-fi.org/ResultDatatypeTypeDescriptor#{{score[1]}}" as ResultDatatypeTypeDescriptor
 
-            {% if not loop.last %} UNION ALL {% endif %}
+            {% if not loop.last %} union all {% endif %}
         
         {% endfor %}
 
-    )                                                                   AS Scores
-FROM goals
+    )                                                                   as Scores
+from goals

@@ -1,6 +1,6 @@
 
-SELECT
-    JSON_VALUE(data, '$.formId')                AS form_id,
-    JSON_VALUE(data, '$.info.documentTitle')    AS form_title,
-    JSON_VALUE(data, '$.revisionId')            AS revision_id
-FROM {{ source('staging', 'base_google_forms_questions') }}
+select
+    json_value(data, '$.formId')                as form_id,
+    json_value(data, '$.info.documentTitle')    as form_title,
+    json_value(data, '$.revisionId')            as revision_id
+from {{ source('staging', 'base_google_forms_questions') }}

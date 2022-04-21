@@ -1,30 +1,30 @@
 
 {{ retrieve_edfi_records_from_data_lake('base_edfi_grades') }}
 
-SELECT
-    date_extracted                          AS date_extracted,
-    school_year                             AS school_year,
-    id                                      AS id,
-    CAST(JSON_VALUE(data, '$.numericGradeEarned') AS float64) AS numeric_grade_earned,
-    JSON_VALUE(data, '$.letterGradeEarned') AS letter_grade_earned,
-    SPLIT(JSON_VALUE(data, '$.performanceBaseConversionDescriptor'), '#')[OFFSET(1)] AS performance_base_conversion_descriptor, 
-    SPLIT(JSON_VALUE(data, '$.gradeTypeDescriptor'), '#')[OFFSET(1)] AS grade_type_descriptor, 
-    JSON_VALUE(data, '$.diagnosticStatement') AS diagnostic_statement,
-    STRUCT(
-        SPLIT(JSON_VALUE(data, '$.gradingPeriodReference.gradingPeriodDescriptor'), '#')[OFFSET(1)] AS grading_period_descriptor,
-        CAST(JSON_VALUE(data, '$.gradingPeriodReference.periodSequence') AS int64) AS period_sequence,
-        JSON_VALUE(data, '$.gradingPeriodReference.schoolId') AS school_id,
-        CAST(JSON_VALUE(data, '$.gradingPeriodReference.schoolYear') AS int64) AS school_year
-    ) AS grading_period_reference,
-    STRUCT(
-        EXTRACT(DATE FROM PARSE_TIMESTAMP('%Y-%m-%dT%TZ', JSON_VALUE(data, '$.studentSectionAssociationReference.beginDate'))) AS begin_date,
-        JSON_VALUE(data, '$.studentSectionAssociationReference.localCourseCode') AS local_course_code,
-        JSON_VALUE(data, '$.studentSectionAssociationReference.schoolId') AS school_id,
-        CAST(JSON_VALUE(data, '$.studentSectionAssociationReference.schoolYear') AS int64) AS school_year,
-        JSON_VALUE(data, '$.studentSectionAssociationReference.sectionIdentifier') AS section_identifier,
-        JSON_VALUE(data, '$.studentSectionAssociationReference.sessionName') AS session_name,
-        JSON_VALUE(data, '$.studentSectionAssociationReference.studentUniqueId') AS student_unique_id
-    ) AS student_section_association_reference
-FROM records
+select
+    date_extracted                          as date_extracted,
+    school_year                             as school_year,
+    id                                      as id,
+    cast(json_value(data, '$.numericGradeEarned') as float64) as numeric_grade_earned,
+    json_value(data, '$.letterGradeEarned') as letter_grade_earned,
+    split(json_value(data, '$.performanceBaseConversionDescriptor'), '#')[OFFSET(1)] as performance_base_conversion_descriptor, 
+    split(json_value(data, '$.gradeTypeDescriptor'), '#')[OFFSET(1)] as grade_type_descriptor, 
+    json_value(data, '$.diagnosticStatement') as diagnostic_statement,
+    struct(
+        split(json_value(data, '$.gradingPeriodReference.gradingPeriodDescriptor'), '#')[OFFSET(1)] as grading_period_descriptor,
+        cast(json_value(data, '$.gradingPeriodReference.periodSequence') as int64) as period_sequence,
+        json_value(data, '$.gradingPeriodReference.schoolId') as school_id,
+        cast(json_value(data, '$.gradingPeriodReference.schoolYear') as int64) as school_year
+    ) as grading_period_reference,
+    struct(
+        EXTRACT(DATE from PARSE_TIMESTAMP('%Y-%m-%dT%TZ', json_value(data, '$.studentSectionAssociationReference.beginDate'))) as begin_date,
+        json_value(data, '$.studentSectionAssociationReference.localCourseCode') as local_course_code,
+        json_value(data, '$.studentSectionAssociationReference.schoolId') as school_id,
+        cast(json_value(data, '$.studentSectionAssociationReference.schoolYear') as int64) as school_year,
+        json_value(data, '$.studentSectionAssociationReference.sectionIdentifier') as section_identifier,
+        json_value(data, '$.studentSectionAssociationReference.sessionName') as session_name,
+        json_value(data, '$.studentSectionAssociationReference.studentUniqueId') as student_unique_id
+    ) as student_section_association_reference
+from records
 
 {{ remove_edfi_deletes_and_duplicates() }}

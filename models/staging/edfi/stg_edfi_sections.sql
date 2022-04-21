@@ -1,37 +1,37 @@
 
 {{ retrieve_edfi_records_from_data_lake('base_edfi_sections') }}
 
-SELECT
-    date_extracted                          AS date_extracted,
-    school_year                             AS school_year,
-    id                                      AS id,
-    JSON_VALUE(data, '$.sectionIdentifier') AS section_identifier,
-    JSON_VALUE(data, '$.sectionName') AS section_name,
-    STRUCT(
-        JSON_VALUE(data, '$.courseOfferingReference.localCourseCode') AS local_course_code,
-        JSON_VALUE(data, '$.courseOfferingReference.schoolId') AS school_id,
-        CAST(JSON_VALUE(data, '$.courseOfferingReference.schoolYear') AS int64) AS school_year,
-        JSON_VALUE(data, '$.courseOfferingReference.sessionName') AS session_name
-    ) AS course_offering_reference,
-    CAST(JSON_VALUE(data, '$.availableCreditConversion') AS float64) AS available_credit_conversion,
-    CAST(JSON_VALUE(data, '$.availableCredits') AS float64) AS available_credits,
-    SPLIT(JSON_VALUE(data, '$.availableCreditTypeDescriptor'), '#')[OFFSET(1)] AS available_credit_type_descriptor,
-    SPLIT(JSON_VALUE(data, '$.educationalEnvironmentDescriptor'), '#')[OFFSET(1)] AS educational_environment_descriptor,
-    STRUCT(
-        JSON_VALUE(data, '$.locationReference.classroomIdentificationCode') AS classroom_identification_code,
-        JSON_VALUE(data, '$.locationReference.schoolId') AS school_id
-    ) AS location_reference,
-    STRUCT(
-        JSON_VALUE(data, '$.locationSchoolReference.schoolId') AS school_id
-    ) AS location_school_reference,
-    ARRAY(
-        SELECT AS STRUCT 
-            STRUCT(
-                JSON_VALUE(class_periods, "$.classPeriodReference.classPeriodName") AS class_period_name,
-                JSON_VALUE(class_periods, '$.classPeriodReference.schoolId') AS school_id
-            ) AS class_period_reference
-        FROM UNNEST(JSON_QUERY_ARRAY(data, "$.classPeriods")) class_periods 
-    ) AS class_periods,
-FROM records
+select
+    date_extracted                          as date_extracted,
+    school_year                             as school_year,
+    id                                      as id,
+    json_value(data, '$.sectionIdentifier') as section_identifier,
+    json_value(data, '$.sectionName') as section_name,
+    struct(
+        json_value(data, '$.courseOfferingReference.localCourseCode') as local_course_code,
+        json_value(data, '$.courseOfferingReference.schoolId') as school_id,
+        cast(json_value(data, '$.courseOfferingReference.schoolYear') as int64) as school_year,
+        json_value(data, '$.courseOfferingReference.sessionName') as session_name
+    ) as course_offering_reference,
+    cast(json_value(data, '$.availableCreditConversion') as float64) as available_credit_conversion,
+    cast(json_value(data, '$.availableCredits') as float64) as available_credits,
+    split(json_value(data, '$.availableCreditTypeDescriptor'), '#')[OFFSET(1)] as available_credit_type_descriptor,
+    split(json_value(data, '$.educationalEnvironmentDescriptor'), '#')[OFFSET(1)] as educational_environment_descriptor,
+    struct(
+        json_value(data, '$.locationReference.classroomIdentificationCode') as classroom_identification_code,
+        json_value(data, '$.locationReference.schoolId') as school_id
+    ) as location_reference,
+    struct(
+        json_value(data, '$.locationSchoolReference.schoolId') as school_id
+    ) as location_school_reference,
+    array(
+        select as struct 
+            struct(
+                json_value(class_periods, "$.classPeriodReference.classPeriodName") as class_period_name,
+                json_value(class_periods, '$.classPeriodReference.schoolId') as school_id
+            ) as class_period_reference
+        from unnest(json_query_array(data, "$.classPeriods")) class_periods 
+    ) as class_periods,
+from records
 
 {{ remove_edfi_deletes_and_duplicates() }}

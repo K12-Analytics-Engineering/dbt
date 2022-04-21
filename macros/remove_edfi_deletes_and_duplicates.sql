@@ -1,11 +1,11 @@
 
 {% macro remove_edfi_deletes_and_duplicates() %}
 
-WHERE
+where
     extract_type = 'records'
-    AND id NOT IN (SELECT id FROM records WHERE extract_type = 'deletes') 
-QUALIFY ROW_NUMBER() OVER (
-        PARTITION BY id
-        ORDER BY date_extracted DESC) = 1
+    and id not in (select id from records where extract_type = 'deletes') 
+qualify row_number() over (
+        partition by id
+        order by date_extracted DESC) = 1
 
 {% endmacro %}

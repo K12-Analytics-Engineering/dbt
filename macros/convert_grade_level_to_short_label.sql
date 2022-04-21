@@ -1,22 +1,22 @@
 
 {% macro convert_grade_level_to_short_label(grade_level) %}
-    CASE {{ grade_level }}
-        WHEN 'Infant/toddler'            THEN 'Infant'
-        WHEN 'Preschool/Prekindergarten' THEN 'PreK'
-        WHEN 'Transitional Kindergarten' THEN 'TK'
-        WHEN 'Kindergarten'              THEN 'K'
-        WHEN 'First grade'               THEN '1'
-        WHEN 'Second grade'              THEN '2'
-        WHEN 'Third grade'               THEN '3'
-        WHEN 'Fourth grade'              THEN '4'
-        WHEN 'Fifth grade'               THEN '5'
-        WHEN 'Sixth grade'               THEN '6'
-        WHEN 'Seventh grade'             THEN '7'
-        WHEN 'Eighth grade'              THEN '8'
-        WHEN 'Ninth grade'               THEN '9'
-        WHEN 'Tenth grade'               THEN '10'
-        WHEN 'Eleventh grade'            THEN '11'
-        WHEN 'Twelfth grade'             THEN '12'
-        ELSE '999999999'
-    END
+    case {{ grade_level }}
+        when 'Infant/toddler'            then 'Infant'
+        when 'Preschool/Prekindergarten' then 'PreK'
+        when 'Transitional Kindergarten' then 'TK'
+        when 'Kindergarten'              then 'K'
+        when 'First grade'               then '1'
+        when 'Second grade'              then '2'
+        when 'Third grade'               then '3'
+        when 'Fourth grade'              then '4'
+        when 'Fifth grade'               then '5'
+        when 'Sixth grade'               then '6'
+        when 'Seventh grade'             then '7'
+        when 'Eighth grade'              then '8'
+        when 'Ninth grade'               then '9'
+        when 'Tenth grade'               then '10'
+        when 'Eleventh grade'            then '11'
+        when 'Twelfth grade'             then '12'
+        else '999999999'
+    end
 {% endmacro %}

@@ -1,24 +1,24 @@
 
-SELECT
+select
     {{ dbt_utils.surrogate_key([
             'staff_unique_id',
             'school_year'
-    ]) }}                               AS staff_key,
-    school_year                         AS school_year,
-    staff_unique_id                     AS staff_unique_id,
-    last_surname                        AS staff_last_surname,
-    middle_name                         AS staff_middle_name,
-    first_name                          AS staff_first_name,
+    ]) }}                               as staff_key,
+    school_year                         as school_year,
+    staff_unique_id                     as staff_unique_id,
+    last_surname                        as staff_last_surname,
+    middle_name                         as staff_middle_name,
+    first_name                          as staff_first_name,
     CONCAT(
         last_surname, ', ',
         first_name, ' ',
         COALESCE(LEFT(middle_name, 1), '')
-    )                                          AS staff_display_name,
-    IF(
+    )                                          as staff_display_name,
+    if(
         hispanic_latino_ethnicity IS TRUE,
         'Yes',
-        'No')                                  AS is_hispanic,
-    LOWER(email.electronic_mail_address)       AS email
-FROM {{ ref('stg_edfi_staffs') }}
-LEFT JOIN UNNEST(electronic_mails) email
-    ON email.electronic_mail_type_descriptor = 'Work' 
+        'No')                                  as is_hispanic,
+    LOWER(email.electronic_mail_address)       as email
+from {{ ref('stg_edfi_staffs') }}
+left join unnest(electronic_mails) email
+    on email.electronic_mail_type_descriptor = 'Work' 

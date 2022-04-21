@@ -1,23 +1,23 @@
 
 {{ retrieve_edfi_records_from_data_lake('base_edfi_student_parent_associations') }}
 
-SELECT
-    date_extracted                          AS date_extracted,
-    school_year                             AS school_year,
-    id                                      AS id,
-    STRUCT(
-        JSON_VALUE(data, '$.parentReference.parentUniqueId') AS parent_unique_id
-    ) AS parent_reference,
-    STRUCT(
-        JSON_VALUE(data, '$.studentReference.studentUniqueId') AS student_unique_id
-    ) AS student_reference,
-    CAST(JSON_VALUE(data, '$.contactPriority') AS int64) AS contact_priority,
-    JSON_VALUE(data, '$.contactRestrictions') AS contact_restrictions,
-    CAST(JSON_VALUE(data, '$.emergencyContactStatus') AS BOOL) AS emergency_contact_status,
-    CAST(JSON_VALUE(data, '$.legalGuardian') AS BOOL) AS legal_guardian,
-    CAST(JSON_VALUE(data, '$.livesWith') AS BOOL) AS lives_with,
-    CAST(JSON_VALUE(data, '$.primaryContactStatus') AS BOOL) AS primary_contact_status,
-    SPLIT(JSON_VALUE(data, '$.relationDescriptor'), '#')[OFFSET(1)] AS relation_descriptor
-FROM records
+select
+    date_extracted                          as date_extracted,
+    school_year                             as school_year,
+    id                                      as id,
+    struct(
+        json_value(data, '$.parentReference.parentUniqueId') as parent_unique_id
+    ) as parent_reference,
+    struct(
+        json_value(data, '$.studentReference.studentUniqueId') as student_unique_id
+    ) as student_reference,
+    cast(json_value(data, '$.contactPriority') as int64) as contact_priority,
+    json_value(data, '$.contactRestrictions') as contact_restrictions,
+    cast(json_value(data, '$.emergencyContactStatus') as BOOL) as emergency_contact_status,
+    cast(json_value(data, '$.legalGuardian') as BOOL) as legal_guardian,
+    cast(json_value(data, '$.livesWith') as BOOL) as lives_with,
+    cast(json_value(data, '$.primaryContactStatus') as BOOL) as primary_contact_status,
+    split(json_value(data, '$.relationDescriptor'), '#')[OFFSET(1)] as relation_descriptor
+from records
 
 {{ remove_edfi_deletes_and_duplicates() }}

@@ -1,26 +1,26 @@
 
 {% macro retrieve_edfi_records_from_data_lake(table_name) %}
 
-WITH latest_extract AS (
+with latest_extract as (
 
-    SELECT
+    select
         school_year,
-        MAX(date_extracted) AS date_extracted
-    FROM {{ source('staging', table_name) }}
-    WHERE is_complete_extract IS TRUE
-    GROUP BY 1
+        max(date_extracted) as date_extracted
+    from {{ source('staging', table_name) }}
+    where is_complete_extract IS TRUE
+    group by 1
 
 ),
 
-records AS (
+records as (
 
-    SELECT base_table.*
-    FROM {{ source('staging', table_name) }} base_table
-    LEFT JOIN latest_extract ON base_table.school_year = latest_extract.school_year
-    WHERE
-        id IS NOT NULL
-        AND (
-            latest_extract.date_extracted IS NULL
+    select base_table.*
+    from {{ source('staging', table_name) }} base_table
+    left join latest_extract on base_table.school_year = latest_extract.school_year
+    where
+        id is not null
+        and (
+            latest_extract.date_extracted is null
             OR base_table.date_extracted >= latest_extract.date_extracted)
 
 )

@@ -1,36 +1,36 @@
 
 {{ retrieve_edfi_records_from_data_lake('base_edfi_student_section_attendance_events') }}
 
-SELECT
-    date_extracted                          AS date_extracted,
-    school_year                             AS school_year,
-    id                                      AS id,
-    STRUCT(
-        JSON_VALUE(data, '$.studentReference.studentUniqueId') AS student_unique_id
-    ) AS student_reference,
-    PARSE_DATE('%Y-%m-%d', JSON_VALUE(data, '$.eventDate')) AS event_date,
-    STRUCT(
-        JSON_VALUE(data, '$.sectionReference.localCourseCode') AS local_course_code,
-        JSON_VALUE(data, '$.sectionReference.schoolId') AS school_id,
-        CAST(JSON_VALUE(data, '$.sectionReference.schoolYear') AS int64) AS school_year,
-        JSON_VALUE(data, '$.sectionReference.sectionIdentifier') AS section_identifier,
-        JSON_VALUE(data, '$.sectionReference.sessionName') AS session_name
-    ) AS section_reference,
-    ARRAY(
-        SELECT AS STRUCT 
-            STRUCT(
-                JSON_VALUE(class_periods, "$.classPeriodReference.classPeriodName") AS class_period_name,
-                JSON_VALUE(class_periods, '$.classPeriodReference.schoolId') AS school_id
-            ) AS class_period_reference
-        FROM UNNEST(JSON_QUERY_ARRAY(data, "$.classPeriods")) class_periods 
-    ) AS class_periods,
-    JSON_VALUE(data, '$.arrivalTime') AS arrival_time,
-    JSON_VALUE(data, '$.departureTime') AS departure_time,
-    JSON_VALUE(data, '$.attendanceEventReason') AS attendance_event_reason,
-    CAST(JSON_VALUE(data, '$.eventDuration') AS float64) AS event_duration,
-    CAST(JSON_VALUE(data, '$.sectionAttendanceDuration') AS float64) AS section_attendance_duration,
-    SPLIT(JSON_VALUE(data, '$.attendanceEventCategoryDescriptor'), '#')[OFFSET(1)] AS attendance_event_category_descriptor,
-    SPLIT(JSON_VALUE(data, '$.educationalEnvironmentDescriptor'), '#')[OFFSET(1)] AS educational_environment_descriptor,
-FROM records
+select
+    date_extracted                          as date_extracted,
+    school_year                             as school_year,
+    id                                      as id,
+    struct(
+        json_value(data, '$.studentReference.studentUniqueId') as student_unique_id
+    ) as student_reference,
+    parse_date('%Y-%m-%d', json_value(data, '$.eventDate')) as event_date,
+    struct(
+        json_value(data, '$.sectionReference.localCourseCode') as local_course_code,
+        json_value(data, '$.sectionReference.schoolId') as school_id,
+        cast(json_value(data, '$.sectionReference.schoolYear') as int64) as school_year,
+        json_value(data, '$.sectionReference.sectionIdentifier') as section_identifier,
+        json_value(data, '$.sectionReference.sessionName') as session_name
+    ) as section_reference,
+    array(
+        select as struct 
+            struct(
+                json_value(class_periods, "$.classPeriodReference.classPeriodName") as class_period_name,
+                json_value(class_periods, '$.classPeriodReference.schoolId') as school_id
+            ) as class_period_reference
+        from unnest(json_query_array(data, "$.classPeriods")) class_periods 
+    ) as class_periods,
+    json_value(data, '$.arrivalTime') as arrival_time,
+    json_value(data, '$.departureTime') as departure_time,
+    json_value(data, '$.attendanceEventReason') as attendance_event_reason,
+    cast(json_value(data, '$.eventDuration') as float64) as event_duration,
+    cast(json_value(data, '$.sectionAttendanceDuration') as float64) as section_attendance_duration,
+    split(json_value(data, '$.attendanceEventCategoryDescriptor'), '#')[OFFSET(1)] as attendance_event_category_descriptor,
+    split(json_value(data, '$.educationalEnvironmentDescriptor'), '#')[OFFSET(1)] as educational_environment_descriptor,
+from records
 
 {{ remove_edfi_deletes_and_duplicates() }}

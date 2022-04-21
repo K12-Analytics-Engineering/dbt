@@ -2,8 +2,8 @@
 {% call set_sql_header(config) %}
 
     CREATE TEMP FUNCTION jsonObjectKeys(input STRING)
-    RETURNS Array<STRUCT<question_id STRING, question_response STRING>>
-    LANGUAGE js AS """
+    RETURNS Array<struct<question_id STRING, question_response STRING>>
+    LANGUAGE js as """
 
         var values = [];
         var object = JSON.parse(input);
@@ -25,30 +25,30 @@
 
 {% endcall %}
 
-WITH responses AS (
-    SELECT  
-        JSON_VALUE(data, '$.formId')            AS form_id,
-        JSON_VALUE(data, '$.responseId')        AS response_id,
-        JSON_VALUE(data, '$.respondentEmail')   AS respondent_email,
+with responses as (
+    select  
+        json_value(data, '$.formId')            as form_id,
+        json_value(data, '$.responseId')        as response_id,
+        json_value(data, '$.respondentEmail')   as respondent_email,
         question,
-        CAST(JSON_VALUE(data, '$.lastSubmittedTime') AS TIMESTAMP) AS last_submitted
-    FROM {{ source('staging', 'base_google_forms_responses') }}
-    CROSS JOIN UNNEST(jsonObjectKeys(JSON_QUERY(data, '$.answers'))) question
+        cast(json_value(data, '$.lastSubmittedTime') as TIMESTAMP) as last_submitted
+    from {{ source('staging', 'base_google_forms_responses') }}
+    cross join unnest(jsonObjectKeys(JSON_QUERY(data, '$.answers'))) question
 )
 
-SELECT
-    form_id                     AS form_id,
-    to_hex(md5(response_id))    AS response_id,
-    respondent_email            AS respondent_email,
-    last_submitted              AS last_submitted,
+select
+    form_id                     as form_id,
+    to_hex(md5(response_id))    as response_id,
+    respondent_email            as respondent_email,
+    last_submitted              as last_submitted,
     ARRAY_AGG(
-        STRUCT(
+        struct(
             question.question_id,
             question.question_response
         )
-    )                          AS responses
-FROM responses
-GROUP BY
+    )                          as responses
+from responses
+group by
     form_id,
     response_id,
     respondent_email,

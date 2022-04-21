@@ -1,55 +1,55 @@
-SELECT NULL AS column1
+select NULL as column1
 {# 
-WITH parsed_data AS (
+with parsed_data as (
 
-    SELECT
-        date_extracted                          AS date_extracted,
-        school_year                             AS school_year,
-        JSON_VALUE(data, '$.id') AS id,
-        STRUCT(
-            JSON_VALUE(data, '$.surveyQuestionReference.namespace') AS namespace,
-            JSON_VALUE(data, '$.surveyQuestionReference.questionCode') AS question_code,
-            JSON_VALUE(data, '$.surveyQuestionReference.surveyIdentifier') AS survey_identifier
-        ) AS survey_question_reference,
-        STRUCT(
-            JSON_VALUE(data, '$.surveyResponseReference.namespace') AS namespace,
-            JSON_VALUE(data, '$.surveyResponseReference.surveyIdentifier') AS survey_identifier,
-            JSON_VALUE(data, '$.surveyResponseReference.surveyResponseIdentifier') AS survey_response_identifier
-        ) AS survey_response_reference,
-        JSON_VALUE(data, '$.comment') AS comment,
-        CAST(JSON_VALUE(data, '$.noResponse') AS BOOL) AS no_response,
-        ARRAY(
-            SELECT AS STRUCT
-                JSON_VALUE(matrix_response, '$.matrixElement') AS matrix_element,
-                JSON_VALUE(matrix_response, '$.textResponse') AS text_response,
-                CAST(JSON_VALUE(matrix_response, '$.minNumericResponse') AS int64) AS min_numeric_response,
-                CAST(JSON_VALUE(matrix_response, '$.maxNumericResponse') AS int64) AS max_numeric_response,
-                CAST(JSON_VALUE(matrix_response, '$.numericResponse') AS int64) AS numeric_response,
-                CAST(JSON_VALUE(matrix_response, '$.noResponse') AS BOOL) AS no_response
-            FROM UNNEST(JSON_QUERY_ARRAY(data, "$.surveyQuestionMatrixElementResponses")) matrix_response 
-        ) AS survey_question_matrix_element_responses,
-        ARRAY(
-            SELECT AS STRUCT
-                JSON_VALUE(value, '$.surveyQuestionResponseValueIdentifier') AS survey_question_response_value_identifier,
-                CAST(JSON_VALUE(value, '$.numericResponse') AS int64) AS numeric_response,
-                JSON_VALUE(value, '$.textResponse') AS text_response
-            FROM UNNEST(JSON_QUERY_ARRAY(data, "$.values")) value 
-        ) AS values
-    FROM {{ source('staging', 'base_edfi_survey_question_responses') }}
-    WHERE date_extracted >= (
-        SELECT MAX(date_extracted) AS date_extracted
-        FROM {{ source('staging', 'base_edfi_survey_question_responses') }}
-        WHERE is_complete_extract IS TRUE)
-    QUALIFY ROW_NUMBER() OVER (
-            PARTITION BY id
-            ORDER BY date_extracted DESC) = 1
+    select
+        date_extracted                          as date_extracted,
+        school_year                             as school_year,
+        json_value(data, '$.id') as id,
+        struct(
+            json_value(data, '$.surveyQuestionReference.namespace') as namespace,
+            json_value(data, '$.surveyQuestionReference.questionCode') as question_code,
+            json_value(data, '$.surveyQuestionReference.surveyIdentifier') as survey_identifier
+        ) as survey_question_reference,
+        struct(
+            json_value(data, '$.surveyResponseReference.namespace') as namespace,
+            json_value(data, '$.surveyResponseReference.surveyIdentifier') as survey_identifier,
+            json_value(data, '$.surveyResponseReference.surveyResponseIdentifier') as survey_response_identifier
+        ) as survey_response_reference,
+        json_value(data, '$.comment') as comment,
+        cast(json_value(data, '$.noResponse') as BOOL) as no_response,
+        array(
+            select as struct
+                json_value(matrix_response, '$.matrixElement') as matrix_element,
+                json_value(matrix_response, '$.textResponse') as text_response,
+                cast(json_value(matrix_response, '$.minNumericResponse') as int64) as min_numeric_response,
+                cast(json_value(matrix_response, '$.maxNumericResponse') as int64) as max_numeric_response,
+                cast(json_value(matrix_response, '$.numericResponse') as int64) as numeric_response,
+                cast(json_value(matrix_response, '$.noResponse') as BOOL) as no_response
+            from unnest(json_query_array(data, "$.surveyQuestionMatrixElementResponses")) matrix_response 
+        ) as survey_question_matrix_element_responses,
+        array(
+            select as struct
+                json_value(value, '$.surveyQuestionResponseValueIdentifier') as survey_question_response_value_identifier,
+                cast(json_value(value, '$.numericResponse') as int64) as numeric_response,
+                json_value(value, '$.textResponse') as text_response
+            from unnest(json_query_array(data, "$.values")) value 
+        ) as values
+    from {{ source('staging', 'base_edfi_survey_question_responses') }}
+    where date_extracted >= (
+        select max(date_extracted) as date_extracted
+        from {{ source('staging', 'base_edfi_survey_question_responses') }}
+        where is_complete_extract IS TRUE)
+    qualify row_number() over (
+            partition by id
+            order by date_extracted DESC) = 1
 
 )
 
 
-SELECT *
-FROM parsed_data
-WHERE
-    id NOT IN (
-        SELECT id FROM {{ ref('stg_edfi_deletes') }} edfi_deletes
-        WHERE parsed_data.school_year = edfi_deletes.school_year) #}
+select *
+from parsed_data
+where
+    id not in (
+        select id from {{ ref('stg_edfi_deletes') }} edfi_deletes
+        where parsed_data.school_year = edfi_deletes.school_year) #}

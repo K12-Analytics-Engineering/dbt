@@ -1,89 +1,89 @@
 
-WITH assessments AS (
+with assessments as (
     -- ie. Survey With Goals, Fall, Reading, Growth: Reading 6+ CCSS 2010 V4 (No TTS)
-    SELECT DISTINCT
+    select distinct
         test_type,
         term_name,
         course,
         test_name
-    FROM {{ ref('stg_nwea_map_assessment_results') }}
-    WHERE test_type = "Survey With Goals"
+    from {{ ref('stg_nwea_map_assessment_results') }}
+    where test_type = "Survey With Goals"
 
 ),
 
-performance_levels AS (
+performance_levels as (
     -- retrieve performance level metadata seen in assessment results file
-    SELECT DISTINCT
+    select distinct
         PerformanceLevels.AssessmentReportingMethodDescriptor,
         PerformanceLevels.PerformanceLevelDescriptor
-    FROM {{ ref('nwea_map_edfi_student_assessments') }}
-    CROSS JOIN UNNEST(PerformanceLevels) PerformanceLevels
+    from {{ ref('nwea_map_edfi_student_assessments') }}
+    cross join unnest(PerformanceLevels) PerformanceLevels
 
 ),
 
-performance_levels_array AS (
+performance_levels_array as (
 
-    SELECT
+    select
         ARRAY_AGG(
-            STRUCT(
+            struct(
                 AssessmentReportingMethodDescriptor,
                 PerformanceLevelDescriptor
             )
-        ) AS PerformanceLevels
-    FROM performance_levels
+        ) as PerformanceLevels
+    from performance_levels
 
 ),
 
-score_results AS (
+score_results as (
     -- retrieve score metadata seen in assessment results file
-    SELECT DISTINCT
+    select distinct
         ScoreResults.AssessmentReportingMethodDescriptor,
         ScoreResults.ResultDatatypeTypeDescriptor,
-    FROM {{ ref('nwea_map_edfi_student_assessments') }}
-    CROSS JOIN UNNEST(ScoreResults) ScoreResults
+    from {{ ref('nwea_map_edfi_student_assessments') }}
+    cross join unnest(ScoreResults) ScoreResults
 
 ),
 
-score_results_array AS (
+score_results_array as (
 
-    SELECT
+    select
         ARRAY_AGG(
-            STRUCT(
+            struct(
                 AssessmentReportingMethodDescriptor,
                 ResultDatatypeTypeDescriptor
             )
-        ) AS ScoreResults
-    FROM score_results
+        ) as ScoreResults
+    from score_results
 
 )
 
 
-SELECT
+select
     CONCAT(
         test_type, "-",
         term_name, "-",
         course
-    )                                                                   AS AssessmentIdentifier,
-    "NWEA MAP Growth"                                                   AS AssessmentFamily,
-    test_name                                                           AS AssessmentTitle,
-    "uri://nwea.org"                                                    AS Namespace,
-    TRUE                                                                AS AdaptiveAssessment,
-    STRUCT(
-        CASE term_name
-            WHEN "Fall" THEN "uri://ed-fi.org/AssessmentPeriodDescriptor#BOY"
-            WHEN "Winter" THEN "uri://ed-fi.org/AssessmentPeriodDescriptor#MOY"
-            WHEN "Spring" THEN "uri://ed-fi.org/AssessmentPeriodDescriptor#EOY"
-        END AS AssessmentPeriodDescriptor
-    )                                                                   AS Period,
-    ARRAY(
-        SELECT AS STRUCT 
+    )                                                                   as AssessmentIdentifier,
+    "NWEA MAP Growth"                                                   as AssessmentFamily,
+    test_name                                                           as AssessmentTitle,
+    "uri://nwea.org"                                                    as Namespace,
+    TRUE                                                                as AdaptiveAssessment,
+    struct(
+        case term_name
+            when "Fall" then "uri://ed-fi.org/AssessmentPeriodDescriptor#BOY"
+            when "Winter" then "uri://ed-fi.org/AssessmentPeriodDescriptor#MOY"
+            when "Spring" then "uri://ed-fi.org/AssessmentPeriodDescriptor#EOY"
+        end as AssessmentPeriodDescriptor
+    )                                                                   as Period,
+    array(
+        select as struct 
             CONCAT(
                 "uri://ed-fi.org/AcademicSubjectDescriptor#",
                 course
-            ) AS AcademicSubjectDescriptor
-    )                                                                   AS AcademicSubjects,
-    performance_levels_array.PerformanceLevels                          AS PerformanceLevels,
-    score_results_array.ScoreResults                                    AS Scores
-FROM assessments
-CROSS JOIN performance_levels_array
-CROSS JOIN score_results_array
+            ) as AcademicSubjectDescriptor
+    )                                                                   as AcademicSubjects,
+    performance_levels_array.PerformanceLevels                          as PerformanceLevels,
+    score_results_array.ScoreResults                                    as Scores
+from assessments
+cross join performance_levels_array
+cross join score_results_array

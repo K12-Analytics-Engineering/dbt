@@ -1,29 +1,29 @@
 
 {{ retrieve_edfi_records_from_data_lake('base_edfi_student_school_associations') }}
 
-SELECT
-    date_extracted                          AS date_extracted,
-    school_year                             AS school_year,
-    JSON_VALUE(data, '$.id') AS id,
-    STRUCT(
-        JSON_VALUE(data, '$.schoolReference.schoolId') AS school_id
-    ) AS school_reference,
-    STRUCT(
-        JSON_VALUE(data, '$.studentReference.studentUniqueId') AS student_unique_id
-    ) AS student_reference,
-    STRUCT(
-        CAST(JSON_VALUE(data, '$.schoolYearTypeReference.schoolYear') AS int64) AS school_year
-    ) AS school_year_type_reference,
-    SPLIT(JSON_VALUE(data, '$.entryTypeDescriptor'), '#')[OFFSET(1)] AS entry_type_descriptor,
-    SPLIT(JSON_VALUE(data, '$.entryGradeLevelDescriptor'), '#')[OFFSET(1)] AS entry_grade_level_descriptor,
-    PARSE_DATE('%Y-%m-%d', JSON_VALUE(data, '$.entryDate')) AS entry_date,
-    PARSE_DATE('%Y-%m-%d', JSON_VALUE(data, '$.exitWithdrawDate')) AS exit_withdraw_date,
-    SPLIT(JSON_VALUE(data, '$.exitWithdrawTypeDescriptor'), '#')[OFFSET(1)] AS exit_withdraw_type_descriptor,
-    CAST(JSON_VALUE(data, '$.fullTimeEquivalency') AS int64) AS full_time_equivalency,
-    CAST(JSON_VALUE(data, '$.primarySchool') AS BOOL) AS primary_school,
-    CAST(JSON_VALUE(data, '$.repeatGradeIndicator') AS BOOL) AS repeat_grade_indicator,
-    CAST(JSON_VALUE(data, '$.schoolChoiceTransfer') AS BOOL) AS school_choice_transfer,
-    CAST(JSON_VALUE(data, '$.termCompletionIndicator') AS BOOL) AS term_completion_indicator
-FROM records
+select
+    date_extracted                          as date_extracted,
+    school_year                             as school_year,
+    json_value(data, '$.id') as id,
+    struct(
+        json_value(data, '$.schoolReference.schoolId') as school_id
+    ) as school_reference,
+    struct(
+        json_value(data, '$.studentReference.studentUniqueId') as student_unique_id
+    ) as student_reference,
+    struct(
+        cast(json_value(data, '$.schoolYearTypeReference.schoolYear') as int64) as school_year
+    ) as school_year_type_reference,
+    split(json_value(data, '$.entryTypeDescriptor'), '#')[OFFSET(1)] as entry_type_descriptor,
+    split(json_value(data, '$.entryGradeLevelDescriptor'), '#')[OFFSET(1)] as entry_grade_level_descriptor,
+    parse_date('%Y-%m-%d', json_value(data, '$.entryDate')) as entry_date,
+    parse_date('%Y-%m-%d', json_value(data, '$.exitWithdrawDate')) as exit_withdraw_date,
+    split(json_value(data, '$.exitWithdrawTypeDescriptor'), '#')[OFFSET(1)] as exit_withdraw_type_descriptor,
+    cast(json_value(data, '$.fullTimeEquivalency') as int64) as full_time_equivalency,
+    cast(json_value(data, '$.primarySchool') as BOOL) as primary_school,
+    cast(json_value(data, '$.repeatGradeIndicator') as BOOL) as repeat_grade_indicator,
+    cast(json_value(data, '$.schoolChoiceTransfer') as BOOL) as school_choice_transfer,
+    cast(json_value(data, '$.termCompletionIndicator') as BOOL) as term_completion_indicator
+from records
 
 {{ remove_edfi_deletes_and_duplicates() }}

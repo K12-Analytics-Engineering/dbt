@@ -1,19 +1,19 @@
 
-SELECT
-    STRUCT(
-        'uri://forms.google.com'       AS namespace,
-        response.question_id           AS questionCode,
-        google_forms_responses.form_id AS surveyIdentifier
-    )                                                       AS surveyQuestionReference,
-    STRUCT(
-        'uri://forms.google.com'                AS namespace,
-        google_forms_responses.form_id          AS surveyIdentifier,
-        google_forms_responses.response_id      AS surveyResponseIdentifier
-    )                                                       AS surveyResponseReference,
-    ARRAY(
-        SELECT AS STRUCT
-            1                           AS surveyQuestionResponseValueIdentifier,
-            response.question_response  AS textResponse
-    )                                                       AS values
-FROM {{ ref('stg_google_forms_responses') }} AS google_forms_responses,
-    UNNEST(google_forms_responses.responses) response
+select
+    struct(
+        'uri://forms.google.com'       as namespace,
+        response.question_id           as questionCode,
+        google_forms_responses.form_id as surveyIdentifier
+    )                                                       as surveyQuestionReference,
+    struct(
+        'uri://forms.google.com'                as namespace,
+        google_forms_responses.form_id          as surveyIdentifier,
+        google_forms_responses.response_id      as surveyResponseIdentifier
+    )                                                       as surveyResponseReference,
+    array(
+        select as struct
+            1                           as surveyQuestionResponseValueIdentifier,
+            response.question_response  as textResponse
+    )                                                       as values
+from {{ ref('stg_google_forms_responses') }} as google_forms_responses,
+    unnest(google_forms_responses.responses) response

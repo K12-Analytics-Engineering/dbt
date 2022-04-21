@@ -1,23 +1,23 @@
 
 {{ retrieve_edfi_records_from_data_lake('base_edfi_students') }}
 
-SELECT
-    date_extracted                          AS date_extracted,
-    school_year                             AS school_year,
-    id                                      AS id,
-    JSON_VALUE(data, '$.studentUniqueId') AS student_unique_id,
-    JSON_VALUE(data, '$.lastSurname') AS last_surname,
-    JSON_VALUE(data, '$.middleName') AS middle_name,
-    JSON_VALUE(data, '$.firstName') AS first_name,
-    JSON_VALUE(data, '$.generationCodeSuffix') AS generation_code_suffix,
-    PARSE_DATE('%Y-%m-%d', JSON_VALUE(data, '$.birthDate')) AS birth_date,
-    JSON_VALUE(data, '$.birthCity') AS birth_city,
-    SPLIT(JSON_VALUE(data, "$.birthCountryDescriptor"), '#')[OFFSET(1)] AS birth_country_descriptor,
-    JSON_VALUE(data, '$.birthInternationalProvince') AS birth_international_province,
-    STRUCT(
-        JSON_VALUE(data, '$.personReference.personId') AS person_id,
-        SPLIT(JSON_VALUE(data, "$.personReference.sourceSystemDescriptor"), '#')[OFFSET(1)] AS source_system_descriptor
-    ) AS person_reference,
-FROM records
+select
+    date_extracted                          as date_extracted,
+    school_year                             as school_year,
+    id                                      as id,
+    json_value(data, '$.studentUniqueId') as student_unique_id,
+    json_value(data, '$.lastSurname') as last_surname,
+    json_value(data, '$.middleName') as middle_name,
+    json_value(data, '$.firstName') as first_name,
+    json_value(data, '$.generationCodeSuffix') as generation_code_suffix,
+    parse_date('%Y-%m-%d', json_value(data, '$.birthDate')) as birth_date,
+    json_value(data, '$.birthCity') as birth_city,
+    split(json_value(data, "$.birthCountryDescriptor"), '#')[OFFSET(1)] as birth_country_descriptor,
+    json_value(data, '$.birthInternationalProvince') as birth_international_province,
+    struct(
+        json_value(data, '$.personReference.personId') as person_id,
+        split(json_value(data, "$.personReference.sourceSystemDescriptor"), '#')[OFFSET(1)] as source_system_descriptor
+    ) as person_reference,
+from records
 
 {{ remove_edfi_deletes_and_duplicates() }}

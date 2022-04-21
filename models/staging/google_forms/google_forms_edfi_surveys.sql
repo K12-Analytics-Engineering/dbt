@@ -1,7 +1,7 @@
 
-SELECT
-    'uri://forms.google.com'        AS namespace,
-    form_id                         AS surveyIdentifier,
-    STRUCT( 2022 AS schoolYear )    AS schoolYearTypeReference,
-    form_title                      AS surveyTitle
-FROM {{ ref('stg_google_forms') }}
+select
+    'uri://forms.google.com'        as namespace,
+    form_id                         as surveyIdentifier,
+    struct( 2022 as schoolYear )    as schoolYearTypeReference,
+    form_title                      as surveyTitle
+from {{ ref('stg_google_forms') }}

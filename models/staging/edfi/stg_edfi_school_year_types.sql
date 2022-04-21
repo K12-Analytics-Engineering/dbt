@@ -1,11 +1,11 @@
 
 {{ retrieve_edfi_records_from_data_lake('base_edfi_school_year_types') }}
 
-SELECT DISTINCT
-    date_extracted                                  AS date_extracted,
-    CAST(JSON_VALUE(data, '$.schoolYear') AS int64) AS school_year,
-    id                                      AS id,
-    JSON_VALUE(data, '$.schoolYearDescription')     AS school_year_description
-FROM records
+select distinct
+    date_extracted                                  as date_extracted,
+    cast(json_value(data, '$.schoolYear') as int64) as school_year,
+    id                                      as id,
+    json_value(data, '$.schoolYearDescription')     as school_year_description
+from records
 
 {{ remove_edfi_deletes_and_duplicates() }}

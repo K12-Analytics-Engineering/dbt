@@ -1,49 +1,49 @@
 
  {{ retrieve_edfi_records_from_data_lake('base_edfi_programs') }}
 
-SELECT
-    date_extracted                          AS date_extracted,
-    school_year                             AS school_year,
-    id                                      AS id,
-    JSON_VALUE(data, '$.programName') AS program_name,
-    JSON_VALUE(data, '$.programId') AS program_id,
-    SPLIT(JSON_VALUE(data, '$.programTypeDescriptor'), '#')[OFFSET(1)] AS program_type_descriptor,
-    STRUCT(
-        JSON_VALUE(data, '$.educationOrganizationReference.educationOrganizationId') AS education_organization_id
-    ) AS education_organization_reference,
-    ARRAY(
-        SELECT AS STRUCT 
-            SPLIT(JSON_VALUE(services, "$.serviceDescriptor"), '#')[OFFSET(1)] AS service_descriptor,
-        FROM UNNEST(JSON_QUERY_ARRAY(data, "$.services")) services 
-    ) AS services,
-    ARRAY(
-        SELECT AS STRUCT 
-            SPLIT(JSON_VALUE(sponsors, "$.programSponsorDescriptor"), '#')[OFFSET(1)] AS program_sponsor_descriptor,
-        FROM UNNEST(JSON_QUERY_ARRAY(data, "$.sponsors")) sponsors 
-    ) AS sponsors,
-    ARRAY(
-        SELECT AS STRUCT 
-            SPLIT(JSON_VALUE(characteristics, "$.programCharacteristicDescriptor"), '#')[OFFSET(1)] AS program_characteristic_descriptor,
-        FROM UNNEST(JSON_QUERY_ARRAY(data, "$.characteristics")) characteristics 
-    ) AS characteristics,
-    ARRAY(
-        SELECT AS STRUCT
-            STRUCT(
-                JSON_VALUE(learning_objectives, '$.learningObjectiveReference.learningObjectiveId') AS learning_objective_id,
-                JSON_VALUE(learning_objectives, '$.learningObjectiveReference.namespace') AS namespace
-            ) AS learning_objective_reference
-        FROM UNNEST(JSON_QUERY_ARRAY(data, "$.learningObjectives")) learning_objectives 
-    ) AS learning_objectives,
-    ARRAY(
-            SELECT AS STRUCT
-                STRUCT(
-                    JSON_VALUE(learning_standards, '$.learningStandardReference.learningStandardId') AS learning_standard_id
-                ) AS learning_standard_reference
-            FROM UNNEST(JSON_QUERY_ARRAY(data, "$.learningStandards")) learning_standards
-    ) AS learning_standards,
-    JSON_VALUE(data, '$.schoolId') AS school_id,
-    JSON_VALUE(data, '$.nameOfInstitution') AS name_of_institution,
-    SPLIT(JSON_VALUE(data, '$.schoolTypeDescriptor'), '#')[OFFSET(1)] AS school_type_descriptor,
-FROM records
+select
+    date_extracted                          as date_extracted,
+    school_year                             as school_year,
+    id                                      as id,
+    json_value(data, '$.programName') as program_name,
+    json_value(data, '$.programId') as program_id,
+    split(json_value(data, '$.programTypeDescriptor'), '#')[OFFSET(1)] as program_type_descriptor,
+    struct(
+        json_value(data, '$.educationOrganizationReference.educationOrganizationId') as education_organization_id
+    ) as education_organization_reference,
+    array(
+        select as struct 
+            split(json_value(services, "$.serviceDescriptor"), '#')[OFFSET(1)] as service_descriptor,
+        from unnest(json_query_array(data, "$.services")) services 
+    ) as services,
+    array(
+        select as struct 
+            split(json_value(sponsors, "$.programSponsorDescriptor"), '#')[OFFSET(1)] as program_sponsor_descriptor,
+        from unnest(json_query_array(data, "$.sponsors")) sponsors 
+    ) as sponsors,
+    array(
+        select as struct 
+            split(json_value(characteristics, "$.programCharacteristicDescriptor"), '#')[OFFSET(1)] as program_characteristic_descriptor,
+        from unnest(json_query_array(data, "$.characteristics")) characteristics 
+    ) as characteristics,
+    array(
+        select as struct
+            struct(
+                json_value(learning_objectives, '$.learningObjectiveReference.learningObjectiveId') as learning_objective_id,
+                json_value(learning_objectives, '$.learningObjectiveReference.namespace') as namespace
+            ) as learning_objective_reference
+        from unnest(json_query_array(data, "$.learningObjectives")) learning_objectives 
+    ) as learning_objectives,
+    array(
+            select as struct
+                struct(
+                    json_value(learning_standards, '$.learningStandardReference.learningStandardId') as learning_standard_id
+                ) as learning_standard_reference
+            from unnest(json_query_array(data, "$.learningStandards")) learning_standards
+    ) as learning_standards,
+    json_value(data, '$.schoolId') as school_id,
+    json_value(data, '$.nameOfInstitution') as name_of_institution,
+    split(json_value(data, '$.schoolTypeDescriptor'), '#')[OFFSET(1)] as school_type_descriptor,
+from records
 
 {{ remove_edfi_deletes_and_duplicates() }}
