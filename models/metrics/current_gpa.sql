@@ -2,17 +2,17 @@
 with grades as (
 
     select
-        fct_student_section_grade.student_key,
+        fct_student_grade.student_key,
         dim_section.available_credits,
         {{ get_unweighted_gpa_point('letter_grade_earned') }} as unweighted_gpa_point
-    from {{ ref('fct_student_section_grade') }} fct_student_section_grade
+    from {{ ref('fct_student_grade') }} fct_student_grade
     left join {{ ref('dim_grading_period') }} dim_grading_period
-        on fct_student_section_grade.grading_period_key = dim_grading_period.grading_period_key
+        on fct_student_grade.grading_period_key = dim_grading_period.grading_period_key
     left join {{ ref('dim_section') }} dim_section
-        on fct_student_section_grade.section_key = dim_section.section_key
+        on fct_student_grade.section_key = dim_section.section_key
     where
         dim_grading_period.is_current_grading_period is true
-        and fct_student_section_grade.is_actively_enrolled_in_section = 1
+        and fct_student_grade.is_actively_enrolled_in_section = 1
         and course_gpa_applicability = 'Applicable'
 
 ),

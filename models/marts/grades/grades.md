@@ -1,5 +1,5 @@
 
-{% docs fct_student_section_grades %}
+{% docs fct_student_grade %}
 
 # Student section grades fact
 

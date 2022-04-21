@@ -2,8 +2,8 @@
 version: 2
 
 models:
-  - name: fct_student_section_grade
-    description: '{{ doc("fct_student_section_grades") }}'
+  - name: fct_student_grade
+    description: '{{ doc("fct_student_grade") }}'
     tests:
       - dbt_utils.expression_is_true:
           expression: "numeric_grade_earned >= 0"
