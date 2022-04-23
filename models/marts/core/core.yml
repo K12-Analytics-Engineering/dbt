@@ -214,8 +214,8 @@ models:
   - name: dim_staff
     description: '{{ doc("dim_staff") }}'
     columns:
-      - name: student_key
-        description: Primary key for dimension table. This surrogate key is based on the student's unique id
+      - name: staff_key
+        description: Primary key for dimension table. This surrogate key is based on the staff's unique id
         tests:
           - unique
           - not_null
