@@ -230,13 +230,6 @@ models:
           - unique
           - not_null
 
-      - name: school_key
-        description: Foreign key to `dim_school`
-        tests:
-          - relationships:
-              to: ref('dim_school')
-              field: school_key
-
       - name: school_year
         description: School year
         tests:
@@ -247,13 +240,18 @@ models:
         tests:
           - not_null
 
-      - name: student_last_surname
-        description: The name borne in common by members of a family.
+      - name: student_first_name
+        description: A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.
         tests:
           - not_null
 
-      - name: student_first_name
-        description: A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.
+      - name: student_middle_name
+        description: Student middle name
+        tests:
+          - not_null
+
+      - name: student_last_surname
+        description: The name borne in common by members of a family.
         tests:
           - not_null
 
@@ -263,23 +261,14 @@ models:
       - name: email
         description: Student email
 
-      - name: school_enrollment_date
-        description: The date the student began their school enrollment
-
-      - name: school_exit_date
-        description: Typically the day after the student concluded their final day of enrollment
-
-      - name: is_enrolled_at_school
-        description: 0 or 1 depending on if the student holds an active enrollment at the school
+      - name: is_actively_enrolled_in_school
+        description: Yes/No depending on whether student holds an active enrollment in a school
 
       - name: grade_level
         description: Grade level label
 
       - name: grade_level_id
         description: Grade level id useful for sorting dropdowns in bi tools
-
-      - name: gender
-        description: The student's gender as last reported to the education organization
 
       - name: limited_english_proficiency
         description: "An indication that the student has been identified as limited English proficient by the Language Proficiency Assessment Committee (LPAC), or English proficient."
@@ -305,11 +294,14 @@ models:
           - accepted_values:
               values: ['Yes', 'No']
 
-      - name: race
-        description: ""
-
       - name: race_and_ethnicity_roll_up
         description: ""
+
+      - name: gender
+        description: The student's gender as last reported to the education organization
+
+       - name: gender
+        description: Student gender
 
 
   - name: fct_student_school
