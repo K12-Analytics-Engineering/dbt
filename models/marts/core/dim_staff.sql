@@ -21,4 +21,4 @@ select
     LOWER(email.electronic_mail_address)       as email
 from {{ ref('stg_edfi_staffs') }}
 left join unnest(electronic_mails) email
-    on email.electronic_mail_type_descriptor = 'Work' 
+    on email.electronic_mail_type_descriptor = 'Work'

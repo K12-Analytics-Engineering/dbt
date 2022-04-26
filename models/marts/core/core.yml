@@ -300,9 +300,6 @@ models:
       - name: gender
         description: The student's gender as last reported to the education organization
 
-       - name: gender
-        description: Student gender
-
 
   - name: fct_student_school
     description: ""
