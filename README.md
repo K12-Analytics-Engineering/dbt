@@ -5,7 +5,7 @@ After you clone this repo, poetry can be used to create a python virtual environ
 
 ```bash
 
-poetry env use 3.9;
+poetry env use 3.9.10;
 poetry install;
 # TODO copy and complete .env file
 env $(cat .env) poetry shell;
