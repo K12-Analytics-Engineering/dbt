@@ -38,9 +38,6 @@ models:
       row_level_security:
         +schema: row_level_security
         +tags: edfi
-      surveys:
-        +schema: surveys
-        # +tags: edfi
     staging:
       +materialized: table
       +schema: staging
