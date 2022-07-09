@@ -9,7 +9,6 @@ history/
 logs/
 schedules/
 storage/
-dbt_packages/
 target/
 dbt_modules/
 
