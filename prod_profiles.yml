@@ -1,0 +1,9 @@
+default:
+  target: prod
+  outputs:
+    prod:
+      type: bigquery
+      method: oauth
+      project: google-cloud-project-id
+      dataset: prod
+      threads: 4

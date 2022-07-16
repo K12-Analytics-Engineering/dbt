@@ -7,3 +7,9 @@ default:
       dataset: dev
       threads: 4
       keyfile: "{{ env_var('GOOGLE_APPLICATION_CREDENTIALS') }}"
+    prod:
+      type: bigquery
+      method: service-account
+      dataset: prod
+      threads: 4
+      keyfile: "{{ env_var('GOOGLE_APPLICATION_CREDENTIALS') }}"
