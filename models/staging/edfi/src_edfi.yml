@@ -7,27 +7,6 @@ sources:
         {%- else -%} prod_staging
         {%- endif -%}
       tables:
-        - name: edfi_processed_change_versions
-          columns:
-            - name: school_year
-              data_type: integer
-            - name: run_id
-              data_type: string
-            - name: oldest_change_version
-              data_type: integer
-            - name: newest_change_version
-              data_type: integer
-          external:
-            location:  this will be ignored
-            options:
-              format: NEWLINE_DELIMITED_JSON
-              uris:
-                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/school_year_2021/*.json'
-                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/school_year_2022/*.json'
-                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/school_year_2023/*.json'
-                - 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/school_year_2024/*.json'
-
-
         - name: base_edfi_assessments
           columns:
             - name: is_complete_extract
