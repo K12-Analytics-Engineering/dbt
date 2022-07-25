@@ -19,7 +19,7 @@ select
     parse_date('%Y-%m-%d', json_value(data, '$.entryDate')) as entry_date,
     parse_date('%Y-%m-%d', json_value(data, '$.exitWithdrawDate')) as exit_withdraw_date,
     split(json_value(data, '$.exitWithdrawTypeDescriptor'), '#')[OFFSET(1)] as exit_withdraw_type_descriptor,
-    cast(json_value(data, '$.fullTimeEquivalency') as int64) as full_time_equivalency,
+    cast(json_value(data, '$.fullTimeEquivalency') as float64) as full_time_equivalency,
     cast(json_value(data, '$.primarySchool') as BOOL) as primary_school,
     cast(json_value(data, '$.repeatGradeIndicator') as BOOL) as repeat_grade_indicator,
     cast(json_value(data, '$.schoolChoiceTransfer') as BOOL) as school_choice_transfer,
