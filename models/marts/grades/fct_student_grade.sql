@@ -40,6 +40,7 @@ left join {{ ref('stg_edfi_student_section_associations') }} ssa
     and grades.student_section_association_reference.student_unique_id = ssa.student_reference.student_unique_id
     and grades.student_section_association_reference.begin_date = ssa.begin_date
     and grades.student_section_association_reference.local_course_code = ssa.section_reference.local_course_code
+    and grades.student_section_association_reference.section_identifier = ssa.section_reference.section_identifier
     and grades.student_section_association_reference.school_id = ssa.section_reference.school_id
     and grades.student_section_association_reference.school_year = ssa.section_reference.school_year
     and grades.student_section_association_reference.session_name = ssa.section_reference.session_name
