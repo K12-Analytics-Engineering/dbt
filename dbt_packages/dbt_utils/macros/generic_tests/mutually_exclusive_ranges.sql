@@ -61,7 +61,7 @@ calc as (
         *,
 
         -- For each record: lower_bound should be < upper_bound.
-        -- Coalesce it to return an error on the null case (implicit assumption
+        -- coalesce it to return an error on the null case (implicit assumption
         -- these columns are not_null)
         coalesce(
             lower_bound {{ allow_zero_length_operator }} upper_bound,
@@ -69,7 +69,7 @@ calc as (
         ) as lower_bound_{{ allow_zero_length_operator_in_words }}_upper_bound,
 
         -- For each record: upper_bound {{ allow_gaps_operator }} the next lower_bound.
-        -- Coalesce it to handle null cases for the last record.
+        -- coalesce it to handle null cases for the last record.
         coalesce(
             upper_bound {{ allow_gaps_operator }} next_lower_bound,
             is_last_record,

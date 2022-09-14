@@ -77,13 +77,13 @@ students as (
         concat(
             students.last_surname, ', ',
             students.first_name, ' ',
-            COALESCE(LEFT(students.middle_name, 1), '')
+            coalesce(LEFT(students.middle_name, 1), '')
         )                                                               as student_display_name,
         seoa.electronic_mail[SAFE_OFFSET(0)].address                    as email,
         ifnull(active_enrollments.is_actively_enrolled_in_school, 'No')           as is_actively_enrolled_in_school,
         student_grade_level.grade_level                                 as grade_level,
         student_grade_level.grade_level_id                              as grade_level_id,
-        COALESCE(
+        coalesce(
             seoa.limited_english_proficiency_descriptor,
             'Not applicable'
         )                                                               as limited_english_proficiency,

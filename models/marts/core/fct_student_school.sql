@@ -5,8 +5,7 @@ select
             'ssa.school_year_type_reference.school_year'
     ]) }}                                                           as student_key,
     {{ dbt_utils.surrogate_key([
-        'schools.local_education_agency_id',
-        'ssa.school_year_type_reference.school_year'
+        'schools.local_education_agency_id'
     ]) }}                                                           as local_education_agency_key,
     {{ dbt_utils.surrogate_key([
         'ssa.school_reference.school_id',

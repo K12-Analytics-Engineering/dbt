@@ -12,7 +12,7 @@ select
         'grades.grading_period_reference.school_id',
         'grades.grading_period_reference.school_year',
         'student_section_association_reference.session_name',
-        'grades.grading_period_reference.grading_period_descriptor',
+        'grades.grading_period_reference.grading_period_name',
         'grades.grading_period_reference.period_sequence'
     ]) }}                                                                   as grading_period_key,
     {{ dbt_utils.surrogate_key([

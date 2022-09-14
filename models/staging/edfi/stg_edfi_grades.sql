@@ -11,7 +11,7 @@ select
     split(json_value(data, '$.gradeTypeDescriptor'), '#')[OFFSET(1)] as grade_type_descriptor, 
     json_value(data, '$.diagnosticStatement') as diagnostic_statement,
     struct(
-        split(json_value(data, '$.gradingPeriodReference.gradingPeriodDescriptor'), '#')[OFFSET(1)] as grading_period_descriptor,
+        split(json_value(data, '$.gradingPeriodReference.gradingPeriodDescriptor'), '#')[OFFSET(1)] as grading_period_name,
         cast(json_value(data, '$.gradingPeriodReference.periodSequence') as int64) as period_sequence,
         json_value(data, '$.gradingPeriodReference.schoolId') as school_id,
         cast(json_value(data, '$.gradingPeriodReference.schoolYear') as int64) as school_year

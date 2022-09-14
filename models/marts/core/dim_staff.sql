@@ -12,7 +12,7 @@ select
     concat(
         last_surname, ', ',
         first_name, ' ',
-        COALESCE(LEFT(middle_name, 1), '')
+        coalesce(LEFT(middle_name, 1), '')
     )                                          as staff_display_name,
     if(
         hispanic_latino_ethnicity is true,

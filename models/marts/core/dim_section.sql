@@ -7,22 +7,9 @@ select distinct
         'sections.course_offering_reference.local_course_code',
         'sections.section_identifier'
     ]) }}                                                       as section_key,
-    {{ dbt_utils.surrogate_key([
-        'stg_edfi_schools.local_education_agency_id',
-        'sections.course_offering_reference.school_year'
-    ]) }}                                                       as local_education_agency_key,
-    {{ dbt_utils.surrogate_key([
-        'sections.course_offering_reference.school_id',
-        'sections.course_offering_reference.school_year'
-    ]) }}                                                       as school_key,
-    {{ dbt_utils.surrogate_key([
-        'sections.course_offering_reference.school_id',
-        'sections.course_offering_reference.school_year',
-        'sections.course_offering_reference.session_name'
-    ]) }}                                                       as session_key,
     course_offerings.session_reference.school_year              as school_year,
     sections.section_identifier                                 as section_identifier,
-    COALESCE(
+    coalesce(
         sections.section_name,
         concat(
             course_offering_reference.local_course_code, '-',
@@ -31,11 +18,12 @@ select distinct
     )                                                           as section_name,
     course_offering_reference.local_course_code                 as local_course_code,
     courses.course_title                                        as course_title,
+    class_period.class_period_reference.class_period_name       as class_period_name,
     courses.academic_subject_descriptor                         as course_academic_subject,
     courses.course_gpa_applicability_descriptor                 as course_gpa_applicability,
     sections.available_credits                                  as available_credits
 from {{ ref('stg_edfi_sections') }} sections
-cross join unnest(sections.class_periods) as class_period
+left join unnest(sections.class_periods) as class_period
 left join {{ ref('stg_edfi_schools') }} stg_edfi_schools
     on sections.course_offering_reference.school_id = stg_edfi_schools.school_id
 left join {{ ref('stg_edfi_course_offerings') }} course_offerings

@@ -19,7 +19,7 @@ select
     array(
         select as struct
             struct(
-                split(json_value(grading_periods, '$.gradingPeriodReference.gradingPeriodDescriptor'), '#')[OFFSET(1)] as grading_period_descriptor,
+                split(json_value(grading_periods, '$.gradingPeriodReference.gradingPeriodDescriptor'), '#')[OFFSET(1)] as grading_period_name,
                 cast(json_value(grading_periods, "$.gradingPeriodReference.periodSequence") as int64) as period_sequence,
                 json_value(grading_periods, "$.gradingPeriodReference.schoolId") as school_id,
                 json_value(grading_periods, "$.gradingPeriodReference.schoolYear") as school_year

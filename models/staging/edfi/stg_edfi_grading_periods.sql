@@ -5,7 +5,7 @@ select
     date_extracted                          as date_extracted,
     school_year                             as school_year,
     id                                      as id,
-    split(json_value(data, "$.gradingPeriodDescriptor"), '#')[OFFSET(1)] as grading_period_descriptor,
+    split(json_value(data, "$.gradingPeriodDescriptor"), '#')[OFFSET(1)] as grading_period_name,
     cast(json_value(data, "$.periodSequence") as int64) as period_sequence,
     struct(
         json_value(data, '$.schoolReference.schoolId') as school_id

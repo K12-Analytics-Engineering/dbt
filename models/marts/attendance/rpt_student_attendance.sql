@@ -11,7 +11,7 @@ with max_school_year_dates as (
 
 select
     fct_student_attendance.school_year                                     as school_year,
-    dim_local_education_agency.local_education_agency_name                 as local_education_agency_name,
+    dim_school.local_education_agency_name                                 as local_education_agency_name,
     dim_school.school_id                                                   as school_id,
     dim_school.school_name                                                 as school_name,
     dim_student.student_unique_id                                          as student_unique_id,
@@ -49,8 +49,6 @@ left join {{ ref('dim_date') }} dim_date
     on fct_student_attendance.date = dim_date.date
 left join {{ ref('dim_school') }} dim_school
     on fct_student_attendance.school_key = dim_school.school_key
-left join {{ ref('dim_local_education_agency') }} dim_local_education_agency
-    on dim_school.local_education_agency_key = dim_local_education_agency.local_education_agency_key
 left join {{ ref('rls_user_student_data_authorization') }} rls_user_student_data_authorization
     on fct_student_attendance.student_key = rls_user_student_data_authorization.student_key
 left join max_school_year_dates on fct_student_attendance.school_year = max_school_year_dates.school_year
