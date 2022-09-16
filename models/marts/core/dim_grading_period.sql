@@ -28,7 +28,7 @@ grades_grading_periods_unioned as (
         unique_records.session_name                         as session_name,
         sessions.term_descriptor                            as term_name,
         unique_records.school_year                          as school_year,
-        grading_periods.grading_period_name           as grading_period_name,
+        grading_periods.grading_period_name                 as grading_period_name,
         grading_periods.period_sequence                     as period_sequence,
         grading_periods.begin_date                          as grading_period_begin_date,
         grading_periods.end_date                            as grading_period_end_date,
