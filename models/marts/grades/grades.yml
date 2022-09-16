@@ -8,19 +8,33 @@ models:
       - dbt_utils.expression_is_true:
           expression: "numeric_grade_earned >= 0"
     columns:
+      - name: school_key
+        description: Unique school identifier
+        tests:
+          - relationships:
+              to: ref('dim_school')
+              field: school_key
+
       - name: student_key
         description: Unique student identifier
         tests:
-          - not_null
-
-      - name: school_key
-        description: Unique school identifier
+          - relationships:
+              to: ref('dim_student')
+              field: student_key
 
       - name: grading_period_key
         description: Concatenation of grading period descriptor code value, school id, and grading period begin date
+        tests:
+          - relationships:
+              to: ref('dim_grading_period')
+              field: grading_period_key
 
       - name: section_key
         description: Concatenation of section information to uniquely identifier a section
+        tests:
+          - relationships:
+              to: ref('dim_section')
+              field: section_key
 
       - name: numeric_grade_earned
         description: Numeric grade reflecting student performance in a class as submitted by the instructor
