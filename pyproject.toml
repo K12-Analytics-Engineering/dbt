@@ -6,8 +6,9 @@ authors = ["Marcos Alcozer <marcos@alcozer.dev>"]
 license = "Apache License"
 
 [tool.poetry.dependencies]
-python = "3.9.10"
-dbt-bigquery = "^1.0.0"
+python = ">=3.9,<3.10"
+dbt-bigquery = "1.2.0"
+dbt-osmosis = "^0.7.16"
 
 [tool.poetry.dev-dependencies]
 

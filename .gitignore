@@ -11,6 +11,7 @@ schedules/
 storage/
 target/
 dbt_modules/
+dbt_packages/
 
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,windows,python
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,windows,python
