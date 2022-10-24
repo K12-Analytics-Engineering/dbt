@@ -16,15 +16,15 @@ sources:
             - name: data
               data_type: string
           external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_assessments/*'
+            location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_assessments/*'
             options:
               format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_assessments'
+              hive_partition_uri_prefix: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_assessments'
             partitions:
-              - name: api_version
-                data_type: string
               - name: school_year
                 data_type: integer
+              - name: data_model
+                data_type: string
               - name: date_extracted
                 data_type: timestamp
               - name: extract_type
@@ -39,15 +39,15 @@ sources:
             - name: data
               data_type: string
           external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_calendars/*'
+            location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_calendars/*'
             options:
               format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_calendars'
+              hive_partition_uri_prefix: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_calendars'
             partitions:               
-              - name: api_version
-                data_type: string
               - name: school_year
                 data_type: integer
+              - name: data_model
+                data_type: string
               - name: date_extracted
                 data_type: timestamp
               - name: extract_type
@@ -62,15 +62,15 @@ sources:
             - name: data
               data_type: string
           external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_calendar_dates/*'
+            location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_calendar_dates/*'
             options:
               format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_calendar_dates'
+              hive_partition_uri_prefix: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_calendar_dates'
             partitions:               
-              - name: api_version
-                data_type: string
               - name: school_year
                 data_type: integer
+              - name: data_model
+                data_type: string
               - name: date_extracted
                 data_type: timestamp
               - name: extract_type
@@ -85,15 +85,15 @@ sources:
             - name: data
               data_type: string
           external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_courses/*'
+            location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_courses/*'
             options:
               format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_courses'
+              hive_partition_uri_prefix: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_courses'
             partitions:               
-              - name: api_version
-                data_type: string
               - name: school_year
                 data_type: integer
+              - name: data_model
+                data_type: string
               - name: date_extracted
                 data_type: timestamp
               - name: extract_type
@@ -108,15 +108,15 @@ sources:
             - name: data
               data_type: string
           external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_course_offerings/*'
+            location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_course_offerings/*'
             options:
               format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_course_offerings'
+              hive_partition_uri_prefix: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_course_offerings'
             partitions:               
-              - name: api_version
-                data_type: string
               - name: school_year
                 data_type: integer
+              - name: data_model
+                data_type: string
               - name: date_extracted
                 data_type: timestamp
               - name: extract_type
@@ -131,15 +131,15 @@ sources:
             - name: data
               data_type: string
           external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_discipline_actions/*'
+            location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_discipline_actions/*'
             options:
               format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_discipline_actions'
+              hive_partition_uri_prefix: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_discipline_actions'
             partitions:               
-              - name: api_version
-                data_type: string
               - name: school_year
                 data_type: integer
+              - name: data_model
+                data_type: string
               - name: date_extracted
                 data_type: timestamp
               - name: extract_type
@@ -154,15 +154,15 @@ sources:
             - name: data
               data_type: string
           external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_discipline_incidents/*'
+            location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_discipline_incidents/*'
             options:
               format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_discipline_incidents'
+              hive_partition_uri_prefix: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_discipline_incidents'
             partitions:               
-              - name: api_version
-                data_type: string
               - name: school_year
                 data_type: integer
+              - name: data_model
+                data_type: string
               - name: date_extracted
                 data_type: timestamp
               - name: extract_type
@@ -177,15 +177,15 @@ sources:
             - name: data
               data_type: string
           external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_grading_periods/*'
+            location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_grading_periods/*'
             options:
               format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_grading_periods'
+              hive_partition_uri_prefix: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_grading_periods'
             partitions:               
-              - name: api_version
-                data_type: string
               - name: school_year
                 data_type: integer
+              - name: data_model
+                data_type: string
               - name: date_extracted
                 data_type: timestamp
               - name: extract_type
@@ -200,15 +200,15 @@ sources:
             - name: data
               data_type: string
           external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_grading_period_descriptors/*'
+            location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_grading_period_descriptors/*'
             options:
               format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_grading_period_descriptors'
+              hive_partition_uri_prefix: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_grading_period_descriptors'
             partitions:               
-              - name: api_version
-                data_type: string
               - name: school_year
                 data_type: integer
+              - name: data_model
+                data_type: string
               - name: date_extracted
                 data_type: timestamp
               - name: extract_type
@@ -223,15 +223,15 @@ sources:
             - name: data
               data_type: string
           external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_grades/*'
+            location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_grades/*'
             options:
               format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_grades'
+              hive_partition_uri_prefix: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_grades'
             partitions:               
-              - name: api_version
-                data_type: string
               - name: school_year
                 data_type: integer
+              - name: data_model
+                data_type: string
               - name: date_extracted
                 data_type: timestamp
               - name: extract_type
@@ -246,15 +246,15 @@ sources:
             - name: data
               data_type: string
           external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_local_education_agencies/*'
+            location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_local_education_agencies/*'
             options:
               format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_local_education_agencies'
+              hive_partition_uri_prefix: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_local_education_agencies'
             partitions:               
-              - name: api_version
-                data_type: string
               - name: school_year
                 data_type: integer
+              - name: data_model
+                data_type: string
               - name: date_extracted
                 data_type: timestamp
               - name: extract_type
@@ -269,15 +269,15 @@ sources:
             - name: data
               data_type: string
           external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_objective_assessments/*'
+            location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_objective_assessments/*'
             options:
               format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_objective_assessments'
+              hive_partition_uri_prefix: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_objective_assessments'
             partitions:               
-              - name: api_version
-                data_type: string
               - name: school_year
                 data_type: integer
+              - name: data_model
+                data_type: string
               - name: date_extracted
                 data_type: timestamp
               - name: extract_type
@@ -292,15 +292,15 @@ sources:
             - name: data
               data_type: string
           external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_parents/*'
+            location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_parents/*'
             options:
               format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_parents'
+              hive_partition_uri_prefix: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_parents'
             partitions:               
-              - name: api_version
-                data_type: string
               - name: school_year
                 data_type: integer
+              - name: data_model
+                data_type: string
               - name: date_extracted
                 data_type: timestamp
               - name: extract_type
@@ -315,15 +315,15 @@ sources:
             - name: data
               data_type: string
           external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_programs/*'
+            location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_programs/*'
             options:
               format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_programs'
+              hive_partition_uri_prefix: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_programs'
             partitions:               
-              - name: api_version
-                data_type: string
               - name: school_year
                 data_type: integer
+              - name: data_model
+                data_type: string
               - name: date_extracted
                 data_type: timestamp
               - name: extract_type
@@ -338,15 +338,15 @@ sources:
             - name: data
               data_type: string
           external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_schools/*'
+            location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_schools/*'
             options:
               format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_schools'
+              hive_partition_uri_prefix: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_schools'
             partitions:               
-              - name: api_version
-                data_type: string
               - name: school_year
                 data_type: integer
+              - name: data_model
+                data_type: string
               - name: date_extracted
                 data_type: timestamp
               - name: extract_type
@@ -361,15 +361,15 @@ sources:
             - name: data
               data_type: string
           external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_school_year_types/*'
+            location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_school_year_types/*'
             options:
               format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_school_year_types'
+              hive_partition_uri_prefix: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_school_year_types'
             partitions:               
-              - name: api_version
-                data_type: string
               - name: school_year
                 data_type: integer
+              - name: data_model
+                data_type: string
               - name: date_extracted
                 data_type: timestamp
               - name: extract_type
@@ -384,15 +384,15 @@ sources:
             - name: data
               data_type: string
           external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_sections/*'
+            location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_sections/*'
             options:
               format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_sections'
+              hive_partition_uri_prefix: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_sections'
             partitions:               
-              - name: api_version
-                data_type: string
               - name: school_year
                 data_type: integer
+              - name: data_model
+                data_type: string
               - name: date_extracted
                 data_type: timestamp
               - name: extract_type
@@ -407,15 +407,15 @@ sources:
             - name: data
               data_type: string
           external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_sessions/*'
+            location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_sessions/*'
             options:
               format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_sessions'
+              hive_partition_uri_prefix: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_sessions'
             partitions:               
-              - name: api_version
-                data_type: string
               - name: school_year
                 data_type: integer
+              - name: data_model
+                data_type: string
               - name: date_extracted
                 data_type: timestamp
               - name: extract_type
@@ -430,15 +430,15 @@ sources:
             - name: data
               data_type: string
           external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_staffs/*'
+            location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_staffs/*'
             options:
               format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_staffs'
+              hive_partition_uri_prefix: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_staffs'
             partitions:               
-              - name: api_version
-                data_type: string
               - name: school_year
                 data_type: integer
+              - name: data_model
+                data_type: string
               - name: date_extracted
                 data_type: timestamp
               - name: extract_type
@@ -453,15 +453,15 @@ sources:
             - name: data
               data_type: string
           external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_staff_discipline_incident_associations/*'
+            location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_staff_discipline_incident_associations/*'
             options:
               format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_staff_discipline_incident_associations'
+              hive_partition_uri_prefix: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_staff_discipline_incident_associations'
             partitions:               
-              - name: api_version
-                data_type: string
               - name: school_year
                 data_type: integer
+              - name: data_model
+                data_type: string
               - name: date_extracted
                 data_type: timestamp
               - name: extract_type
@@ -476,15 +476,15 @@ sources:
             - name: data
               data_type: string
           external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_staff_education_organization_assignment_associations/*'
+            location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_staff_education_organization_assignment_associations/*'
             options:
               format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_staff_education_organization_assignment_associations'
+              hive_partition_uri_prefix: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_staff_education_organization_assignment_associations'
             partitions:               
-              - name: api_version
-                data_type: string
               - name: school_year
                 data_type: integer
+              - name: data_model
+                data_type: string
               - name: date_extracted
                 data_type: timestamp
               - name: extract_type
@@ -499,15 +499,15 @@ sources:
             - name: data
               data_type: string
           external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_staff_school_associations/*'
+            location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_staff_school_associations/*'
             options:
               format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_staff_school_associations'
+              hive_partition_uri_prefix: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_staff_school_associations'
             partitions:               
-              - name: api_version
-                data_type: string
               - name: school_year
                 data_type: integer
+              - name: data_model
+                data_type: string
               - name: date_extracted
                 data_type: timestamp
               - name: extract_type
@@ -522,15 +522,15 @@ sources:
             - name: data
               data_type: string
           external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_staff_section_associations/*'
+            location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_staff_section_associations/*'
             options:
               format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_staff_section_associations'
+              hive_partition_uri_prefix: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_staff_section_associations'
             partitions:               
-              - name: api_version
-                data_type: string
               - name: school_year
                 data_type: integer
+              - name: data_model
+                data_type: string
               - name: date_extracted
                 data_type: timestamp
               - name: extract_type
@@ -545,15 +545,15 @@ sources:
             - name: data
               data_type: string
           external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_students/*'
+            location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_students/*'
             options:
               format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_students'
+              hive_partition_uri_prefix: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_students'
             partitions:               
-              - name: api_version
-                data_type: string
               - name: school_year
                 data_type: integer
+              - name: data_model
+                data_type: string
               - name: date_extracted
                 data_type: timestamp
               - name: extract_type
@@ -568,15 +568,15 @@ sources:
             - name: data
               data_type: string
           external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_assessments/*'
+            location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_student_assessments/*'
             options:
               format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_assessments'
+              hive_partition_uri_prefix: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_student_assessments'
             partitions:               
-              - name: api_version
-                data_type: string
               - name: school_year
                 data_type: integer
+              - name: data_model
+                data_type: string
               - name: date_extracted
                 data_type: timestamp
               - name: extract_type
@@ -591,15 +591,15 @@ sources:
             - name: data
               data_type: string
           external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_discipline_incident_associations/*'
+            location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_student_discipline_incident_associations/*'
             options:
               format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_discipline_incident_associations'
+              hive_partition_uri_prefix: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_student_discipline_incident_associations'
             partitions:               
-              - name: api_version
-                data_type: string
               - name: school_year
                 data_type: integer
+              - name: data_model
+                data_type: string
               - name: date_extracted
                 data_type: timestamp
               - name: extract_type
@@ -614,15 +614,15 @@ sources:
             - name: data
               data_type: string
           external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_education_organization_associations/*'
+            location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_student_education_organization_associations/*'
             options:
               format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_education_organization_associations'
+              hive_partition_uri_prefix: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_student_education_organization_associations'
             partitions:               
-              - name: api_version
-                data_type: string
               - name: school_year
                 data_type: integer
+              - name: data_model
+                data_type: string
               - name: date_extracted
                 data_type: timestamp
               - name: extract_type
@@ -637,15 +637,15 @@ sources:
             - name: data
               data_type: string
           external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_parent_associations/*'
+            location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_student_parent_associations/*'
             options:
               format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_parent_associations'
+              hive_partition_uri_prefix: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_student_parent_associations'
             partitions:               
-              - name: api_version
-                data_type: string
               - name: school_year
                 data_type: integer
+              - name: data_model
+                data_type: string
               - name: date_extracted
                 data_type: timestamp
               - name: extract_type
@@ -660,15 +660,15 @@ sources:
             - name: data
               data_type: string
           external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_program_associations/*'
+            location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_student_program_associations/*'
             options:
               format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_program_associations'
+              hive_partition_uri_prefix: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_student_program_associations'
             partitions:               
-              - name: api_version
-                data_type: string
               - name: school_year
                 data_type: integer
+              - name: data_model
+                data_type: string
               - name: date_extracted
                 data_type: timestamp
               - name: extract_type
@@ -683,15 +683,15 @@ sources:
             - name: data
               data_type: string
           external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_school_associations/*'
+            location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_student_school_associations/*'
             options:
               format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_school_associations'
+              hive_partition_uri_prefix: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_student_school_associations'
             partitions:               
-              - name: api_version
-                data_type: string
               - name: school_year
                 data_type: integer
+              - name: data_model
+                data_type: string
               - name: date_extracted
                 data_type: timestamp
               - name: extract_type
@@ -706,15 +706,15 @@ sources:
             - name: data
               data_type: string
           external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_school_attendance_events/*'
+            location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_student_school_attendance_events/*'
             options:
               format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_school_attendance_events'
+              hive_partition_uri_prefix: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_student_school_attendance_events'
             partitions:               
-              - name: api_version
-                data_type: string
               - name: school_year
                 data_type: integer
+              - name: data_model
+                data_type: string
               - name: date_extracted
                 data_type: timestamp
               - name: extract_type
@@ -729,15 +729,15 @@ sources:
             - name: data
               data_type: string
           external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_section_associations/*'
+            location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_student_section_associations/*'
             options:
               format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_section_associations'
+              hive_partition_uri_prefix: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_student_section_associations'
             partitions:               
-              - name: api_version
-                data_type: string
               - name: school_year
                 data_type: integer
+              - name: data_model
+                data_type: string
               - name: date_extracted
                 data_type: timestamp
               - name: extract_type
@@ -752,15 +752,15 @@ sources:
             - name: data
               data_type: string
           external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_section_attendance_events/*'
+            location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_student_section_attendance_events/*'
             options:
               format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_section_attendance_events'
+              hive_partition_uri_prefix: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_student_section_attendance_events'
             partitions:               
-              - name: api_version
-                data_type: string
               - name: school_year
                 data_type: integer
+              - name: data_model
+                data_type: string
               - name: date_extracted
                 data_type: timestamp
               - name: extract_type
@@ -775,15 +775,15 @@ sources:
             - name: data
               data_type: string
           external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_special_education_program_associations/*'
+            location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_student_special_education_program_associations/*'
             options:
               format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_student_special_education_program_associations'
+              hive_partition_uri_prefix: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_student_special_education_program_associations'
             partitions:               
-              - name: api_version
-                data_type: string
               - name: school_year
                 data_type: integer
+              - name: data_model
+                data_type: string
               - name: date_extracted
                 data_type: timestamp
               - name: extract_type
@@ -798,15 +798,15 @@ sources:
             - name: data
               data_type: string
           external:
-            location: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_descriptors/*'
+            location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_descriptors/*'
             options:
               format: NEWLINE_DELIMITED_JSON
-              hive_partition_uri_prefix: 'gs://{%- if  target.name == "dev" -%}{{ env_var("GCS_BUCKET_DEV") }}{%- else -%}{{ env_var("GCS_BUCKET_PROD") }}{%- endif -%}/edfi_api/base_edfi_descriptors'
+              hive_partition_uri_prefix: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_descriptors'
             partitions:               
-              - name: api_version
-                data_type: string
               - name: school_year
                 data_type: integer
+              - name: data_model
+                data_type: string
               - name: date_extracted
                 data_type: timestamp
               - name: extract_type

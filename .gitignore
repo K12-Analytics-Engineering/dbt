@@ -199,3 +199,4 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,windows,python
 .user.yml
+profiles.yml
