@@ -77,7 +77,7 @@ students as (
         concat(
             students.last_surname, ', ',
             students.first_name, ' ',
-            coalesce(LEFT(students.middle_name, 1), '')
+            coalesce(left(students.middle_name, 1), '')
         )                                                               as student_display_name,
         seoa.electronic_mail[SAFE_OFFSET(0)].address                    as email,
         ifnull(active_enrollments.is_actively_enrolled_in_school, 'No')           as is_actively_enrolled_in_school,

@@ -13,7 +13,7 @@ select
     ) as student_reference,
     array(
         select as struct 
-            LOWER(json_value(email, "$.electronicMailAddress")) as address,
+            lower(json_value(email, "$.electronicMailAddress")) as address,
             split(json_value(email, "$.electronicMailTypeDescriptor"), '#')[OFFSET(1)] as type_descriptor,
         from unnest(json_query_array(data, "$.electronicMails")) email 
     ) as electronic_mail,

@@ -17,7 +17,7 @@ select
         cast(json_value(data, '$.gradingPeriodReference.schoolYear') as int64) as school_year
     ) as grading_period_reference,
     struct(
-        EXTRACT(DATE from PARSE_TIMESTAMP('%Y-%m-%dT%TZ', json_value(data, '$.studentSectionAssociationReference.beginDate'))) as begin_date,
+        extract(DATE from PARSE_TIMESTAMP('%Y-%m-%dT%TZ', json_value(data, '$.studentSectionAssociationReference.beginDate'))) as begin_date,
         json_value(data, '$.studentSectionAssociationReference.localCourseCode') as local_course_code,
         json_value(data, '$.studentSectionAssociationReference.schoolId') as school_id,
         cast(json_value(data, '$.studentSectionAssociationReference.schoolYear') as int64) as school_year,

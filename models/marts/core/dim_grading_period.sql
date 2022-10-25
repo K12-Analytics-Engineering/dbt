@@ -21,10 +21,6 @@ grades_grading_periods_unioned as (
             'unique_records.grading_period_name',
             'unique_records.period_sequence'
         ]) }}                                               as grading_period_key,
-        {{ dbt_utils.surrogate_key([
-            'unique_records.school_id',
-            'unique_records.school_year'
-        ]) }}                                               as school_key,
         unique_records.session_name                         as session_name,
         sessions.term_descriptor                            as term_name,
         unique_records.school_year                          as school_year,
@@ -56,10 +52,6 @@ grades_grading_periods_unioned as (
             'grading_periods.grading_period_name',
             'grading_periods.period_sequence'
         ]) }}                                                                                   as grading_period_key,
-        {{ dbt_utils.surrogate_key([
-            'sessions.school_reference.school_id',
-            'sessions.school_year_type_reference.school_year'
-        ]) }}                                                                                   as school_key,
         sessions.session_name                                                                   as session_name,
         sessions.term_descriptor                                                                as term_name,
         sessions.school_year_type_reference.school_year                                         as school_year,
@@ -83,7 +75,6 @@ grades_grading_periods_unioned as (
 
 select distinct
     grading_period_key,
-    school_key,
     school_year,
     session_name,
     term_name,

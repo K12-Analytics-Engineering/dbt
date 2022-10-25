@@ -12,13 +12,13 @@ select
     concat(
         last_surname, ', ',
         first_name, ' ',
-        coalesce(LEFT(middle_name, 1), '')
+        coalesce(left(middle_name, 1), '')
     )                                          as staff_display_name,
     if(
         hispanic_latino_ethnicity is true,
         'Yes',
         'No')                                  as is_hispanic,
-    LOWER(email.electronic_mail_address)       as email
+    lower(email.electronic_mail_address)       as email
 from {{ ref('stg_edfi_staffs') }}
 left join unnest(electronic_mails) email
     on email.electronic_mail_type_descriptor = 'Work'

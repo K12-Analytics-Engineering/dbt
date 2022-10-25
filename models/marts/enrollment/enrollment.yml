@@ -1,0 +1,35 @@
+
+version: 2
+
+models:
+  - name: bridge_staff_group
+    description: "Bridge table connecting teachers to student section fact tables"
+    tests:
+      - unique:
+          column_name: "staff_group_key || '-' || staff_key"
+
+
+  - name: fct_student_school
+    description: ""
+    columns:
+      - name: student_key
+        description: Foreign key to `dim_student`
+        tests:
+          - relationships:
+              to: ref('dim_student')
+              field: student_key
+
+      - name: local_education_agency_key
+        description: Foreign key to `dim_local_education_agency`
+        tests:
+          - relationships:
+              to: ref('dim_local_education_agency')
+              field: local_education_agency_key
+
+      - name: school_key
+        description: Foreign key to `dim_school`
+        tests:
+          - relationships:
+              to: ref('dim_school')
+              field: school_key
+

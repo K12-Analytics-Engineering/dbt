@@ -1,4 +1,4 @@
-name: 'project'
+name: 'warehouse'
 version: '1.0.0'
 config-version: 2
 
@@ -20,29 +20,21 @@ models:
   +persist_docs:
     relation: true
     columns: true
-  project:
+  warehouse:
     marts:
       +materialized: table
       assessments:
         +schema: assessments
-        +tags: edfi
       attendance:
         +schema: attendance
-        +tags: edfi
       core:
         +schema: core
-        +tags: edfi
+      enrollment:
+        +schema: enrollment
       grades:
         +schema: grades
-        +tags: edfi
       row_level_security:
         +schema: row_level_security
-        +tags: edfi
     staging:
       +materialized: table
       +schema: staging
-      edfi:
-        +tags: edfi
-        +labels:
-            edfi_version: "5_3"
-

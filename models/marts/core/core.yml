@@ -2,12 +2,6 @@
 version: 2
 
 models:
-  - name: bridge_staff_group
-    description: "Bridge table connecting teachers to student section fact tables"
-    tests:
-      - unique:
-          column_name: "staff_group_key || '-' || staff_key"
-
   - name: dim_date
     description: '{{ doc("dim_date") }}'
     columns:
@@ -40,20 +34,13 @@ models:
 
 
   - name: dim_grading_period
-    description: '{{ doc("dim_grading_period") }}'
+    description: 'One row per grading period.'
     columns:
       - name: grading_period_key
         description: Primary key for dimension table
         tests:
           - unique
           - not_null
-
-      - name: school_key
-        description: Foreign key to `dim_school`
-        tests:
-          - relationships:
-              to: ref('dim_school')
-              field: school_key
 
       - name: grading_period_description
         description: Grading period descriptor code value
@@ -72,7 +59,7 @@ models:
 
 
   - name: dim_local_education_agency
-    description: '{{ doc("dim_local_education_agency") }}'
+    description: 'One row per LEA. Data comes from `/ed-fi/localEducationAgencies`. If the data lake has multiple years of information the LEA record from the most recent year is used.'
     columns:
       - name: local_education_agency_key
         description: Primary key for dimension table
@@ -91,20 +78,13 @@ models:
 
 
   - name: dim_school
-    description: '{{ doc("dim_school") }}'
+    description: 'One row per school. Data comes from `/ed-fi/schools`. If the data lake has multiple years of information the school record from the most recent year is used.'
     columns:
       - name: school_key
         description: Primary key for dimension table
         tests:
           - unique
           - not_null
-
-      - name: local_education_agency_key
-        description: Foreign key to `dim_local_education_agency`
-        tests:
-          - relationships:
-              to: ref('dim_local_education_agency')
-              field: local_education_agency_key
 
       - name: school_id
         description: School unique identifier
@@ -130,27 +110,6 @@ models:
         tests:
           - unique
           - not_null
-
-      - name: local_education_agency_key
-        description: Foreign key to `dim_local_education_agency`
-        tests:
-          - relationships:
-              to: ref('dim_local_education_agency')
-              field: local_education_agency_key
-
-      - name: school_key
-        description: Foreign key to `dim_school`
-        tests:
-          - relationships:
-              to: ref('dim_school')
-              field: school_key
-
-      - name: session_key
-        description: Foreign key to `dim_session`
-        tests:
-          - relationships:
-              to: ref('dim_session')
-              field: session_key
 
       - name: section_identifier
         description: Section unique identifier
@@ -181,13 +140,6 @@ models:
         tests:
           - unique
           - not_null
-
-      - name: school_key
-        description: Foreign key to `dim_school`
-        tests:
-          - relationships:
-              to: ref('dim_school')
-              field: school_key
 
       - name: school_year
         description: Four-digit school year
@@ -247,8 +199,6 @@ models:
 
       - name: student_middle_name
         description: Student middle name
-        tests:
-          - not_null
 
       - name: student_last_surname
         description: The name borne in common by members of a family.
@@ -299,28 +249,3 @@ models:
 
       - name: gender
         description: The student's gender as last reported to the education organization
-
-
-  - name: fct_student_school
-    description: ""
-    columns:
-      - name: student_key
-        description: Foreign key to `dim_student`
-        tests:
-          - relationships:
-              to: ref('dim_student')
-              field: student_key
-
-      - name: local_education_agency_key
-        description: Foreign key to `dim_local_education_agency`
-        tests:
-          - relationships:
-              to: ref('dim_local_education_agency')
-              field: local_education_agency_key
-
-      - name: school_key
-        description: Foreign key to `dim_school`
-        tests:
-          - relationships:
-              to: ref('dim_school')
-              field: school_key

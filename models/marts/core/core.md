@@ -1,21 +1,9 @@
 
 {% docs dim_date %}
 
-# Date dim
-
 A date dimension table can be found in almost every dimensional model and allows the analytics engineer to look at student performance across different time periods. An explicit date dimension table can also help store date attributes that are not supported by a SQL date function (ie. month sort order in the context of a school year).
 
 This dimension table notably lacks the date key found in Ed-Fi's Analytics Middle Tier. This is also counter to what Kimball tells us to do. Instead, fact tables found in the marts that include a date, use the DATE type. Kimball argues that if a fact table does this, it will cause folks to use SQL functions on that date to extract items like month name and avoid the join to the date dimension when they need to retrieve such information. You should use the date if you need the date and join on the date dimension if you need more.
-
-{% enddocs %}
-
-
-{% docs dim_grading_period %}
-
-# Grading period dim
-
-Grain: one row per school per grading period
-
 
 {% enddocs %}
 
@@ -25,16 +13,6 @@ Grain: one row per school per grading period
 # Local education agency dim
 
 Grain: one row per local education agency
-
-
-{% enddocs %}
-
-
-{% docs dim_school %}
-
-# School dim
-
-Grain: one row per school per school year
 
 
 {% enddocs %}
