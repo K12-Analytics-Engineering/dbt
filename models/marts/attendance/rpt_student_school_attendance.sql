@@ -4,13 +4,13 @@ with max_school_year_dates as (
     select
         school_year,
         max(date) as latest_date
-    from {{ ref('fct_student_attendance') }}
+    from {{ ref('fct_student_school_attendance') }}
     group by 1
 
 )
 
 select
-    fct_student_attendance.school_year                                     as school_year,
+    fct_student_school_attendance.school_year                                     as school_year,
     dim_school.local_education_agency_name                                 as local_education_agency_name,
     dim_school.school_id                                                   as school_id,
     dim_school.school_name                                                 as school_name,
@@ -30,25 +30,25 @@ select
     dim_date.date                                                          as date,
     dim_date.month_name                                                    as month_name,
     dim_date.month_sort_order                                              as month_sort_order,
-    fct_student_attendance.school_attendance_event_category_descriptor     as school_attendance_event_category_descriptor,
-    fct_student_attendance.event_duration                                  as event_duration,
-    fct_student_attendance.reported_as_present_at_school                   as reported_as_present_at_school,
-    fct_student_attendance.reported_as_absent_from_school                  as reported_as_absent_from_school,
-    fct_student_attendance.reported_as_present_at_home_room                as reported_as_present_at_home_room,
-    fct_student_attendance.reported_as_absent_from_home_room               as reported_as_absent_from_home_room,
-    fct_student_attendance.is_on_the_verge                                 as is_on_the_verge,
-    fct_student_attendance.is_chronically_absent                           as is_chronically_absent,
+    fct_student_school_attendance.school_attendance_event_category_descriptor     as school_attendance_event_category_descriptor,
+    fct_student_school_attendance.event_duration                                  as event_duration,
+    fct_student_school_attendance.reported_as_present_at_school                   as reported_as_present_at_school,
+    fct_student_school_attendance.reported_as_absent_from_school                  as reported_as_absent_from_school,
+    fct_student_school_attendance.reported_as_present_at_home_room                as reported_as_present_at_home_room,
+    fct_student_school_attendance.reported_as_absent_from_home_room               as reported_as_absent_from_home_room,
+    fct_student_school_attendance.is_on_the_verge                                 as is_on_the_verge,
+    fct_student_school_attendance.is_chronically_absent                           as is_chronically_absent,
     if(
         dim_date.date = max_school_year_dates.latest_date, true, false
     )                                                                      as is_latest_date_avaliable,
     rls_user_student_data_authorization.authorized_emails
-from {{ ref('fct_student_attendance') }} fct_student_attendance
+from {{ ref('fct_student_school_attendance') }} fct_student_school_attendance
 left join {{ ref('dim_student') }} dim_student
-    on fct_student_attendance.student_key = dim_student.student_key
+    on fct_student_school_attendance.student_key = dim_student.student_key
 left join {{ ref('dim_date') }} dim_date
-    on fct_student_attendance.date = dim_date.date
+    on fct_student_school_attendance.date = dim_date.date
 left join {{ ref('dim_school') }} dim_school
-    on fct_student_attendance.school_key = dim_school.school_key
+    on fct_student_school_attendance.school_key = dim_school.school_key
 left join {{ ref('rls_user_student_data_authorization') }} rls_user_student_data_authorization
-    on fct_student_attendance.student_key = rls_user_student_data_authorization.student_key
-left join max_school_year_dates on fct_student_attendance.school_year = max_school_year_dates.school_year
+    on fct_student_school_attendance.student_key = rls_user_student_data_authorization.student_key
+left join max_school_year_dates on fct_student_school_attendance.school_year = max_school_year_dates.school_year

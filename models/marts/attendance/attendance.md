@@ -1,6 +1,4 @@
-{% docs fct_student_attendance %}
-
-# Student attendance fact
+{% docs fct_student_school_attendance %}
 
 Grain: one row per student per school year per school per instructional day they hold an enrollment
 

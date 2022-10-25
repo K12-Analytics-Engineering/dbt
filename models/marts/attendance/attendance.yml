@@ -2,8 +2,14 @@
 version: 2
 
 models:
-  - name: fct_student_attendance
-    description: '{{ doc("fct_student_attendance") }}'
+  - name: fct_student_school_attendance
+    description: '{{ doc("fct_student_school_attendance") }}'
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - school_key
+            - student_key
+            - date
     columns:
       - name: local_education_agency_key
         description: Foreign key to `dim_local_education_agency`
