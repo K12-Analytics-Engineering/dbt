@@ -71,8 +71,8 @@ models:
         description: 1 if the student has an average daily attendance below 92%
 
 
-  - name: rpt_student_attendance
-    description: '{{ doc("rpt_student_attendance") }}'
+  - name: rpt_student_school_attendance
+    description: '{{ doc("rpt_student_school_attendance") }}'
     config:
       cluster_by:
         - school_name

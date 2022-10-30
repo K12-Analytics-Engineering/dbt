@@ -30,12 +30,8 @@ select
     dim_date.date                                                          as date,
     dim_date.month_name                                                    as month_name,
     dim_date.month_sort_order                                              as month_sort_order,
-    fct_student_school_attendance.school_attendance_event_category_descriptor     as school_attendance_event_category_descriptor,
+    fct_student_school_attendance.school_attendance_event_category         as school_attendance_event_category,
     fct_student_school_attendance.event_duration                                  as event_duration,
-    fct_student_school_attendance.reported_as_present_at_school                   as reported_as_present_at_school,
-    fct_student_school_attendance.reported_as_absent_from_school                  as reported_as_absent_from_school,
-    fct_student_school_attendance.reported_as_present_at_home_room                as reported_as_present_at_home_room,
-    fct_student_school_attendance.reported_as_absent_from_home_room               as reported_as_absent_from_home_room,
     fct_student_school_attendance.is_on_the_verge                                 as is_on_the_verge,
     fct_student_school_attendance.is_chronically_absent                           as is_chronically_absent,
     if(

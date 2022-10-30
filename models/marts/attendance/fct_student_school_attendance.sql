@@ -16,7 +16,7 @@ with student_attendance as (
         ]) }}                                                                                               as student_key,
         ssa.school_year_type_reference.school_year                                                          as school_year,
         calendar_dates.date                                                                                 as date,
-        ifnull(school_attendance.attendance_event_category_descriptor, 'In Attendance')                as school_attendance_event_category_descriptor,
+        ifnull(school_attendance.attendance_event_category_descriptor, 'In Attendance')                     as school_attendance_event_category,
         ifnull(school_attendance.event_duration, 0)                                                         as event_duration,
         count(1) over(
             partition by ssa.school_year_type_reference.school_year, ssa.student_reference.student_unique_id

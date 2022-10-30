@@ -1,5 +1,5 @@
 
-select distinct
+select
     {{ dbt_utils.surrogate_key([
         'sections.course_offering_reference.school_id',
         'sections.course_offering_reference.school_year',
@@ -18,12 +18,11 @@ select distinct
     )                                                           as section_name,
     course_offering_reference.local_course_code                 as local_course_code,
     courses.course_title                                        as course_title,
-    class_period.class_period_reference.class_period_name       as class_period_name,
+    array(select class_period_reference.class_period_name from unnest(sections.class_periods)) as class_period_name,
     courses.academic_subject_descriptor                         as course_academic_subject,
     courses.course_gpa_applicability_descriptor                 as course_gpa_applicability,
     sections.available_credits                                  as available_credits
 from {{ ref('stg_edfi_sections') }} sections
-left join unnest(sections.class_periods) as class_period
 left join {{ ref('stg_edfi_schools') }} stg_edfi_schools
     on sections.course_offering_reference.school_id = stg_edfi_schools.school_id
 left join {{ ref('stg_edfi_course_offerings') }} course_offerings
