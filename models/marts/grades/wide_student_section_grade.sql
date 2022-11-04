@@ -55,7 +55,7 @@ staff as (
 
 select
     section_grade.school_year                                   as school_year,
-    dim_school.local_education_agency_name                      as local_education_agency_name,
+    dim_school.lea_name                      as lea_name,
     dim_school.school_name                                      as school_name,
     dim_student.student_unique_id                               as student_unique_id,
     dim_student.student_last_surname                            as student_last_surname,

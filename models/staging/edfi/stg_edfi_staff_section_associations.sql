@@ -17,7 +17,7 @@ select
     ) as section_reference,
     parse_date('%Y-%m-%d', json_value(data, "$.beginDate")) as begin_date,
     parse_date('%Y-%m-%d', json_value(data, "$.endDate")) as end_date,
-    split(json_value(data, "$.classroomPositionDescriptor"), '#')[OFFSET(1)] as classroom_position_descriptor,
+    split(json_value(data, "$.classroomPositionDescriptor"), '#')[offset(1)] as classroom_position_descriptor,
     cast(json_value(data, '$.highlyQualifiedTeacher') as BOOL) as highly_qualified_teacher,
     json_value(data, '$.percentageContribution') as percentage_contribution
 from records

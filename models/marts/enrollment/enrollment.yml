@@ -19,12 +19,12 @@ models:
               to: ref('dim_student')
               field: student_key
 
-      - name: local_education_agency_key
-        description: Foreign key to `dim_local_education_agency`
+      - name: lea_key
+        description: Foreign key to `dim_lea`
         tests:
           - relationships:
-              to: ref('dim_local_education_agency')
-              field: local_education_agency_key
+              to: ref('dim_lea')
+              field: lea_key
 
       - name: school_key
         description: Foreign key to `dim_school`

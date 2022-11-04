@@ -17,7 +17,7 @@ select
     cast(json_value(data, '$.legalGuardian') as BOOL) as legal_guardian,
     cast(json_value(data, '$.livesWith') as BOOL) as lives_with,
     cast(json_value(data, '$.primaryContactStatus') as BOOL) as primary_contact_status,
-    split(json_value(data, '$.relationDescriptor'), '#')[OFFSET(1)] as relation_descriptor
+    split(json_value(data, '$.relationDescriptor'), '#')[offset(1)] as relation_descriptor
 from records
 
 {{ remove_edfi_deletes_and_duplicates() }}

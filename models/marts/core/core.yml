@@ -58,22 +58,22 @@ models:
         description: Total days available for educational instruction during the grading period
 
 
-  - name: dim_local_education_agency
+  - name: dim_lea
     description: 'One row per LEA. Data comes from `/ed-fi/localEducationAgencies`. If the data lake has multiple years of information the LEA record from the most recent year is used.'
     columns:
-      - name: local_education_agency_key
+      - name: lea_key
         description: Primary key for dimension table
         tests:
           - unique
           - not_null
 
-      - name: local_education_agency_id
+      - name: lea_id
         description: Unique identifier for local education agency
         tests:
           - unique
           - not_null
 
-      - name: local_education_agency_name
+      - name: lea_name
         description: "The name assigned to a local education agency."
 
 
@@ -98,7 +98,7 @@ models:
       - name: school_type
         description: The type of education institution as classified by its primary focus.
 
-      - name: local_education_agency_name
+      - name: lea_name
         description: The name assigned to a local education agency.
 
 

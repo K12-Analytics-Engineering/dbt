@@ -7,23 +7,23 @@ select
     id                                      as id,
     json_value(data, '$.programName') as program_name,
     json_value(data, '$.programId') as program_id,
-    split(json_value(data, '$.programTypeDescriptor'), '#')[OFFSET(1)] as program_type_descriptor,
+    split(json_value(data, '$.programTypeDescriptor'), '#')[offset(1)] as program_type_descriptor,
     struct(
         json_value(data, '$.educationOrganizationReference.educationOrganizationId') as education_organization_id
     ) as education_organization_reference,
     array(
         select as struct 
-            split(json_value(services, "$.serviceDescriptor"), '#')[OFFSET(1)] as service_descriptor,
+            split(json_value(services, "$.serviceDescriptor"), '#')[offset(1)] as service_descriptor,
         from unnest(json_query_array(data, "$.services")) services 
     ) as services,
     array(
         select as struct 
-            split(json_value(sponsors, "$.programSponsorDescriptor"), '#')[OFFSET(1)] as program_sponsor_descriptor,
+            split(json_value(sponsors, "$.programSponsorDescriptor"), '#')[offset(1)] as program_sponsor_descriptor,
         from unnest(json_query_array(data, "$.sponsors")) sponsors 
     ) as sponsors,
     array(
         select as struct 
-            split(json_value(characteristics, "$.programCharacteristicDescriptor"), '#')[OFFSET(1)] as program_characteristic_descriptor,
+            split(json_value(characteristics, "$.programCharacteristicDescriptor"), '#')[offset(1)] as program_characteristic_descriptor,
         from unnest(json_query_array(data, "$.characteristics")) characteristics 
     ) as characteristics,
     array(
@@ -43,7 +43,7 @@ select
     ) as learning_standards,
     json_value(data, '$.schoolId') as school_id,
     json_value(data, '$.nameOfInstitution') as name_of_institution,
-    split(json_value(data, '$.schoolTypeDescriptor'), '#')[OFFSET(1)] as school_type_descriptor,
+    split(json_value(data, '$.schoolTypeDescriptor'), '#')[offset(1)] as school_type_descriptor,
 from records
 
 {{ remove_edfi_deletes_and_duplicates() }}

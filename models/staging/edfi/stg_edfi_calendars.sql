@@ -12,10 +12,10 @@ select
     struct(
         cast(json_value(data, '$.schoolYearTypeReference.schoolYear') as int64) as school_year
     ) as school_year_type_reference,
-    split(json_value(data, "$.calendarTypeDescriptor"), '#')[OFFSET(1)] as calendar_type_descriptor,
+    split(json_value(data, "$.calendarTypeDescriptor"), '#')[offset(1)] as calendar_type_descriptor,
     array(
         select as struct 
-            split(json_value(grade_levels, "$.gradeLevelDescriptor"), '#')[OFFSET(1)] as grade_level_descriptor
+            split(json_value(grade_levels, "$.gradeLevelDescriptor"), '#')[offset(1)] as grade_level_descriptor
         from unnest(json_query_array(data, "$.gradeLevels")) grade_levels 
     ) as grade_levels
 from records

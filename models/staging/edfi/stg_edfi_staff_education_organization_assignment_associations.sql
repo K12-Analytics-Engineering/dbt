@@ -8,7 +8,7 @@ select
     struct(
         json_value(data, '$.staffReference.staffUniqueId') as staff_unique_id
     ) as staff_reference,
-    split(json_value(data, "$.staffClassificationDescriptor"), '#')[OFFSET(1)] as staff_classification_descriptor,
+    split(json_value(data, "$.staffClassificationDescriptor"), '#')[offset(1)] as staff_classification_descriptor,
     struct(
         json_value(data, '$.educationOrganizationReference.educationOrganizationId') as education_organization_id
     ) as education_organization_reference,

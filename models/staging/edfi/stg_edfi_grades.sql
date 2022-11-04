@@ -7,11 +7,11 @@ select
     id                                      as id,
     cast(json_value(data, '$.numericGradeEarned') as float64) as numeric_grade_earned,
     json_value(data, '$.letterGradeEarned') as letter_grade_earned,
-    split(json_value(data, '$.performanceBaseConversionDescriptor'), '#')[OFFSET(1)] as performance_base_conversion_descriptor, 
-    split(json_value(data, '$.gradeTypeDescriptor'), '#')[OFFSET(1)] as grade_type_descriptor, 
+    split(json_value(data, '$.performanceBaseConversionDescriptor'), '#')[offset(1)] as performance_base_conversion_descriptor, 
+    split(json_value(data, '$.gradeTypeDescriptor'), '#')[offset(1)] as grade_type_descriptor, 
     json_value(data, '$.diagnosticStatement') as diagnostic_statement,
     struct(
-        split(json_value(data, '$.gradingPeriodReference.gradingPeriodDescriptor'), '#')[OFFSET(1)] as grading_period_name,
+        split(json_value(data, '$.gradingPeriodReference.gradingPeriodDescriptor'), '#')[offset(1)] as grading_period_name,
         cast(json_value(data, '$.gradingPeriodReference.periodSequence') as int64) as period_sequence,
         json_value(data, '$.gradingPeriodReference.schoolId') as school_id,
         cast(json_value(data, '$.gradingPeriodReference.schoolYear') as int64) as school_year

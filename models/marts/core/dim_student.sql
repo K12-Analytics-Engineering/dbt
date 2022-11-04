@@ -79,7 +79,7 @@ students as (
             students.first_name, ' ',
             coalesce(left(students.middle_name, 1), '')
         )                                                               as student_display_name,
-        seoa.electronic_mail[SAFE_OFFSET(0)].address                    as email,
+        seoa.electronic_mail[SAFE_offset(0)].address                    as email,
         ifnull(active_enrollments.is_actively_enrolled_in_school, 'No')           as is_actively_enrolled_in_school,
         student_grade_level.grade_level                                 as grade_level,
         student_grade_level.grade_level_id                              as grade_level_id,
@@ -102,7 +102,7 @@ students as (
             when seoa.hispanic_latino_ethnicity is true then 'Hispanic or Latino'
             when ARRAY_LENGTH(seoa.races) > 1 then 'Two or more races'
             when ARRAY_LENGTH(seoa.races) = 0 then 'Unknown'
-            else seoa.races[OFFSET(0)].race_descriptor
+            else seoa.races[offset(0)].race_descriptor
         end                                                             as race_and_ethnicity_roll_up,
         seoa.sex_descriptor                                             as gender,
         students.birth_date                                             as birth_date

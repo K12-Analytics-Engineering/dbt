@@ -11,24 +11,24 @@ select
     json_value(data, '$.firstName') as first_name,
     struct(
         json_value(data, '$.personReference.personId') as person_id,
-        split(json_value(data, "$.personReference.sourceSystemDescriptor"), '#')[OFFSET(1)] as source_system_descriptor
+        split(json_value(data, "$.personReference.sourceSystemDescriptor"), '#')[offset(1)] as source_system_descriptor
     ) as person_reference,
     json_value(data, '$.generationCodeSuffix') as generation_code_suffix,
     array(
         select as struct 
-            split(json_value(electronic_mails, '$.electronicMailTypeDescriptor'), '#')[OFFSET(1)] as electronic_mail_type_descriptor,
+            split(json_value(electronic_mails, '$.electronicMailTypeDescriptor'), '#')[offset(1)] as electronic_mail_type_descriptor,
             json_value(electronic_mails, "$.electronicMailAddress") as electronic_mail_address,
             cast(json_value(electronic_mails, "$.doNotPublishIndicator") as BOOL) as do_not_publish_indicator
         from unnest(json_query_array(data, "$.electronicMails")) electronic_mails 
     ) as electronic_mails,
     array(
         select as struct 
-            split(json_value(addresses, '$.addressTypeDescriptor'), '#')[OFFSET(1)] as address_type_descriptor,
-            split(json_value(addresses, '$.stateAbbreviationDescriptor'), '#')[OFFSET(1)] as state_abbreviation_descriptor,
+            split(json_value(addresses, '$.addressTypeDescriptor'), '#')[offset(1)] as address_type_descriptor,
+            split(json_value(addresses, '$.stateAbbreviationDescriptor'), '#')[offset(1)] as state_abbreviation_descriptor,
             json_value(addresses, "$.city") as city,
             json_value(addresses, "$.postalCode") as postal_code,
             json_value(addresses, "$.streetNumberName") as street_number_name,
-            split(json_value(addresses, '$.localeDescriptor'), '#')[OFFSET(1)] as locale_descriptor,
+            split(json_value(addresses, '$.localeDescriptor'), '#')[offset(1)] as locale_descriptor,
             json_value(addresses, "$.apartmentRoomSuiteNumber") as apartment_room_suite_number,
             json_value(addresses, "$.buildingSiteNumber") as building_site_number,
             json_value(addresses, "$.congressionalDistrict") as congressional_district,
@@ -41,7 +41,7 @@ select
     ) as addresses,
     array(
         select as struct 
-            split(json_value(telephones, '$.telephoneNumberTypeDescriptor'), '#')[OFFSET(1)] as telephone_number_type_descriptor,
+            split(json_value(telephones, '$.telephoneNumberTypeDescriptor'), '#')[offset(1)] as telephone_number_type_descriptor,
             json_value(telephones, "$.telephoneNumber") as telephone_number,
             cast(json_value(telephones, "$.doNotPublishIndicator") as BOOL) as do_not_publish_indicator,
             cast(json_value(telephones, "$.orderOfPriority") as int64) as order_of_priority,

@@ -8,7 +8,7 @@ select
     parse_date('%Y-%m-%d', json_value(data, '$.date')) as date,
     array(
         select as struct 
-            split(json_value(calendar_events, "$.calendarEventDescriptor"), '#')[OFFSET(1)] as calendar_event_descriptor
+            split(json_value(calendar_events, "$.calendarEventDescriptor"), '#')[offset(1)] as calendar_event_descriptor
         from unnest(json_query_array(data, "$.calendarEvents")) calendar_events 
     ) as calendar_events,
     struct(

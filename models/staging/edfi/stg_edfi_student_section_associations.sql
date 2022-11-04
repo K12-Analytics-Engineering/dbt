@@ -17,9 +17,9 @@ select
     ) as section_reference,
     parse_date('%Y-%m-%d', json_value(data, "$.beginDate")) as begin_date,
     parse_date('%Y-%m-%d', json_value(data, "$.endDate")) as end_date,
-    split(json_value(data, "$.attemptStatusDescriptor"), '#')[OFFSET(1)] as attempt_status_descriptor,
+    split(json_value(data, "$.attemptStatusDescriptor"), '#')[offset(1)] as attempt_status_descriptor,
     cast(json_value(data, '$.homeroomIndicator') as BOOL) as homeroom_indicator,
-    split(json_value(data, "$.repeatIdentifierDescriptor"), '#')[OFFSET(1)] as repeat_identifier_descriptor,
+    split(json_value(data, "$.repeatIdentifierDescriptor"), '#')[offset(1)] as repeat_identifier_descriptor,
     cast(json_value(data, '$.teacherStudentDataLinkExclusion') as BOOL) as teacher_student_data_link_exclusion
 from records
 

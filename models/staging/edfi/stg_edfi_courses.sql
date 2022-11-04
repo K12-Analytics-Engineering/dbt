@@ -8,10 +8,10 @@ select
     json_value(data, '$.courseCode') as course_code,
     json_value(data, '$.courseTitle') as course_title,
     json_value(data, '$.courseDescription') as course_description,
-    split(json_value(data, "$.academicSubjectDescriptor"), '#')[OFFSET(1)] as academic_subject_descriptor,
-    split(json_value(data, "$.careerPathwayDescriptor"), '#')[OFFSET(1)] as career_pathway_descriptor,
-    split(json_value(data, "$.courseDefinedByDescriptor"), '#')[OFFSET(1)] as course_defined_by_descriptor,
-    split(json_value(data, "$.courseGPAApplicabilityDescriptor"), '#')[OFFSET(1)] as course_gpa_applicability_descriptor,
+    split(json_value(data, "$.academicSubjectDescriptor"), '#')[offset(1)] as academic_subject_descriptor,
+    split(json_value(data, "$.careerPathwayDescriptor"), '#')[offset(1)] as career_pathway_descriptor,
+    split(json_value(data, "$.courseDefinedByDescriptor"), '#')[offset(1)] as course_defined_by_descriptor,
+    split(json_value(data, "$.courseGPAApplicabilityDescriptor"), '#')[offset(1)] as course_gpa_applicability_descriptor,
     parse_date('%Y-%m-%d', json_value(data, "$.dateCourseAdopted")) as date_course_adopted,
     cast(json_value(data, "$.highSchoolCourseRequirement") as BOOL) as high_school_course_requirement,
     cast(json_value(data, "$.maxCompletionsForCredit") as float64) as max_completions_for_credit,
@@ -25,13 +25,13 @@ select
     ) as education_organization_reference,
     array(
         select as struct 
-            split(json_value(levels, "$.competencyLevelDescriptor"), '#')[OFFSET(1)] as competency_level_descriptor,
+            split(json_value(levels, "$.competencyLevelDescriptor"), '#')[offset(1)] as competency_level_descriptor,
         from unnest(json_query_array(data, "$.competencyLevels")) levels 
     ) as competency_levels,
     array(
         select as struct 
-            split(json_value(codes, "$.identificationCodes.courseIdentificationSystemDescriptor"), '#')[OFFSET(1)] as course_identification_system_descriptor,
-            split(json_value(codes, "$.identificationCodes.assigningOrganizationIdentificationCode"), '#')[OFFSET(1)] as assigning_organization_identification_code,
+            split(json_value(codes, "$.identificationCodes.courseIdentificationSystemDescriptor"), '#')[offset(1)] as course_identification_system_descriptor,
+            split(json_value(codes, "$.identificationCodes.assigningOrganizationIdentificationCode"), '#')[offset(1)] as assigning_organization_identification_code,
             json_value(codes, "$.identificationCodes.courseCatalogURL") as course_catalog_url,
             json_value(codes, "$.identificationCodes.identificationCode") as identification_code
         from unnest(json_query_array(data, "$.identificationCodes")) codes 

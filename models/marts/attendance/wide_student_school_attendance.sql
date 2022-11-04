@@ -11,7 +11,7 @@ with max_school_year_dates as (
 
 select
     fct_student_school_attendance.school_year                                     as school_year,
-    dim_school.local_education_agency_name                                 as local_education_agency_name,
+    dim_school.lea_name                                 as lea_name,
     dim_school.school_id                                                   as school_id,
     dim_school.school_name                                                 as school_name,
     dim_student.student_unique_id                                          as student_unique_id,

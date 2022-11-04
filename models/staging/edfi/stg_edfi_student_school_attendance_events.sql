@@ -22,8 +22,8 @@ select
     json_value(data, '$.departureTime') as departure_time,
     cast(json_value(data, '$.eventDuration') as float64) as event_duration,
     cast(json_value(data, '$.schoolAttendanceDuration') as float64) as school_attendance_duration,
-    split(json_value(data, '$.attendanceEventCategoryDescriptor'), '#')[OFFSET(1)] as attendance_event_category_descriptor,
-    split(json_value(data, '$.educationalEnvironmentDescriptor'), '#')[OFFSET(1)] as educational_environment_descriptor,
+    split(json_value(data, '$.attendanceEventCategoryDescriptor'), '#')[offset(1)] as attendance_event_category_descriptor,
+    split(json_value(data, '$.educationalEnvironmentDescriptor'), '#')[offset(1)] as educational_environment_descriptor,
 from records
 
 {{ remove_edfi_deletes_and_duplicates() }}

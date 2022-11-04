@@ -15,8 +15,8 @@ select
     ) as course_offering_reference,
     cast(json_value(data, '$.availableCreditConversion') as float64) as available_credit_conversion,
     cast(json_value(data, '$.availableCredits') as float64) as available_credits,
-    split(json_value(data, '$.availableCreditTypeDescriptor'), '#')[OFFSET(1)] as available_credit_type_descriptor,
-    split(json_value(data, '$.educationalEnvironmentDescriptor'), '#')[OFFSET(1)] as educational_environment_descriptor,
+    split(json_value(data, '$.availableCreditTypeDescriptor'), '#')[offset(1)] as available_credit_type_descriptor,
+    split(json_value(data, '$.educationalEnvironmentDescriptor'), '#')[offset(1)] as educational_environment_descriptor,
     struct(
         json_value(data, '$.locationReference.classroomIdentificationCode') as classroom_identification_code,
         json_value(data, '$.locationReference.schoolId') as school_id

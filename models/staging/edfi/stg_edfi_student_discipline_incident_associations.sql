@@ -9,13 +9,13 @@ select
         json_value(data, '$.disciplineIncidentReference.incidentIdentifier') as incident_identifier,
         json_value(data, '$.disciplineIncidentReference.schoolId') as school_id
     ) as discipline_incident_reference,
-    split(json_value(data, '$.studentParticipationCodeDescriptor'), '#')[OFFSET(1)] as student_participation_code_descriptor,
+    split(json_value(data, '$.studentParticipationCodeDescriptor'), '#')[offset(1)] as student_participation_code_descriptor,
     struct(
         json_value(data, '$.studentReference.studentUniqueId') as student_unique_id
     ) as student_reference,
     array(
         select as struct 
-            split(json_value(behaviors, '$.behaviorDescriptor'), '#')[OFFSET(1)] as behavior_descriptor,
+            split(json_value(behaviors, '$.behaviorDescriptor'), '#')[offset(1)] as behavior_descriptor,
             json_value(behaviors, "$.behaviorDetailedDescription") as behavior_detailed_description
         from unnest(json_query_array(data, "$.behaviors")) behaviors 
     ) as behaviors

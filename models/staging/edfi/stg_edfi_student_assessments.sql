@@ -8,13 +8,13 @@ select
     json_value(data, '$.studentAssessmentIdentifier') as student_assessment_identifier,
     extract(DATE from PARSE_TIMESTAMP('%Y-%m-%dT%TZ', json_value(data, '$.administrationDate'))) as administration_date,
     -- administrationEndDate
-    split(json_value(data, "$.administrationEnvironmentDescriptor"), '#')[OFFSET(1)] as administration_environment_descriptor,
-    split(json_value(data, "$.administrationLanguageDescriptor"), '#')[OFFSET(1)] as administration_language_descriptor,
-    split(json_value(data, "$.eventCircumstanceDescriptor"), '#')[OFFSET(1)] as event_circumstance_descriptor,
-    split(json_value(data, "$.platformTypeDescriptor"), '#')[OFFSET(1)] as platform_type_descriptor,
-    split(json_value(data, "$.reasonNotTestedDescriptor"), '#')[OFFSET(1)] as reason_not_tested_descriptor,
-    split(json_value(data, "$.retestIndicatorDescriptor"), '#')[OFFSET(1)] as retest_indicator_descriptor,
-    split(json_value(data, "$.whenAssessedGradeLevelDescriptor"), '#')[OFFSET(1)] as when_assessed_grade_level_descriptor,
+    split(json_value(data, "$.administrationEnvironmentDescriptor"), '#')[offset(1)] as administration_environment_descriptor,
+    split(json_value(data, "$.administrationLanguageDescriptor"), '#')[offset(1)] as administration_language_descriptor,
+    split(json_value(data, "$.eventCircumstanceDescriptor"), '#')[offset(1)] as event_circumstance_descriptor,
+    split(json_value(data, "$.platformTypeDescriptor"), '#')[offset(1)] as platform_type_descriptor,
+    split(json_value(data, "$.reasonNotTestedDescriptor"), '#')[offset(1)] as reason_not_tested_descriptor,
+    split(json_value(data, "$.retestIndicatorDescriptor"), '#')[offset(1)] as retest_indicator_descriptor,
+    split(json_value(data, "$.whenAssessedGradeLevelDescriptor"), '#')[offset(1)] as when_assessed_grade_level_descriptor,
     json_value(data, '$.eventDescription') as event_description,
     json_value(data, '$.serialNumber') as serial_number,
     struct(
@@ -29,20 +29,20 @@ select
     ) as student_reference,
     array(
         select as struct 
-            split(json_value(score_results, "$.assessmentReportingMethodDescriptor"), '#')[OFFSET(1)] as assessment_reporting_method_descriptor,
-            split(json_value(score_results, "$.resultDatatypeTypeDescriptor"), '#')[OFFSET(1)] as result_datatype_type_descriptor,
+            split(json_value(score_results, "$.assessmentReportingMethodDescriptor"), '#')[offset(1)] as assessment_reporting_method_descriptor,
+            split(json_value(score_results, "$.resultDatatypeTypeDescriptor"), '#')[offset(1)] as result_datatype_type_descriptor,
             json_value(score_results, '$.result') as result
         from unnest(json_query_array(data, "$.scoreResults")) score_results 
     ) as score_results,
     array(
         select as struct 
-            split(json_value(accommodations, "$.accommodationDescriptor"), '#')[OFFSET(1)] as accommodation_descriptor,
+            split(json_value(accommodations, "$.accommodationDescriptor"), '#')[offset(1)] as accommodation_descriptor,
         from unnest(json_query_array(data, "$.accommodations")) accommodations 
     ) as accommodations,
     array(
         select as struct 
-            split(json_value(items, "$.assessmentItemResultDescriptor"), '#')[OFFSET(1)] as assessment_item_result_descriptor,
-            split(json_value(items, "$.responseIndicatorDescriptor"), '#')[OFFSET(1)] as response_indicator_descriptor,
+            split(json_value(items, "$.assessmentItemResultDescriptor"), '#')[offset(1)] as assessment_item_result_descriptor,
+            split(json_value(items, "$.responseIndicatorDescriptor"), '#')[offset(1)] as response_indicator_descriptor,
             json_value(items, '$.assessmentResponse') as assessment_response,
             json_value(items, '$.descriptiveFeedback') as descriptive_feedback,
             cast(json_value(items, '$.rawScoreResult') as float64) as raw_score_result,
@@ -51,8 +51,8 @@ select
     ) as items,
     array(
         select as struct 
-            split(json_value(performance_levels, "$.assessmentReportingMethodDescriptor"), '#')[OFFSET(1)] as assessment_reporting_method_descriptor,
-            split(json_value(performance_levels, "$.performanceLevelDescriptor"), '#')[OFFSET(1)] as performance_level_descriptor,
+            split(json_value(performance_levels, "$.assessmentReportingMethodDescriptor"), '#')[offset(1)] as assessment_reporting_method_descriptor,
+            split(json_value(performance_levels, "$.performanceLevelDescriptor"), '#')[offset(1)] as performance_level_descriptor,
             cast(json_value(performance_levels, "$.performanceLevelMet") as BOOL) as performance_level_met
         from unnest(json_query_array(data, "$.performanceLevels")) performance_levels 
     ) as performance_levels,
@@ -65,15 +65,15 @@ select
                 ) as objective_assessment_reference,
                 array(
                     select as struct 
-                        split(json_value(performance_levels, "$.assessmentReportingMethodDescriptor"), '#')[OFFSET(1)] as assessment_reporting_method_descriptor,
-                        split(json_value(performance_levels, "$.performanceLevelDescriptor"), '#')[OFFSET(1)] as performance_level_descriptor,
+                        split(json_value(performance_levels, "$.assessmentReportingMethodDescriptor"), '#')[offset(1)] as assessment_reporting_method_descriptor,
+                        split(json_value(performance_levels, "$.performanceLevelDescriptor"), '#')[offset(1)] as performance_level_descriptor,
                         cast(json_value(performance_levels, "$.performanceLevelMet") as BOOL) as performance_level_met
                     from unnest(json_query_array(assessments, "$.performanceLevels")) performance_levels 
                 ) as performance_levels,
                 array(
                     select as struct 
-                        split(json_value(score_results, "$.assessmentReportingMethodDescriptor"), '#')[OFFSET(1)] as assessment_reporting_method_descriptor,
-                        split(json_value(score_results, "$.resultDatatypeTypeDescriptor"), '#')[OFFSET(1)] as result_datatype_type_descriptor,
+                        split(json_value(score_results, "$.assessmentReportingMethodDescriptor"), '#')[offset(1)] as assessment_reporting_method_descriptor,
+                        split(json_value(score_results, "$.resultDatatypeTypeDescriptor"), '#')[offset(1)] as result_datatype_type_descriptor,
                         json_value(score_results, '$.result') as result
                     from unnest(json_query_array(assessments, "$.scoreResults")) score_results 
                 ) as score_results

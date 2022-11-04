@@ -8,7 +8,7 @@ This dimension table notably lacks the date key found in Ed-Fi's Analytics Middl
 {% enddocs %}
 
 
-{% docs dim_local_education_agency %}
+{% docs dim_lea %}
 
 # Local education agency dim
 

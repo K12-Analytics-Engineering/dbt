@@ -4,8 +4,8 @@ with student_attendance as (
 
     select
         {{ dbt_utils.surrogate_key([
-            'schools.local_education_agency_id'
-        ]) }}                                                                                               as local_education_agency_key,
+            'schools.lea_id'
+        ]) }}                                                                                               as lea_key,
         {{ dbt_utils.surrogate_key([
             'ssa.school_reference.school_id',
             'ssa.school_year_type_reference.school_year'
@@ -62,7 +62,7 @@ with student_attendance as (
 
 
 select
-    local_education_agency_key,
+    lea_key,
     school_key,
     student_key,
     school_year,

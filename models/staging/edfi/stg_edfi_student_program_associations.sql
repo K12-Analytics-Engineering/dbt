@@ -10,25 +10,25 @@ select
     struct(
         json_value(data, '$.educationOrganizationReference.educationOrganizationId') as education_organization_id
     ) as education_organization_reference,
-    split(json_value(data, "$.reasonExitedDescriptor"), '#')[OFFSET(1)] as reason_exited_descriptor,
+    split(json_value(data, "$.reasonExitedDescriptor"), '#')[offset(1)] as reason_exited_descriptor,
     cast(json_value(data, '$.servedOutsideOfRegularSession') as BOOL) served_outside_of_regular_session,
     struct(
         json_value(data, '$.programReference.educationOrganizationId') as education_organization_id,
         json_value(data, '$.programReference.programName') as program_name,
-        split(json_value(data, "$.programReference.programTypeDescriptor"), '#')[OFFSET(1)] as program_type_descriptor
+        split(json_value(data, "$.programReference.programTypeDescriptor"), '#')[offset(1)] as program_type_descriptor
     ) as program_reference,
     struct(
         json_value(data, '$.studentReference.studentUniqueId') as student_unique_id
     ) as student_reference,
     struct(
-        split(json_value(data, "$.participationStatus.participationStatusDescriptor"), '#')[OFFSET(1)] as participation_status_descriptor,
+        split(json_value(data, "$.participationStatus.participationStatusDescriptor"), '#')[offset(1)] as participation_status_descriptor,
         json_value(data, '$.participationStatus.designatedBy') as designated_by,
         parse_date('%Y-%m-%d', json_value(data, "$.participationStatus.statusBeginDate")) as status_begin_date,
         parse_date('%Y-%m-%d', json_value(data, "$.participationStatus.statusEndDate")) as status_end_date
     ) as participation_status,
     array(
         select as struct 
-            split(json_value(statuses, "$.participationStatusDescriptor"), '#')[OFFSET(1)] as participation_status_descriptor,
+            split(json_value(statuses, "$.participationStatusDescriptor"), '#')[offset(1)] as participation_status_descriptor,
             json_value(statuses, '$.designatedBy') as designated_by,
             parse_date('%Y-%m-%d', json_value(statuses, "$.statusBeginDate")) as status_begin_date,
             parse_date('%Y-%m-%d', json_value(statuses, "$.statusEndDate")) as status_end_date
@@ -36,7 +36,7 @@ select
     ) as program_participation_statuses,
     array(
         select as struct 
-            split(json_value(services, "$.serviceDescriptor"), '#')[OFFSET(1)] as service_descriptor,
+            split(json_value(services, "$.serviceDescriptor"), '#')[offset(1)] as service_descriptor,
             cast(json_value(services, '$.primaryIndicator') as BOOL) primary_indicator,
             parse_date('%Y-%m-%d', json_value(services, "$.statusBeginDate")) as status_begin_date,
             parse_date('%Y-%m-%d', json_value(services, "$.statusEndDate")) as status_end_date

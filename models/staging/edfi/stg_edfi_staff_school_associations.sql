@@ -19,15 +19,15 @@ select
         json_value(data, '$.calendarReference.schoolId') as school_id,
         cast(json_value(data, '$.calendarReference.schoolYear') as int64) as school_year
     ) as calendar_reference,
-    split(json_value(data, "$.programAssignmentDescriptor"), '#')[OFFSET(1)] as program_assignment_descriptor,
+    split(json_value(data, "$.programAssignmentDescriptor"), '#')[offset(1)] as program_assignment_descriptor,
     array(
         select as struct 
-            split(json_value(academic_subjects, "$.academicSubjectDescriptor"), '#')[OFFSET(1)] as academic_subject_descriptor,
+            split(json_value(academic_subjects, "$.academicSubjectDescriptor"), '#')[offset(1)] as academic_subject_descriptor,
         from unnest(json_query_array(data, "$.academicSubjects")) academic_subjects 
     ) as academic_subjects,
     array(
         select as struct 
-            split(json_value(grade_levels, "$.gradeLevelDescriptor"), '#')[OFFSET(1)] as grade_level_descriptor,
+            split(json_value(grade_levels, "$.gradeLevelDescriptor"), '#')[offset(1)] as grade_level_descriptor,
         from unnest(json_query_array(data, "$.gradeLevels")) grade_levels 
     ) as grade_levels,
 from records
