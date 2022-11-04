@@ -7,7 +7,7 @@ Used for looking at a student's attendance by day. This fact table provides a ro
 {% enddocs %}
 
 
-{% docs rpt_student_school_attendance %}
+{% docs wide_student_school_attendance %}
 
 # Report student attendance
 

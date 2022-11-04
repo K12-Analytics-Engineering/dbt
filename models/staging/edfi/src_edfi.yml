@@ -6,6 +6,10 @@ sources:
         {%- if  target.name == "dev" -%} dev_staging
         {%- else -%} prod_staging
         {%- endif -%}
+      freshness:
+        warn_after: {count: 24, period: hour}
+        error_after: {count: 36, period: hour}
+      loaded_at_field: date_extracted
       tables:
         - name: base_edfi_assessments
           columns:
@@ -14,7 +18,7 @@ sources:
             - name: id
               data_type: string
             - name: data
-              data_type: string
+              data_type: json
           external:
             location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_assessments/*'
             options:
@@ -37,7 +41,7 @@ sources:
             - name: id
               data_type: string
             - name: data
-              data_type: string
+              data_type: json
           external:
             location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_calendars/*'
             options:
@@ -60,7 +64,7 @@ sources:
             - name: id
               data_type: string
             - name: data
-              data_type: string
+              data_type: json
           external:
             location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_calendar_dates/*'
             options:
@@ -83,7 +87,7 @@ sources:
             - name: id
               data_type: string
             - name: data
-              data_type: string
+              data_type: json
           external:
             location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_courses/*'
             options:
@@ -106,7 +110,7 @@ sources:
             - name: id
               data_type: string
             - name: data
-              data_type: string
+              data_type: json
           external:
             location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_course_offerings/*'
             options:
@@ -129,7 +133,7 @@ sources:
             - name: id
               data_type: string
             - name: data
-              data_type: string
+              data_type: json
           external:
             location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_discipline_actions/*'
             options:
@@ -152,7 +156,7 @@ sources:
             - name: id
               data_type: string
             - name: data
-              data_type: string
+              data_type: json
           external:
             location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_discipline_incidents/*'
             options:
@@ -175,7 +179,7 @@ sources:
             - name: id
               data_type: string
             - name: data
-              data_type: string
+              data_type: json
           external:
             location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_grading_periods/*'
             options:
@@ -198,7 +202,7 @@ sources:
             - name: id
               data_type: string
             - name: data
-              data_type: string
+              data_type: json
           external:
             location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_grading_period_descriptors/*'
             options:
@@ -221,7 +225,7 @@ sources:
             - name: id
               data_type: string
             - name: data
-              data_type: string
+              data_type: json
           external:
             location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_grades/*'
             options:
@@ -244,7 +248,7 @@ sources:
             - name: id
               data_type: string
             - name: data
-              data_type: string
+              data_type: json
           external:
             location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_local_education_agencies/*'
             options:
@@ -267,7 +271,7 @@ sources:
             - name: id
               data_type: string
             - name: data
-              data_type: string
+              data_type: json
           external:
             location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_objective_assessments/*'
             options:
@@ -290,7 +294,7 @@ sources:
             - name: id
               data_type: string
             - name: data
-              data_type: string
+              data_type: json
           external:
             location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_parents/*'
             options:
@@ -313,7 +317,7 @@ sources:
             - name: id
               data_type: string
             - name: data
-              data_type: string
+              data_type: json
           external:
             location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_programs/*'
             options:
@@ -336,7 +340,7 @@ sources:
             - name: id
               data_type: string
             - name: data
-              data_type: string
+              data_type: json
           external:
             location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_schools/*'
             options:
@@ -359,7 +363,7 @@ sources:
             - name: id
               data_type: string
             - name: data
-              data_type: string
+              data_type: json
           external:
             location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_school_year_types/*'
             options:
@@ -382,7 +386,7 @@ sources:
             - name: id
               data_type: string
             - name: data
-              data_type: string
+              data_type: json
           external:
             location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_sections/*'
             options:
@@ -405,7 +409,7 @@ sources:
             - name: id
               data_type: string
             - name: data
-              data_type: string
+              data_type: json
           external:
             location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_sessions/*'
             options:
@@ -428,7 +432,7 @@ sources:
             - name: id
               data_type: string
             - name: data
-              data_type: string
+              data_type: json
           external:
             location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_staffs/*'
             options:
@@ -451,7 +455,7 @@ sources:
             - name: id
               data_type: string
             - name: data
-              data_type: string
+              data_type: json
           external:
             location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_staff_discipline_incident_associations/*'
             options:
@@ -474,7 +478,7 @@ sources:
             - name: id
               data_type: string
             - name: data
-              data_type: string
+              data_type: json
           external:
             location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_staff_education_organization_assignment_associations/*'
             options:
@@ -497,7 +501,7 @@ sources:
             - name: id
               data_type: string
             - name: data
-              data_type: string
+              data_type: json
           external:
             location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_staff_school_associations/*'
             options:
@@ -520,7 +524,7 @@ sources:
             - name: id
               data_type: string
             - name: data
-              data_type: string
+              data_type: json
           external:
             location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_staff_section_associations/*'
             options:
@@ -543,7 +547,7 @@ sources:
             - name: id
               data_type: string
             - name: data
-              data_type: string
+              data_type: json
           external:
             location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_students/*'
             options:
@@ -566,7 +570,7 @@ sources:
             - name: id
               data_type: string
             - name: data
-              data_type: string
+              data_type: json
           external:
             location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_student_assessments/*'
             options:
@@ -589,7 +593,7 @@ sources:
             - name: id
               data_type: string
             - name: data
-              data_type: string
+              data_type: json
           external:
             location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_student_discipline_incident_associations/*'
             options:
@@ -612,7 +616,7 @@ sources:
             - name: id
               data_type: string
             - name: data
-              data_type: string
+              data_type: json
           external:
             location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_student_education_organization_associations/*'
             options:
@@ -635,7 +639,7 @@ sources:
             - name: id
               data_type: string
             - name: data
-              data_type: string
+              data_type: json
           external:
             location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_student_parent_associations/*'
             options:
@@ -658,7 +662,7 @@ sources:
             - name: id
               data_type: string
             - name: data
-              data_type: string
+              data_type: json
           external:
             location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_student_program_associations/*'
             options:
@@ -681,7 +685,7 @@ sources:
             - name: id
               data_type: string
             - name: data
-              data_type: string
+              data_type: json
           external:
             location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_student_school_associations/*'
             options:
@@ -704,7 +708,7 @@ sources:
             - name: id
               data_type: string
             - name: data
-              data_type: string
+              data_type: json
           external:
             location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_student_school_attendance_events/*'
             options:
@@ -727,7 +731,7 @@ sources:
             - name: id
               data_type: string
             - name: data
-              data_type: string
+              data_type: json
           external:
             location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_student_section_associations/*'
             options:
@@ -750,7 +754,7 @@ sources:
             - name: id
               data_type: string
             - name: data
-              data_type: string
+              data_type: json
           external:
             location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_student_section_attendance_events/*'
             options:
@@ -773,7 +777,7 @@ sources:
             - name: id
               data_type: string
             - name: data
-              data_type: string
+              data_type: json
           external:
             location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_student_special_education_program_associations/*'
             options:
@@ -796,7 +800,7 @@ sources:
             - name: id
               data_type: string
             - name: data
-              data_type: string
+              data_type: json
           external:
             location: 'gs://{{ env_var("GCS_BUCKET") }}/edfi_api/base_edfi_descriptors/*'
             options:

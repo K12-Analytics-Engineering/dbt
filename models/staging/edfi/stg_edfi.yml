@@ -3,33 +3,194 @@ version: 2
 
 
 models:
+  - name: stg_edfi_assessments
+    description: "This entity represents a tool, instrument, process, or exhibition composed of a systematic sampling of behavior for measuring a student's competence, knowledge, skills, or behavior."
+    tests:
+      - unique:
+          column_name: id
+
   - name: stg_edfi_calendar_dates
     description: "The type of scheduled or unscheduled event for the day."
+    tests:
+      - unique:
+          column_name: id
+
+  - name: stg_edfi_calendars
+    description: "A set of dates associated with an organization."
+    tests:
+      - unique:
+          column_name: id
   
   - name: stg_edfi_course_offerings
     description: "This entity represents an entry in the course catalog of available courses offered by the school during a session."
+    tests:
+      - unique:
+          column_name: id
 
   - name: stg_edfi_courses
     description: "This educational entity represents the organization of subject matter and related learning experiences provided for the instruction of students on a regular or systematic basis."
+    tests:
+      - unique:
+          column_name: id
 
-  - name: stg_edfi_local_education_agencies
+  - name: stg_edfi_descriptors
     description: ""
     tests:
       - unique:
-          column_name: "concat(school_year, '-', local_education_agency_id)"
+          column_name: id
+
+  - name: stg_edfi_discipline_incidents
+    description: "This event entity represents an occurrence of an infraction ranging from a minor behavioral problem that disrupts the orderly functioning of a school or classroom (such as tardiness) to a criminal act that results in the involvement of a law enforcement official (such as robbery)."
+    tests:
+      - unique:
+          column_name: id
+
+  - name: stg_edfi_grades
+    description: "This educational entity represents an overall score or assessment tied to a course over a period of time (i.e., the grading period). Student grades are usually a compilation of marks and other scores."
+    tests:
+      - unique:
+          column_name: id
+
+  - name: stg_edfi_grading_periods
+    description: "This entity represents the time span for which grades are reported."
+    tests:
+      - unique:
+          column_name: id
+
+  - name: stg_edfi_local_education_agencies
+    description: "This entity represents an administrative unit at the local level which exists primarily to operate schools or to contract for educational services. It includes school districts, charter schools, charter management organizations, or other local administrative organizations."
+    tests:
+      - unique:
+          column_name: id
+
+  - name: stg_edfi_objective_assessments
+    description: "This entity represents subtests that assess specific learning objectives."
+    tests:
+      - unique:
+          column_name: id
+
+  - name: stg_edfi_parents
+    description: "This entity represents a parent or guardian of a student, such as mother, father, or caretaker."
+    tests:
+      - unique:
+          column_name: id
+
+  - name: stg_edfi_programs
+    description: "This entity represents any program designed to work in conjunction with, or as a supplement to, the main academic program. Programs may provide instruction, training, services, or benefits through federal, state, or local agencies. Programs may also include organized extracurricular activities for students."
+    tests:
+      - unique:
+          column_name: id
+
+  - name: stg_edfi_school_year_types
+    description: "Identifier for a school year."
+    tests:
+      - unique:
+          column_name: id
 
   - name: stg_edfi_schools
-    description: ""
-    columns:
-      - name: school_id
-        description: Unique school identifier
-        tests:
-          - relationships:
-              to: ref('stg_edfi_sessions')
-              field: school_reference.school_id
+    description: "This entity represents an educational organization that includes staff and students who participate in classes and educational activity groups."
+    tests:
+      - unique:
+          column_name: id
+
+  - name: stg_edfi_sections
+    description: "This entity represents a setting in which organized instruction of course content is provided, in-person or otherwise, to one or more students for a given period of time. A course offering may be offered to more than one section."
+    tests:
+      - unique:
+          column_name: id
+
+  - name: stg_edfi_sessions
+    description: "A term in the school year, generally a unit of time into which courses are scheduled, instruction occurs and by which credits are awarded. Sessions may be interrupted by vacations or other events."
+    tests:
+      - unique:
+          column_name: id
+
+  - name: stg_edfi_staff_education_organization_assignment_associations
+    description: "This association indicates the education organization to which a staff member provides services."
+    tests:
+      - unique:
+          column_name: id
+
+  - name: stg_edfi_staff_school_associations
+    description: "This association indicates the school(s) to which a staff member provides instructional services."
+    tests:
+      - unique:
+          column_name: id
+
+  - name: stg_edfi_staff_section_associations
+    description: "This association indicates the class sections to which a staff member is assigned."
+    tests:
+      - unique:
+          column_name: id
+
+  - name: stg_edfi_staffs
+    description: "This entity represents an individual who performs specified activities for any public or private education institution or agency that provides instructional and/or support services to students or staff at the early childhood level through high school completion."
+    tests:
+      - unique:
+          column_name: id
+
+  - name: stg_edfi_student_assessments
+    description: "This entity represents the analysis or scoring of a student's response on an assessment. The analysis results in a value that represents a student's performance on a set of items on a test."
+    tests:
+      - unique:
+          column_name: id
+
+  - name: stg_edfi_student_discipline_incident_associations
+    description: "This association indicates those students who were victims, perpetrators, witnesses, and reporters for a discipline incident."
+    tests:
+      - unique:
+          column_name: id
+
+  - name: stg_edfi_student_education_organization_associations
+    description: "This association represents student information as reported in the context of the student's relationship to the education organization. Enrollment relationship semantics are covered by StudentSchoolAssociation."
+    tests:
+      - unique:
+          column_name: id
+
+  - name: stg_edfi_student_parent_associations
+    description: "This association relates students to their parents, guardians, or caretakers."
+    tests:
+      - unique:
+          column_name: id
+
+  - name: stg_edfi_student_program_associations
+    description: "This association represents the program(s) that a student participates in or is served by."
+    tests:
+      - unique:
+          column_name: id
+
+  - name: stg_edfi_student_school_associations
+    description: "This association represents the school in which a student is enrolled. The semantics of enrollment may differ slightly by state. Non-enrollment relationships between a student and an education organization may be described using the StudentEducationOrganizationAssociation."
+    tests:
+      - unique:
+          column_name: id
+
+  - name: stg_edfi_student_school_attendance_events
+    description: "This event entity represents the recording of whether a student is in attendance for a school day."
+    tests:
+      - unique:
+          column_name: id
+
+  - name: stg_edfi_student_section_associations
+    description: "This association indicates the course sections to which a student is assigned."
+    tests:
+      - unique:
+          column_name: id
+
+  - name: stg_edfi_student_section_attendance_events
+    description: "This event entity represents the recording of whether a student is in attendance for a section."
+    tests:
+      - unique:
+          column_name: id
+
+  - name: stg_edfi_student_special_education_program_associations
+    description: "This association represents the special education program(s) that a student participates in or receives services from. The association is an extension of the StudentProgramAssociation particular for special education programs."
+    tests:
+      - unique:
+          column_name: id
 
   - name: stg_edfi_students
     description: "This entity represents an individual for whom instruction, services, and/or care are provided in an early childhood, elementary, or secondary educational program under the jurisdiction of a school, education agency or other institution or program. A student is a person who has been enrolled in a school or other educational institution."
     tests:
       - unique:
-          column_name: "school_year || '-' || student_unique_id"
+          column_name: id
