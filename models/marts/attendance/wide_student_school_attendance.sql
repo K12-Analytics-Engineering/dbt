@@ -7,6 +7,22 @@ with max_school_year_dates as (
     from {{ ref('fct_student_school_attendance') }}
     group by 1
 
+),
+
+student_enrollment as (
+
+    select
+        fct_student_school.school_key,
+        fct_student_school.student_key,
+        fct_student_school.grade_level,
+        fct_student_school.grade_level_id,
+        fct_student_school.is_actively_enrolled_in_school
+    from {{ ref('fct_student_school') }} fct_student_school
+    qualify row_number() over (
+        partition by school_key, student_key
+        order by enrollment_date desc
+    ) = 1
+
 )
 
 select
@@ -18,9 +34,9 @@ select
     dim_student.student_display_name                                       as student_display_name,
     dim_student.student_last_surname                                       as student_last_surname,
     dim_student.student_first_name                                         as student_first_name,
-    dim_student.is_actively_enrolled_in_school                             as is_actively_enrolled_in_school,
-    dim_student.grade_level                                                as grade_level,
-    dim_student.grade_level_id                                             as grade_level_id,
+    student_enrollment.is_actively_enrolled_in_school                      as is_actively_enrolled_in_school,
+    student_enrollment.grade_level                                         as grade_level,
+    student_enrollment.grade_level_id                                      as grade_level_id,
     dim_student.gender                                                     as gender,
     dim_student.limited_english_proficiency                                as limited_english_proficiency,
     dim_student.is_english_language_learner                                as is_english_language_learner,
@@ -31,14 +47,17 @@ select
     dim_date.month_name                                                    as month_name,
     dim_date.month_sort_order                                              as month_sort_order,
     fct_student_school_attendance.school_attendance_event_category         as school_attendance_event_category,
-    fct_student_school_attendance.event_duration                                  as event_duration,
-    fct_student_school_attendance.is_on_the_verge                                 as is_on_the_verge,
-    fct_student_school_attendance.is_chronically_absent                           as is_chronically_absent,
+    fct_student_school_attendance.event_duration                           as event_duration,
+    fct_student_school_attendance.is_on_the_verge                          as is_on_the_verge,
+    fct_student_school_attendance.is_chronically_absent                    as is_chronically_absent,
     if(
         dim_date.date = max_school_year_dates.latest_date, true, false
     )                                                                      as is_latest_date_avaliable,
     rls_user_student_data_authorization.authorized_emails
 from {{ ref('fct_student_school_attendance') }} fct_student_school_attendance
+left join student_enrollment
+    on fct_student_school_attendance.school_key = student_enrollment.school_key
+    and fct_student_school_attendance.student_key = student_enrollment.student_key
 left join {{ ref('dim_student') }} dim_student
     on fct_student_school_attendance.student_key = dim_student.student_key
 left join {{ ref('dim_date') }} dim_date

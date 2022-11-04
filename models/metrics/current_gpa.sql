@@ -32,15 +32,15 @@ select
     dim_student.student_unique_id                                    as student_unique_id,
     dim_student.student_display_name                                 as student_display_name,
     fct_student_school.school_year                                   as school_year,
-    dim_student.grade_level                                          as grade_level,
-    dim_student.grade_level_id                                       as grade_level_id,
+    fct_student_school.grade_level                                   as grade_level,
+    fct_student_school.grade_level_id                                as grade_level_id,
     dim_student.gender                                               as gender,
     dim_student.limited_english_proficiency                          as limited_english_proficiency,
     dim_student.is_english_language_learner                          as is_english_language_learner,
     dim_student.in_special_education_program                         as in_special_education_program,
     dim_student.is_hispanic                                          as is_hispanic,
     dim_student.race_and_ethnicity_roll_up                           as race_and_ethnicity_roll_up,
-    SUM(unweighted_gpa_points) / SUM(available_credits) as unweighted_current_gpa
+    sum(unweighted_gpa_points) / sum(available_credits) as unweighted_current_gpa
 from gpa_points
 left join {{ ref('fct_student_school') }} fct_student_school
     on gpa_points.student_key = fct_student_school.student_key
@@ -49,4 +49,4 @@ left join {{ ref('dim_student') }} dim_student
 left join {{ ref('dim_school') }} dim_school
     on fct_student_school.school_key = dim_school.school_key
 where fct_student_school.is_actively_enrolled_in_school = 1
-group by 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+{{ dbt_utils.group_by(n=12) }}

@@ -67,7 +67,7 @@ select
     student_key,
     school_year,
     date,
-    school_attendance_event_category_descriptor,
+    school_attendance_event_category,
     event_duration,
     if(sum_event_duration_thus_far >= 15, 1, 0)                                                                    as is_chronically_absent,
     if((number_days_enrolled_thus_far - sum_event_duration_thus_far) / number_days_enrolled_thus_far < 0.92, 1, 0) as is_on_the_verge

@@ -18,7 +18,7 @@ select
         hispanic_latino_ethnicity is true,
         'Yes',
         'No')                                  as is_hispanic,
-    lower(email.electronic_mail_address)       as email
+    lower(email.electronic_mail_address)       as staff_email
 from {{ ref('stg_edfi_staffs') }}
 left join unnest(electronic_mails) email
     on email.electronic_mail_type_descriptor = 'Work'

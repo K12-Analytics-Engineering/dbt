@@ -4,7 +4,7 @@ with assessments as (
     select
         fct_student_assessment.school_year,
         fct_student_assessment.student_assessment_identifier,
-        ARRAY_AGG(
+        array_agg(
             struct(
                 fct_student_assessment.reporting_method                    as reporting_method,
                 fct_student_assessment.student_result                      as student_result
@@ -14,7 +14,7 @@ with assessments as (
     left join {{ ref('dim_assessment') }} dim_assessment
         on fct_student_assessment.assessment_key = dim_assessment.assessment_key
     where dim_assessment.objective_assessment_identification_code is null
-    group by 1, 2
+    group by 1,2
 
 ),
 
@@ -23,19 +23,19 @@ objective_assessments as (
     select
         fct_student_assessment.school_year,
         fct_student_assessment.student_assessment_identifier,
-        ARRAY_AGG(
+        array_agg(
             struct(
                 dim_assessment.objective_assessment_identification_code              as identification_code,
                 dim_assessment.objective_assessment_description                      as description,
-                fct_student_assessment.reporting_method                                        as reporting_method,
-                fct_student_assessment.student_result                                          as student_result
+                fct_student_assessment.reporting_method                              as reporting_method,
+                fct_student_assessment.student_result                                as student_result
             )
         ) as objective_assessment_student_score
     from {{ ref('fct_student_assessment') }} fct_student_assessment
     left join {{ ref('dim_assessment') }} dim_assessment
         on fct_student_assessment.assessment_key = dim_assessment.assessment_key
     where dim_assessment.objective_assessment_identification_code is not null
-    group by 1, 2
+    group by 1,2
 
 )
 
@@ -46,9 +46,6 @@ select
     dim_student.student_last_surname                            as student_last_surname,
     dim_student.student_first_name                              as student_first_name,
     dim_student.student_display_name                            as student_display_name,
-    dim_student.is_actively_enrolled_in_school                  as is_actively_enrolled_in_school,
-    dim_student.grade_level                                     as grade_level,
-    dim_student.grade_level_id                                  as grade_level_id,
     dim_student.gender                                          as gender,
     dim_student.limited_english_proficiency                     as limited_english_proficiency,
     dim_student.is_english_language_learner                     as is_english_language_learner,

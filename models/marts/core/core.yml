@@ -208,17 +208,8 @@ models:
       - name: student_display_name
         description: Concatenation of student's last name, first name, and first letter of middle name
 
-      - name: email
+      - name: student_email
         description: Student email
-
-      - name: is_actively_enrolled_in_school
-        description: Yes/No depending on whether student holds an active enrollment in a school
-
-      - name: grade_level
-        description: Grade level label
-
-      - name: grade_level_id
-        description: Grade level id useful for sorting dropdowns in bi tools
 
       - name: limited_english_proficiency
         description: "An indication that the student has been identified as limited English proficient by the Language Proficiency Assessment Committee (LPAC), or English proficient."

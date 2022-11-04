@@ -1,5 +1,4 @@
 
-
 with section_grade as (
 
     select
@@ -34,12 +33,12 @@ staff as (
         section_grade.school_key,
         section_grade.section_key,
         section_grade.student_key,
-        ARRAY_AGG(
+        array_agg(
             struct(
                 dim_staff.staff_last_surname,
                 dim_staff.staff_first_name,
                 dim_staff.staff_display_name,
-                dim_staff.email,
+                dim_staff.staff_email,
                 bridge_staff_group.classroom_position
             )
         ) as staff
@@ -50,20 +49,36 @@ staff as (
         on bridge_staff_group.staff_key = dim_staff.staff_key
     {{ dbt_utils.group_by(n=4) }}
 
+),
+
+student_enrollment as (
+
+    select
+        fct_student_school.school_key,
+        fct_student_school.student_key,
+        fct_student_school.grade_level,
+        fct_student_school.grade_level_id,
+        fct_student_school.is_actively_enrolled_in_school
+    from {{ ref('fct_student_school') }} fct_student_school
+    qualify row_number() over (
+        partition by school_key, student_key
+        order by enrollment_date desc
+    ) = 1
+
 )
 
 
 select
     section_grade.school_year                                   as school_year,
-    dim_school.lea_name                      as lea_name,
+    dim_school.lea_name                                         as lea_name,
     dim_school.school_name                                      as school_name,
     dim_student.student_unique_id                               as student_unique_id,
     dim_student.student_last_surname                            as student_last_surname,
     dim_student.student_first_name                              as student_first_name,
     dim_student.student_display_name                            as student_display_name,
-    dim_student.is_actively_enrolled_in_school                  as is_actively_enrolled_in_school,
-    dim_student.grade_level                                     as grade_level,
-    dim_student.grade_level_id                                  as grade_level_id,
+    student_enrollment.is_actively_enrolled_in_school           as is_actively_enrolled_in_school,
+    student_enrollment.grade_level                              as grade_level,
+    student_enrollment.grade_level_id                           as grade_level_id,
     dim_student.gender                                          as gender,
     dim_student.limited_english_proficiency                     as limited_english_proficiency,
     dim_student.is_english_language_learner                     as is_english_language_learner,
@@ -82,6 +97,9 @@ select
     staff.staff                                                 as staff,
     section_grade.grade                                         as grade
 from section_grade
+left join student_enrollment
+    on section_grade.school_key = student_enrollment.school_key
+    and section_grade.student_key = student_enrollment.student_key
 left join staff
     on section_grade.school_year = staff.school_year
     and section_grade.school_key = staff.school_key
@@ -89,7 +107,6 @@ left join staff
     and section_grade.student_key = staff.student_key
 left join {{ ref('dim_section') }} dim_section
     on section_grade.section_key = dim_section.section_key
-
 left join {{ ref('dim_student') }} dim_student
     on section_grade.student_key = dim_student.student_key
 left join {{ ref('dim_school') }} dim_school

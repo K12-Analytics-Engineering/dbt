@@ -6,7 +6,7 @@ with associations as (
     -- associate staff with all students with any enrollment at school
     select distinct
         fct_staff_school.school_year    as school_year,
-        dim_staff.email                 as user_email,
+        dim_staff.staff_email                 as user_email,
         dim_student.student_unique_id   as student_unique_id
     from {{ ref('fct_staff_school') }} fct_staff_school
     left join {{ ref('dim_staff') }} dim_staff
@@ -28,7 +28,7 @@ with associations as (
 
     select  
         fct_student_section.school_year     as school_year,
-        dim_staff.email                     as user_email,
+        dim_staff.staff_email               as user_email,
         dim_student.student_unique_id       as student_unique_id
     from {{ ref('fct_student_section') }} fct_student_section
     left join {{ ref('dim_student') }} dim_student
@@ -44,7 +44,7 @@ with associations as (
 
     select
         school_year         as school_year,
-        email               as user_email,
+        student_email       as user_email,
         student_unique_id   as student_unique_id
     from {{ ref('dim_student') }} dim_student
 
@@ -67,6 +67,6 @@ select
             'student_unique_id',
             'school_year'
     ]) }}                                   as student_key,
-    ARRAY_AGG(user_email)                   as authorized_emails
+    array_agg(user_email)                   as authorized_emails
 from distinct_values
 group by 1
