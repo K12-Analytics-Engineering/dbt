@@ -42,7 +42,7 @@ models:
         tests:
           - not_null
 
-      - name: school_attendance_event_category_descriptor
+      - name: school_attendance_event_category
         description: Descriptor for student school attendance event
         tests:
           - not_null
